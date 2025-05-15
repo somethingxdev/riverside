@@ -1,0 +1,87 @@
+---
+import { Image } from 'astro:assets';
+---
+
+<section class="py-20 md:py-25 lg:py-40">
+  <div class="container">
+    <span class="section-pretitle block uppercase">Suppliers</span>
+    <div class="flex flex-col lg:flex-row items-start gap-5 lg:gap-15 mb-7.5">
+      <h2 class="section-title max-w-[700px] mb-0">Our Partners – The Key to Your Success</h2>
+      <p class="max-w-[355px]">
+        We’re proud to work with top roofing material manufacturers who share our values of quality, reliability, and innovation. Together, we deliver
+        solutions that safeguard your homes and businesses, ensuring durability and beauty for years to come.
+      </p>
+    </div>
+  </div>
+  <div class="scroller overflow-hidden" data-speed="slow">
+    <div class="flex items-center gap-5 scroller__inner">
+      <div class="px-9 py-3.5 bg-lightGray rounded-xl">
+        <Image src={import(`@/assets/partners/1.png`)} alt="supplier" class="h-30 md:h-40 w-[280px] object-contain" />
+      </div>
+      <div class="px-9 py-3.5 bg-lightGray rounded-xl">
+        <Image src={import(`@/assets/partners/2.png`)} alt="supplier" class="h-30 md:h-40 w-[280px] object-contain" />
+      </div>
+      <div class="px-9 py-3.5 bg-lightGray rounded-xl">
+        <Image src={import(`@/assets/partners/3.png`)} alt="supplier" class="h-30 md:h-40 w-[280px] object-contain" />
+      </div>
+      <div class="px-9 py-3.5 bg-lightGray rounded-xl">
+        <Image src={import(`@/assets/partners/4.png`)} alt="supplier" class="h-30 md:h-40 w-[280px] object-contain" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .scroller[data-animated='true'] .scroller__inner {
+    width: max-content;
+    flex-wrap: nowrap;
+    animation: scroll var(--_animation-duration, 40s) var(--_animation-direction, forwards) linear infinite;
+  }
+
+  .scroller[data-direction='right'] {
+    --_animation-direction: reverse;
+  }
+
+  .scroller[data-direction='left'] {
+    --_animation-direction: forwards;
+  }
+
+  .scroller[data-speed='fast'] {
+    --_animation-duration: 20s;
+  }
+
+  .scroller[data-speed='slow'] {
+    --_animation-duration: 60s;
+  }
+
+  @keyframes scroll {
+    to {
+      transform: translate(calc(-50% - 0.5rem));
+    }
+  }
+</style>
+
+<script>
+  const scroller = document.querySelector('.scroller') as HTMLElement;
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    addAnimation();
+  }
+
+  function addAnimation() {
+    if (!scroller) return;
+
+    scroller.setAttribute('data-animated', 'true');
+
+    const scrollerInner = scroller.querySelector('.scroller__inner') as HTMLElement;
+    if (!scrollerInner) return;
+
+    const scrollerContent = Array.from(scrollerInner.children);
+
+    scrollerContent.forEach((item) => {
+      const duplicatedItem = item.cloneNode(true) as HTMLElement;
+      duplicatedItem.setAttribute('aria-hidden', 'true');
+      scrollerInner.appendChild(duplicatedItem);
+    });
+  }
+</script>

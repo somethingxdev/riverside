@@ -1,19 +1,19 @@
 {
   "$schema": "https://starwind.dev/config-schema.json",
   "tailwind": {
-    "css": "src/styles/global.css",
+    "css": "src/styles/starwind.css",
     "baseColor": "neutral",
     "cssVariables": true
   },
   "componentDir": "src/components",
   "components": [
     {
-      "name": "dropdown",
-      "version": "1.0.2"
-    },
-    {
       "name": "button",
       "version": "2.0.1"
+    },
+    {
+      "name": "dropdown",
+      "version": "1.0.2"
     },
     {
       "name": "accordion",

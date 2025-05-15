@@ -1,0 +1,83 @@
+---
+import { Image } from 'astro:assets';
+import StarsIcons from '@/icons/stars.svg';
+---
+
+<section class="py-20 md:py-25 lg:py-40 overflow-hidden" id="reviews">
+  <div class="container">
+    <span class="section-pretitle block uppercase mb-5">Reviews</span>
+    <div class="flex flex-col lg:flex-row flex-wrap gap-5 lg:items-center justify-between mb-7.5">
+      <h2 class="section-title mb-0">Join ThousandS OF Satisfied Owners</h2>
+      <div class="flex flex-col xl:items-end">
+        <StarsIcons class="w-[190px] lg:w-full mb-1" />
+        <p class="uppercase font-semibold text-secondary">4.9 AVERAGE RATING</p>
+      </div>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-5 items-stretch">
+      <div class="flex flex-col justify-between max-w-[540px] lg:max-w-[356px]">
+        <p class="text-primary">
+          Whether you're a business owner or homeowner, we aim to connect, inform, and deliver exceptional materials while being the best partner for
+          all your roofing needs.
+        </p>
+        <a href="#" class="uppercase font-semibold text-primary hidden lg:block">All Reviews</a>
+      </div>
+      <div class="reviews-container relative">
+        <div class="reviews-wrapper flex gap-5">
+          <div class="reviews-slide rounded-xl overflow-hidden">
+            <Image src={import('@/assets/reviews/1.png')} class="size-full object-cover" alt="1" />
+          </div>
+          <div class="reviews-slide rounded-xl overflow-hidden">
+            <Image src={import('@/assets/reviews/1.png')} class="size-full object-cover" alt="1" />
+          </div>
+          <div class="reviews-slide rounded-xl overflow-hidden">
+            <Image src={import('@/assets/reviews/1.png')} class="size-full object-cover" alt="1" />
+          </div>
+          <div class="reviews-slide rounded-xl overflow-hidden">
+            <Image src={import('@/assets/reviews/1.png')} class="size-full object-cover" alt="1" />
+          </div>
+          <div class="reviews-slide rounded-xl overflow-hidden">
+            <Image src={import('@/assets/reviews/1.png')} class="size-full object-cover" alt="1" />
+          </div>
+          <div class="reviews-slide rounded-xl overflow-hidden">
+            <Image src={import('@/assets/reviews/1.png')} class="size-full object-cover" alt="1" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.innerWidth < 1024) return;
+
+    const reviews = gsap.utils.toArray('.reviews-slide');
+    const scrollTween = gsap.to(reviews, {
+      xPercent: -100 * (reviews.length - 1),
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#reviews',
+        endTrigger: '#touchroom',
+        pin: true,
+        scrub: 1,
+        start: '50% 50%',
+        end: '+=3000'
+      }
+    });
+  });
+</script>
+
+<style>
+  .reviews-slide {
+    flex: 0 0 320px;
+  }
+
+  .reviews-container {
+    clip-path: inset(-100vw -100vw -100vw 0);
+  }
+</style>

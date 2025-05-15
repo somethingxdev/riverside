@@ -1,0 +1,101 @@
+---
+import { Image } from 'astro:assets';
+import ArrowRightTopIcon from '@/icons/arrow-right-top.svg';
+
+const articles = [
+  {
+    image: import('@/assets/blog/1.png'),
+    title: 'How to choose the perfect roof for your home',
+    desc: 'Guide to choosing roofing materials, taking into account climate conditions, house style, and budget.',
+    date: '26 March, 2025',
+    link: '#',
+    featured: true
+  },
+  {
+    image: import('@/assets/blog/2.png'),
+    title: 'Roof design trends of 2025',
+    desc: 'Review of modern trends in roof design that will make your house unique and stylish.',
+    date: '26 March, 2025',
+    link: '#',
+    featured: false
+  },
+  {
+    image: import('@/assets/blog/3.png'),
+    title: "How to choose the right roofing contractor in Shreveport: a homeowner's guide",
+    desc: 'Beware of roofing scams: how Shreveport homeowners can find trustworthy contractors.',
+    date: '26 March, 2025',
+    link: '#',
+    featured: false
+  }
+];
+---
+
+<section id="blog" class="py-20 md:py-25 lg:py-40">
+  <div class="container">
+    <span class="section-pretitle block uppercase mb-5">Blog</span>
+    <div class="flex justify-between items-end gap-5 pb-7.5">
+      <h2 class="section-title mb-0">Useful articles and tips</h2>
+      <a href="#" class="uppercase font-semibold hidden md:block">Read more</a>
+    </div>
+    <div class="flex flex-col xl:flex-row gap-5 xl:py-5 xl:border-y xl:border-secondary mb-8 md:mb-0">
+      <a href="#" class="group flex flex-col md:flex-row xl:flex-col gap-5 pb-5 border-b border-secondary xl:w-1/2 xl:border-none">
+        <div class="w-full md:flex-[0_0_355px] h-75 md:h-65 xl:h-[412px] overflow-hidden rounded-xl">
+          <Image src={articles[0].image} alt={articles[0].title} class="size-full object-cover group-hover:scale-105 transition-transform" />
+        </div>
+
+        <div class="flex flex-col xl:flex-row justify-between h-auto xl:h-full">
+          <div class="max-w-[330px] flex flex-col justify-between">
+            <h2 class="text-xl/none mb-5">How to choose the perfect roof for your home</h2>
+            <p class="text-secondary">Guide to choosing roofing materials, taking into account climate conditions, house style, and budget.</p>
+          </div>
+          <div class="flex xl:flex-col justify-between h-full items-end">
+            <span>26 March, 2025</span>
+            <div class="grid place-items-center size-12.5 rounded-full bg-primary">
+              <ArrowRightTopIcon />
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <div class="flex flex-col gap-5 xl:w-1/2">
+        <a href="#" class="group flex flex-col md:flex-row gap-5 pb-5 border-b border-secondary">
+          <div class="w-full md:flex-[0_0_355px] h-75 md:h-65 xl:h-62.5 overflow-hidden rounded-xl">
+            <Image src={articles[1].image} alt={articles[1].title} class="size-full object-cover group-hover:scale-105 transition-transform" />
+          </div>
+
+          <div class="flex flex-col justify-between">
+            <div class="max-w-[350px]">
+              <h2 class="text-xl/none mb-5">{articles[1].title}</h2>
+              <p class="text-secondary">{articles[1].desc}</p>
+            </div>
+            <div class="flex justify-between items-end">
+              <p>{articles[1].date}</p>
+              <div class="grid place-items-center size-12.5 rounded-full bg-primary">
+                <ArrowRightTopIcon />
+              </div>
+            </div>
+          </div>
+        </a>
+        <a href="#" class="group flex flex-col md:flex-row gap-5 pb-5 border-b border-secondary xl:border-none xl:pb-0">
+          <div class="w-full md:flex-[0_0_355px] h-75 md:h-65 xl:h-62.5 overflow-hidden rounded-xl">
+            <Image src={articles[2].image} alt={articles[2].title} class="size-full object-cover group-hover:scale-105 transition-transform" />
+          </div>
+
+          <div class="flex flex-col justify-between">
+            <div class="max-w-[350px]">
+              <h2 class="text-xl/none mb-5">{articles[2].title}</h2>
+              <p class="text-secondary">{articles[2].desc}</p>
+            </div>
+            <div class="flex justify-between items-end">
+              <p>{articles[2].date}</p>
+              <div class="grid place-items-center size-12.5 rounded-full bg-primary">
+                <ArrowRightTopIcon />
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <a href="#" class="uppercase font-semibold md:hidden">Read more</a>
+  </div>
+</section>

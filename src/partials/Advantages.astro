@@ -1,0 +1,50 @@
+---
+const advantages = [
+  {
+    number: '01',
+    title: 'FAST AND RELIABLE DELIVERY',
+    description: 'Your roof is the protection of your home, and we understand how important speed is. We guarantee fast delivery right to your site so you can start work without delays.',
+  },
+  {
+    number: '02',
+    title: 'PERSONALIZED SERVICE',
+    description: 'Every client is unique to us. We focus on your needs and deliver a customized approach at every step of our collaboration.',
+  },
+  {
+    number: '03',
+    title: 'QUALITY PRODUCTS',
+    description: 'We stand behind the quality of our products. Your roof needs to stand the test of time.',
+  },
+  {
+    number: '04',
+    title: 'EXPERT TEAM AT YOUR SERVICE',
+    description: 'Our team is made up of professionals who know the roofing industry inside and out. They’re ready to guide you with expert advice and offer the best solutions for your needs.',
+  },
+  {
+    number: '05',
+    title: 'WIDE SELECTION FOR EVERY NEED',
+    description: 'Discover materials to suit any taste and budget. We continuously update our catalog to bring you the latest and most reliable solutions.',
+  },
+  {
+    number: '06',
+    title: 'WARM AND RESPECTFUL ENVIRONMENT',
+    description: 'At Riverside, you’ll feel like part of the family. Kindness and respect are the foundation of how we treat every client.',
+  },
+];
+---
+
+<section id="advantage" class='pb-20 md:pb-25 lg:pb-40'>
+  <div class="container">
+    <p class='section-pretitle'>THE RIVERSIDE Advantage ®</pс>
+    <h2 class='section-title'>Why Choose Riverside?</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3  gap-y-10 md:gap-y-12">
+      {advantages.map((advantage, index) => (
+        <div class="flex flex-col items-center md:max-w-[350px] md:mx-auto w-full">
+          <span class="font-bold font-heading text-4xl lg:text-[85px]/none text-secondary/30">0{index + 1}</span>
+          <h3 class="font-semibold mb-5">{advantage.title}</h3>
+          <p class='text-center'>{advantage.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

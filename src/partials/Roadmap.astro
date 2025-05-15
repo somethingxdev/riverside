@@ -1,0 +1,19 @@
+---
+import { Image, getImage } from 'astro:assets';
+import { Button } from '@/components/starwind/button';
+const background = await getImage({ src: import('@/assets/roadmap/main.png'), format: 'avif' });
+---
+
+<section class="py-30 md:py-42.5 bg-cover bg-no-repeat bg-bottom" style={{ backgroundImage: `url(${background.src})` }}>
+  <div class="container">
+    <h2 class="section-title text-white max-w-[840px] mx-auto text-center">Complete Your Roofing Success Roadmap</h2>
+    <p class="text-white mb-7.5 max-w-[526px] mx-auto text-center">
+      Take our quick survey to receive your personalized step-by-step checklist for a successful roofing project based on your specific situation –
+      whether you're a homeowner or contractor!
+    </p>
+    <div class="flex flex-col sm:flex-row justify-center gap-5">
+      <Button class='w-full md:w-[265px] lg:w-[350px] h-12.5 lg:h-15'>Are you a contractor?</Button>
+      <Button class='w-full md:w-[265px] lg:w-[350px] h-12.5 lg:h-15'>Are you a homeowner?</Button>
+    </div>
+  </div>
+</section>

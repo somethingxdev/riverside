@@ -1,10 +1,10 @@
 ---
-import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem, DropdownLabel } from "@/components/starwind/dropdown";
-import Button from "@/components/starwind/button";
-import MenuIcon from "@/icons/menu.svg";
-import ArrowDownIcon from "@/icons/arrow-down.svg";
-import { X } from "lucide-react";
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/starwind/accordion";
+import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem, DropdownLabel } from '@/components/starwind/dropdown';
+import Button from '@/components/starwind/button';
+import MenuIcon from '@/icons/menu.svg';
+import ArrowDownIcon from '@/icons/arrow-down.svg';
+import { X } from 'lucide-react';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/starwind/accordion';
 type MenuItem = {
   title: string;
   href: string;
@@ -31,77 +31,77 @@ type MenuItemType = {
 
 const menu: MenuItemType[] = [
   {
-    title: "Products",
-    href: "/products",
+    title: 'Products',
+    href: '/products',
     hasSubmenu: true,
     submenu: [
       {
-        title: "RESIDENTAL",
+        title: 'RESIDENTAL',
         items: [
-          { title: "Certainteed Shingles", href: "/products/certainteed-shingles" },
-          { title: "Non-warranty Shingles", href: "/products/non-warranty-shingles" },
-        ],
+          { title: 'Certainteed Shingles', href: '/products/certainteed-shingles' },
+          { title: 'Non-warranty Shingles', href: '/products/non-warranty-shingles' }
+        ]
       },
       {
-        title: "COMMERCIAL",
+        title: 'COMMERCIAL',
         items: [
-          { title: "SA Modified Bitumen", href: "/products/sa-modified-bitumen" },
-          { title: "SBS Modified Bitumen", href: "/products/sbs-modified-bitumen" },
-          { title: "APP Modified Bitumen", href: "/products/app-modified-bitumen" },
-        ],
+          { title: 'SA Modified Bitumen', href: '/products/sa-modified-bitumen' },
+          { title: 'SBS Modified Bitumen', href: '/products/sbs-modified-bitumen' },
+          { title: 'APP Modified Bitumen', href: '/products/app-modified-bitumen' }
+        ]
       },
       {
-        title: "ACCESORIES",
+        title: 'ACCESORIES',
         items: [
-          { title: "Cougar Paws", href: "/products/cougar-paws" },
-          { title: "Pitch Hopers", href: "/products/pitch-hopers" },
-          { title: "ShingleGauges", href: "/products/shingle-gauges" },
-          { title: "Pitch Finder", href: "/products/pitch-finder" },
-          { title: "Ladder Stabilizer", href: "/products/ladder-stabilizer" },
-          { title: "Fall Protection", href: "/products/fall-protection" },
-        ],
-      },
-    ],
+          { title: 'Cougar Paws', href: '/products/cougar-paws' },
+          { title: 'Pitch Hopers', href: '/products/pitch-hopers' },
+          { title: 'ShingleGauges', href: '/products/shingle-gauges' },
+          { title: 'Pitch Finder', href: '/products/pitch-finder' },
+          { title: 'Ladder Stabilizer', href: '/products/ladder-stabilizer' },
+          { title: 'Fall Protection', href: '/products/fall-protection' }
+        ]
+      }
+    ]
   },
   {
-    title: "Services",
-    href: "/services",
+    title: 'Services',
+    href: '/services',
     hasSubmenu: true,
     submenu: [
-      { title: "Delivery", href: "/services/delivery" },
-      { title: "Quick Pickup", href: "/services/quick-pickup" },
-      { title: "Free Roofing Calculation", href: "/services/free-roofing-calculation" },
-    ],
+      { title: 'Delivery', href: '/services/delivery' },
+      { title: 'Quick Pickup', href: '/services/quick-pickup' },
+      { title: 'Free Roofing Calculation', href: '/services/free-roofing-calculation' }
+    ]
   },
   {
-    title: "About",
-    href: "/about",
-    hasSubmenu: false,
+    title: 'About',
+    href: '/about',
+    hasSubmenu: false
   },
   {
-    title: "FAQ",
-    href: "/faq",
-    hasSubmenu: false,
+    title: 'FAQ',
+    href: '/faq',
+    hasSubmenu: false
   },
   {
-    title: "Reviews",
-    href: "/reviews",
-    hasSubmenu: false,
+    title: 'Reviews',
+    href: '/reviews',
+    hasSubmenu: false
   },
   {
-    title: "Blog",
-    href: "/blog",
-    hasSubmenu: false,
+    title: 'Blog',
+    href: '/blog',
+    hasSubmenu: false
   },
   {
-    title: "Contact",
-    href: "/contact",
-    hasSubmenu: false,
-  },
+    title: 'Contact',
+    href: '/contact',
+    hasSubmenu: false
+  }
 ];
 ---
 
-<header class="fixed top-0 left-0 z-10 w-full py-5">
+<header class="fixed top-0 left-0 z-10 w-full py-4 transition-all">
   <div class="container">
     <div class="flex items-center justify-between gap-7">
       <a href="/" class="flex flex-col text-white">
@@ -121,11 +121,11 @@ const menu: MenuItemType[] = [
                     </DropdownTrigger>
                     <DropdownContent align="center">
                       {item.submenu?.map((submenuItem, index) => {
-                        const isCategory = "items" in submenuItem;
+                        const isCategory = 'items' in submenuItem;
                         return (
-                          <div class={isCategory ? "not-last:mb-7.5" : "not-last:mb-3"}>
+                          <div class={isCategory ? 'not-last:mb-7.5' : 'not-last:mb-3'}>
                             {isCategory ? (
-                              <div class="space-y-3">
+                              <div class="space-y-3 pt-3">
                                 <DropdownLabel>{submenuItem.title}</DropdownLabel>
                                 {(submenuItem as CategorySubmenuItem).items.map((subItem) => (
                                   <DropdownItem as="a" href={subItem.href}>
@@ -157,7 +157,7 @@ const menu: MenuItemType[] = [
       >
       </div>
       <nav
-        class="lg:hidden fixed inset-0 right-0 left-auto size-full max-w-md bg-white translate-x-full transition-transform duration-300 ease-in-out z-50"
+        class="lg:hidden fixed inset-0 right-0 left-auto size-full max-w-md bg-[#F8F8FA] translate-x-full transition-transform duration-300 ease-in-out z-50"
         id="mobile-menu"
       >
         <div class="flex flex-col h-full overflow-y-auto pt-10 px-5">
@@ -168,14 +168,12 @@ const menu: MenuItemType[] = [
               {
                 menu.map((item) =>
                   item.hasSubmenu ? (
-                    <AccordionItem value={item.title.toLowerCase()} class="border-b border-primary">
-                      <AccordionTrigger class="py-4">
-                        {item.title} <ArrowDownIcon class="group-aria-expanded:rotate-180 transition-transform size-3" />
-                      </AccordionTrigger>
+                    <AccordionItem value={item.title.toLowerCase()}>
+                      <AccordionTrigger class="mt-3.5">{item.title}</AccordionTrigger>
                       <AccordionContent>
-                        <div class={item.submenu?.some((item) => "items" in item) ? "space-y-8" : "space-y-3"}>
+                        <div class="py-5 border-b" class:list={item.submenu?.some((item) => 'items' in item) ? 'space-y-8' : 'space-y-3'}>
                           {item.submenu?.map((submenuItem) => {
-                            const isCategory = "items" in submenuItem;
+                            const isCategory = 'items' in submenuItem;
                             return isCategory ? (
                               <div>
                                 <span class="font-semibold text-sm text-primary mb-5 block uppercase">{submenuItem.title}</span>
@@ -199,25 +197,25 @@ const menu: MenuItemType[] = [
                       </AccordionContent>
                     </AccordionItem>
                   ) : (
-                    <div class="mt-5">
-                      <a href={item.href} class="block hover:underline">
+                    <div class="mt-3.5">
+                      <a href={item.href} class="block hover:underline text-primary">
                         {item.title}
                       </a>
                     </div>
-                  ),
+                  )
                 )
               }
             </Accordion>
 
             <div class="mt-10 flex flex-col gap-7.5">
-              <a href="tel:+13182229999">+1 (318) 222-9999</a>
-              <Button variant="primary" class="w-full hover:bg-primary/90 hover:text-white">SUCCESS SURVEY</Button>
+              <a href="tel:+13182229999" class="text-primary">+1 (318) 222-9999</a>
+              <Button variant="primary" size="sm" class="w-full hover:bg-primary/90 hover:text-white">SUCCESS SURVEY</Button>
             </div>
           </div>
         </div>
       </nav>
       <div class="flex items-center gap-7.5">
-        <Button class="px-5 xl:px-8 hidden lg:block">Success survey</Button>
+        <Button size="sm" class="px-5 xl:px-10 hidden lg:block">Success survey</Button>
         <a href="tel:+13182229999" class="text-medium underline-hover text-white text-lg hidden xl:block">+1 (318) 222-9999</a>
         <button id="menu-toggle" aria-label="Menu" class="lg:hidden">
           <MenuIcon />
@@ -225,34 +223,42 @@ const menu: MenuItemType[] = [
       </div>
     </div>
   </div>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const menuToggle = document.getElementById("menu-toggle") as HTMLElement;
-      const slideOutMenu = document.getElementById("mobile-menu") as HTMLElement;
-      const closeButton = document.getElementById("close-menu") as HTMLElement;
-
-      const menuOverlay = document.getElementById("menu-overlay") as HTMLElement;
-
-      const openMenu = () => {
-        slideOutMenu?.classList.add("translate-x-0");
-        slideOutMenu?.classList.remove("translate-x-full");
-        menuOverlay?.classList.add("opacity-100");
-        menuOverlay?.classList.remove("pointer-events-none");
-        document.body.classList.add("overflow-hidden");
-      };
-
-      const closeMenu = () => {
-        slideOutMenu?.classList.remove("translate-x-0");
-        slideOutMenu?.classList.add("translate-x-full");
-        menuOverlay?.classList.remove("opacity-100");
-        menuOverlay?.classList.add("pointer-events-none");
-        document.body.classList.remove("overflow-hidden");
-      };
-
-      menuToggle?.addEventListener("click", openMenu);
-      closeButton?.addEventListener("click", closeMenu);
-      menuOverlay?.addEventListener("click", closeMenu);
-    });
-  </script>
 </header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const header = document.querySelector('header') as HTMLElement;
+    const menuToggle = document.getElementById('menu-toggle') as HTMLElement;
+    const slideOutMenu = document.getElementById('mobile-menu') as HTMLElement;
+    const closeButton = document.getElementById('close-menu') as HTMLElement;
+    const menuOverlay = document.getElementById('menu-overlay') as HTMLElement;
+
+    const openMenu = () => {
+      slideOutMenu?.classList.add('translate-x-0');
+      slideOutMenu?.classList.remove('translate-x-full');
+      menuOverlay?.classList.add('opacity-100');
+      menuOverlay?.classList.remove('pointer-events-none');
+      document.body.classList.add('overflow-hidden');
+    };
+
+    const closeMenu = () => {
+      slideOutMenu?.classList.remove('translate-x-0');
+      slideOutMenu?.classList.add('translate-x-full');
+      menuOverlay?.classList.remove('opacity-100');
+      menuOverlay?.classList.add('pointer-events-none');
+      document.body.classList.remove('overflow-hidden');
+    };
+
+    menuToggle?.addEventListener('click', openMenu);
+    closeButton?.addEventListener('click', closeMenu);
+    menuOverlay?.addEventListener('click', closeMenu);
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 0) {
+        header?.classList.add('bg-primary', 'shadow-lg');
+      } else {
+        header?.classList.remove('bg-primary', 'shadow-lg');
+      }
+    });
+  });
+</script>

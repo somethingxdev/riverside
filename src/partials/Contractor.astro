@@ -1,0 +1,17 @@
+---
+import { Image } from 'astro:assets';
+---
+
+<section class="py-15 bg-primary" id="contractor">
+  <div class="container">
+    <div class="flex flex-col items-start md:flex-row md:items-center gap-6 md:gap-10">
+      <div class='max-w-[660px]'>
+        <p class="section-pretitle uppercase">We know everyone in town – “Don’t learn the hard way”</p>
+        <h2 class="section-title text-white mb-0 md:mb-initial">ONLY TRUST Riverside Trusted Contractor ®</h2>
+      </div>
+      <div class='md:max-w-[360px] xl:max-w-full'>
+        <Image src={import('@/assets/contractor/main.png')} alt="We know everyone in town – “Don’t learn the hard way”" />
+      </div>
+    </div>
+  </div>
+</section>

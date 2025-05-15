@@ -1,8 +1,8 @@
 ---
-import type { HTMLAttributes } from "astro/types";
-import { tv } from "tailwind-variants";
+import type { HTMLAttributes } from 'astro/types';
+import { tv } from 'tailwind-variants';
 
-type Props = HTMLAttributes<"div"> & {
+type Props = HTMLAttributes<'div'> & {
   /**
    * Whether the label is inset (has left padding)
    */
@@ -10,15 +10,15 @@ type Props = HTMLAttributes<"div"> & {
 };
 
 const dropdownLabel = tv({
-  base: ["font-semibold mb-5 text-base/none  text-primary"],
+  base: ['font-semibold mb-5 text-base/none  text-primary'],
   variants: {
     inset: {
-      true: "pl-8",
-    },
+      true: 'pl-8'
+    }
   },
   defaultVariants: {
-    inset: false,
-  },
+    inset: false
+  }
 });
 
 const { class: className, inset = false, ...rest } = Astro.props;

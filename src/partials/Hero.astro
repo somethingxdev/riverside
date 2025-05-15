@@ -1,7 +1,7 @@
 ---
-import { getImage } from "astro:assets";
-import Button from "@/components/starwind/button";
-const background = await getImage({ src: import("@/assets/hero.png") });
+import { getImage } from 'astro:assets';
+import Button from '@/components/starwind/button';
+const background = await getImage({ src: import('@/assets/hero.png') });
 const backgroundSrc = background.src;
 ---
 
@@ -11,13 +11,13 @@ const backgroundSrc = background.src;
     <h1 class="text-white font-heading text-5xl lg:text-8xl font-semibold mb-6 max-w-[1080px]">
       Locally owned roofing supply company serving you since 1994
     </h1>
-    <Button class="md:h-15 px-5 md:px-initial">Why Riverside is the way to go?</Button>
+    <Button class="px-8">Why Riverside is the way to go?</Button>
   </div>
 </section>
 
-<style define:vars={{ backgroundSrc }}>
+<style define:vars={{ background: `url('${backgroundSrc}')` }}>
   .hero::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;

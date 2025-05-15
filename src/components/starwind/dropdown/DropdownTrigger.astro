@@ -1,8 +1,8 @@
 ---
-import type { HTMLAttributes } from "astro/types";
-import { tv } from "tailwind-variants";
+import type { HTMLAttributes } from 'astro/types';
+import { tv } from 'tailwind-variants';
 
-type Props = Omit<HTMLAttributes<"button">, "role" | "type"> & {
+type Props = Omit<HTMLAttributes<'button'>, 'role' | 'type'> & {
   /**
    * When true, the component will render its child element with a simple wrapper instead of a button component
    */
@@ -10,14 +10,14 @@ type Props = Omit<HTMLAttributes<"button">, "role" | "type"> & {
 };
 
 const dropdownTrigger = tv({
-  base: ["starwind-dropdown-trigger cursor-pointer group", "inline-flex items-center justify-center gap-2", " focus-visible:outline-none"],
+  base: ['starwind-dropdown-trigger cursor-pointer group', 'inline-flex items-center justify-center gap-2', ' focus-visible:outline-none']
 });
 
 const { class: className, asChild = false, ...rest } = Astro.props;
 
 // Get the first child element if asChild is true
 let hasChildren = false;
-if (Astro.slots.has("default")) {
+if (Astro.slots.has('default')) {
   hasChildren = true;
 }
 ---

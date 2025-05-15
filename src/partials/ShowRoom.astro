@@ -1,0 +1,99 @@
+---
+import { Image } from 'astro:assets';
+import Button from '@/components/starwind/button';
+
+const items = [
+  {
+    image: import('@/assets/showroom/1.png'),
+    alt: 'alt text',
+    width: 500,
+    height: 350
+  },
+  {
+    image: import('@/assets/showroom/1.png'),
+    alt: 'alt text',
+    width: 250,
+    height: 250
+  },
+  {
+    image: import('@/assets/showroom/1.png'),
+    alt: 'alt text',
+    width: 730,
+    height: 480
+  },
+  {
+    image: import('@/assets/showroom/1.png'),
+    alt: 'alt text',
+    width: 500,
+    height: 350
+  },
+  {
+    image: import('@/assets/showroom/1.png'),
+    alt: 'alt text',
+    width: 500,
+    height: 350
+  },
+  {
+    image: import('@/assets/showroom/1.png'),
+    alt: 'alt text',
+    width: 250,
+    height: 250
+  },
+  {
+    image: import('@/assets/showroom/1.png'),
+    alt: 'alt text',
+    width: 730,
+    height: 480
+  },
+  {
+    image: import('@/assets/showroom/1.png'),
+    alt: 'alt text',
+    width: 500,
+    height: 350
+  }
+];
+---
+
+<section id="touchroom">
+  <div class="container">
+    <span class="section-pretitle block uppercase mb-5">SeE & Touch our products in person</span>
+    <div class="flex flex-col lg:flex-row gap-20 lg:items-end justify-between mb-7.5">
+      <h2 class="section-title mb-0">Visit Our Showroom: <br /> Inspiring Ideas and Ready Solutions</h2>
+      <Button href="#" variant="primary" class="w-[355px]">Visit our showroom</Button>
+    </div>
+    <div class="embla-showroom">
+      <div class="flex items-start overflow-x-visible">
+        {
+          items.map((item, index) => (
+            <div data-width={item.width} data-height={item.height} class=" rounded-xl min-w-0 overflow-hidden showroom-image mr-2.5 md:mr-5">
+              <Image src={item.image} class="size-full object-cover" alt={item.alt} />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import EmblaCarousel from 'embla-carousel';
+  import Autoplay from 'embla-carousel-autoplay';
+  const emblaNode = document.querySelector('.embla-showroom') as HTMLElement;
+  const options = { loop: true, align: 'start' as const };
+  const emblaApi = EmblaCarousel(emblaNode, options, [
+    Autoplay({
+      delay: 3000
+    })
+  ]);
+
+  const isDesktop = typeof window !== 'undefined' ? window.innerWidth >= 1024 : false;
+
+  const images = document.querySelectorAll('.showroom-image') as NodeListOf<HTMLImageElement>;
+
+  images.forEach((image) => {
+    const width = image.dataset.width ? `${image.dataset.width}px` : '500px';
+    const randomMobileWidth = `${Math.floor(Math.random() * (300 - 200 + 1) + 200)}px`;
+    image.style.flex = isDesktop ? `0 0 ${width}` : `0 0 ${randomMobileWidth}`;
+    image.style.height = isDesktop ? image.dataset.height + 'px' : randomMobileWidth;
+  });
+</script>
