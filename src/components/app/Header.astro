@@ -1,0 +1,258 @@
+---
+import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem, DropdownLabel } from "@/components/starwind/dropdown";
+import Button from "@/components/starwind/button";
+import MenuIcon from "@/icons/menu.svg";
+import ArrowDownIcon from "@/icons/arrow-down.svg";
+import { X } from "lucide-react";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/starwind/accordion";
+type MenuItem = {
+  title: string;
+  href: string;
+};
+
+type CategorySubmenuItem = {
+  title: string;
+  items: MenuItem[];
+};
+
+type SimpleSubmenuItem = {
+  title: string;
+  href: string;
+};
+
+type SubmenuItem = CategorySubmenuItem | SimpleSubmenuItem;
+
+type MenuItemType = {
+  title: string;
+  href: string;
+  hasSubmenu: boolean;
+  submenu?: SubmenuItem[];
+};
+
+const menu: MenuItemType[] = [
+  {
+    title: "Products",
+    href: "/products",
+    hasSubmenu: true,
+    submenu: [
+      {
+        title: "RESIDENTAL",
+        items: [
+          { title: "Certainteed Shingles", href: "/products/certainteed-shingles" },
+          { title: "Non-warranty Shingles", href: "/products/non-warranty-shingles" },
+        ],
+      },
+      {
+        title: "COMMERCIAL",
+        items: [
+          { title: "SA Modified Bitumen", href: "/products/sa-modified-bitumen" },
+          { title: "SBS Modified Bitumen", href: "/products/sbs-modified-bitumen" },
+          { title: "APP Modified Bitumen", href: "/products/app-modified-bitumen" },
+        ],
+      },
+      {
+        title: "ACCESORIES",
+        items: [
+          { title: "Cougar Paws", href: "/products/cougar-paws" },
+          { title: "Pitch Hopers", href: "/products/pitch-hopers" },
+          { title: "ShingleGauges", href: "/products/shingle-gauges" },
+          { title: "Pitch Finder", href: "/products/pitch-finder" },
+          { title: "Ladder Stabilizer", href: "/products/ladder-stabilizer" },
+          { title: "Fall Protection", href: "/products/fall-protection" },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Services",
+    href: "/services",
+    hasSubmenu: true,
+    submenu: [
+      { title: "Delivery", href: "/services/delivery" },
+      { title: "Quick Pickup", href: "/services/quick-pickup" },
+      { title: "Free Roofing Calculation", href: "/services/free-roofing-calculation" },
+    ],
+  },
+  {
+    title: "About",
+    href: "/about",
+    hasSubmenu: false,
+  },
+  {
+    title: "FAQ",
+    href: "/faq",
+    hasSubmenu: false,
+  },
+  {
+    title: "Reviews",
+    href: "/reviews",
+    hasSubmenu: false,
+  },
+  {
+    title: "Blog",
+    href: "/blog",
+    hasSubmenu: false,
+  },
+  {
+    title: "Contact",
+    href: "/contact",
+    hasSubmenu: false,
+  },
+];
+---
+
+<header class="fixed top-0 left-0 z-10 w-full py-5">
+  <div class="container">
+    <div class="flex items-center justify-between gap-7">
+      <a href="/" class="flex flex-col text-white">
+        <span class="text-[40px]/none font-bold font-heading"> Riverside </span>
+        <span class="font-sans text-[13px] font-light uppercase tracking-tight">roofing materials</span>
+      </a>
+      <nav class="flex-auto hidden lg:block">
+        <ul class="flex justify-center items-center gap-7 2xl:gap-10">
+          {
+            menu.map((item) => (
+              <li class="text-lg text-white font-medium">
+                {item.hasSubmenu ? (
+                  <Dropdown>
+                    <DropdownTrigger>
+                      {item.title}
+                      <ArrowDownIcon class="group-aria-expanded:rotate-180 transition-transform size-3" />
+                    </DropdownTrigger>
+                    <DropdownContent align="center">
+                      {item.submenu?.map((submenuItem, index) => {
+                        const isCategory = "items" in submenuItem;
+                        return (
+                          <div class={isCategory ? "not-last:mb-7.5" : "not-last:mb-3"}>
+                            {isCategory ? (
+                              <div class="space-y-3">
+                                <DropdownLabel>{submenuItem.title}</DropdownLabel>
+                                {(submenuItem as CategorySubmenuItem).items.map((subItem) => (
+                                  <DropdownItem as="a" href={subItem.href}>
+                                    {subItem.title}
+                                  </DropdownItem>
+                                ))}
+                              </div>
+                            ) : (
+                              <DropdownItem as="a" href={(submenuItem as SimpleSubmenuItem).href}>
+                                {submenuItem.title}
+                              </DropdownItem>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </DropdownContent>
+                  </Dropdown>
+                ) : (
+                  <a href={item.href}>{item.title}</a>
+                )}
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <div
+        id="menu-overlay"
+        class="lg:hidden fixed inset-0 bg-black/50 opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out z-10"
+      >
+      </div>
+      <nav
+        class="lg:hidden fixed inset-0 right-0 left-auto size-full max-w-md bg-white translate-x-full transition-transform duration-300 ease-in-out z-50"
+        id="mobile-menu"
+      >
+        <div class="flex flex-col h-full overflow-y-auto pt-10 px-5">
+          <button id="close-menu" class="ml-auto" aria-label="Close menu"> <X /> </button>
+
+          <div class="pt-5">
+            <Accordion type="multiple">
+              {
+                menu.map((item) =>
+                  item.hasSubmenu ? (
+                    <AccordionItem value={item.title.toLowerCase()} class="border-b border-primary">
+                      <AccordionTrigger class="py-4">
+                        {item.title} <ArrowDownIcon class="group-aria-expanded:rotate-180 transition-transform size-3" />
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <div class={item.submenu?.some((item) => "items" in item) ? "space-y-8" : "space-y-3"}>
+                          {item.submenu?.map((submenuItem) => {
+                            const isCategory = "items" in submenuItem;
+                            return isCategory ? (
+                              <div>
+                                <span class="font-semibold text-sm text-primary mb-5 block uppercase">{submenuItem.title}</span>
+                                <ul class="space-y-3">
+                                  {(submenuItem as CategorySubmenuItem).items.map((subItem) => (
+                                    <li>
+                                      <a href={subItem.href} class="block hover:underline">
+                                        {subItem.title}
+                                      </a>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            ) : (
+                              <a href={(submenuItem as SimpleSubmenuItem).href} class="block hover:underline">
+                                {submenuItem.title}
+                              </a>
+                            );
+                          })}
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                  ) : (
+                    <div class="mt-5">
+                      <a href={item.href} class="block hover:underline">
+                        {item.title}
+                      </a>
+                    </div>
+                  ),
+                )
+              }
+            </Accordion>
+
+            <div class="mt-10 flex flex-col gap-7.5">
+              <a href="tel:+13182229999">+1 (318) 222-9999</a>
+              <Button variant="primary" class="w-full hover:bg-primary/90 hover:text-white">SUCCESS SURVEY</Button>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="flex items-center gap-7.5">
+        <Button class="px-5 xl:px-8 hidden lg:block">Success survey</Button>
+        <a href="tel:+13182229999" class="text-medium underline-hover text-white text-lg hidden xl:block">+1 (318) 222-9999</a>
+        <button id="menu-toggle" aria-label="Menu" class="lg:hidden">
+          <MenuIcon />
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const menuToggle = document.getElementById("menu-toggle") as HTMLElement;
+      const slideOutMenu = document.getElementById("mobile-menu") as HTMLElement;
+      const closeButton = document.getElementById("close-menu") as HTMLElement;
+
+      const menuOverlay = document.getElementById("menu-overlay") as HTMLElement;
+
+      const openMenu = () => {
+        slideOutMenu?.classList.add("translate-x-0");
+        slideOutMenu?.classList.remove("translate-x-full");
+        menuOverlay?.classList.add("opacity-100");
+        menuOverlay?.classList.remove("pointer-events-none");
+        document.body.classList.add("overflow-hidden");
+      };
+
+      const closeMenu = () => {
+        slideOutMenu?.classList.remove("translate-x-0");
+        slideOutMenu?.classList.add("translate-x-full");
+        menuOverlay?.classList.remove("opacity-100");
+        menuOverlay?.classList.add("pointer-events-none");
+        document.body.classList.remove("overflow-hidden");
+      };
+
+      menuToggle?.addEventListener("click", openMenu);
+      closeButton?.addEventListener("click", closeMenu);
+      menuOverlay?.addEventListener("click", closeMenu);
+    });
+  </script>
+</header>
