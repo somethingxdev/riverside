@@ -1,0 +1,125 @@
+---
+import { Image, getImage } from 'astro:assets';
+import FloatingInput from '@/components/ui/FloatingInput.astro';
+import Button from '@/components/starwind/button';
+import FacebookIcon from '@/icons/facebook.svg';
+import InstagramIcon from '@/icons/instagram.svg';
+import LinkedinIcon from '@/icons/linkedin.svg';
+import YouTubeIcon from '@/icons/youtube.svg';
+import Logo from '@/icons/logo.svg';
+
+import { RollingText } from '@/components/ui/rolling-text';
+const background = await getImage({ src: import('@/assets/footer-bg.png'), format: 'avif' });
+
+const socialLinks = [
+  { name: 'Facebook', icon: FacebookIcon },
+  { name: 'Instagram', icon: InstagramIcon },
+  { name: 'Linkedin', icon: LinkedinIcon },
+  { name: 'YouTube', icon: YouTubeIcon }
+];
+---
+
+<footer class="relative bg-cover bg-no-repeat bg-top pt-15 lg:pt-20 pb-6 text-white" style={{ backgroundImage: `url(${background.src})` }}>
+  <div class="container">
+    <p class="font-semibold mb-5 lg:mb-6 uppercase">Looking for something else?</p>
+    <h2 class="section-title text-white mb-5">Talk with a product specialist</h2>
+    <p class="max-w-[570px] mb-10 lg:mb-15">
+      If you don’t see what you’re looking for, the best thing to do is give us a quick call or fill out the following inquiry form. We carry all
+      essential roofing materials, so you’re probably covered!
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-4 md:gap-x-5 md:gap-y-7.5 mb-15 lg:mb-30">
+      <FloatingInput label="Name" placeholder="Name" id="name" />
+      <FloatingInput label="Phone" placeholder="Phone" id="phone" />
+      <FloatingInput label="Inquiry" placeholder="Inquiry" id="inquiry" />
+      <Button class="h-12.5 md:h-15">Send</Button>
+    </div>
+
+    <div class="flex flex-col lg:flex-row justify-between items-start gap-10 md:gap-20 2xl:gap-40 mb-12.5">
+      <div class="flex gap-2.5">
+        {
+          socialLinks.map((link) => (
+            <a
+              href="#"
+              class="w-11.25 h-11.25 grid place-items-center border border-white rounded-full hover:bg-primary transition-colors hover:border-transparent"
+            >
+              <link.icon />
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
+        <!-- PRODUCTS -->
+        <div>
+          <h2 class="text-lg font-semibold mb-4 uppercase">CATALOG</h2>
+          <ul class="space-y-2">
+            <li><a href="#" class="transition-colors">Residential Products</a></li>
+            <li><a href="#" class="transition-colors">Commercial Roofing Products</a></li>
+            <li><a href="#" class="transition-colors">Other Products</a></li>
+          </ul>
+        </div>
+
+        <!-- SERVICES -->
+        <div>
+          <h2 class="text-lg font-semibold mb-4 uppercase">ABOUT US</h2>
+          <ul class="space-y-2">
+            <li><a href="#" class="transition-colors">Early Beginnings</a></li>
+            <li><a href="#" class="transition-colors">Our Milestones</a></li>
+            <li><a href="#" class="transition-colors">3 Pillars of Riverside</a></li>
+            <li><a href="#" class="transition-colors">Mission and Vision</a></li>
+            <li><a href="#" class="transition-colors">Get to Know Our Team</a></li>
+            <li><a href="#" class="transition-colors">Join the Team</a></li>
+          </ul>
+        </div>
+
+        <!-- RESOURCES -->
+        <div>
+          <h2 class="text-lg font-semibold mb-4 uppercase">Services</h2>
+          <ul class="space-y-2">
+            <li><a href="#" class="transition-colors">FAQ</a></li>
+            <li><a href="#" class="transition-colors">Reviews</a></li>
+            <li><a href="#" class="transition-colors">Blog</a></li>
+            <li><a href="#" class="transition-colors">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- COMPANY -->
+        <div>
+          <h2 class="text-lg font-semibold mb-4 uppercase">Contact</h2>
+          <ul class="space-y-7.5">
+            <li><a href="#" class="transition-colors wrap-anywhere">info@riversideroofingmaterials.com</a></li>
+            <li>
+              <p class="mb-2">P: 318-222-9999</p>
+              <p>F: 318-222-5050</p>
+            </li>
+            <li>
+              <p class="mb-2">975 Louisiana Avenue</p>
+              <p>Shreveport, LA, 71101</p>
+            </li>
+            <li>
+              <div class="mb-4">
+                <p class="font-semibold mb-2">MONDAY - FRIDAY</p>
+                <p>7:00 am - 4:00 pm</p>
+              </div>
+              <div>
+                <p class="font-semibold mb-2">SATURDAY AND SUNDAY</p>
+                <p>Closed</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <Logo class="max-w-full h-[135px] md:h-[216px] lg:h-auto" />
+
+    <div class="flex flex-col sm:flex-row sm:items-center gap-5 justify-between mt-5">
+      <div class="space-y-2">
+        <p>Copyright © 2025</p>
+        <p>All Rights Reserved</p>
+      </div>
+      <a href="#">Terms of Use</a>
+    </div>
+  </div>
+</footer>

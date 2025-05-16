@@ -15,31 +15,31 @@ import StarsIcons from '@/icons/stars.svg';
     </div>
 
     <div class="flex flex-col lg:flex-row gap-5 items-stretch">
-      <div class="flex flex-col justify-between max-w-[540px] lg:max-w-[356px]">
+      <div class="flex flex-col justify-between items-start max-w-[540px] lg:max-w-[356px]">
         <p class="text-primary">
           Whether you're a business owner or homeowner, we aim to connect, inform, and deliver exceptional materials while being the best partner for
           all your roofing needs.
         </p>
-        <a href="#" class="uppercase font-semibold text-primary hidden lg:block">All Reviews</a>
+        <a href="#" class="uppercase font-semibold text-primary hidden lg:inline-block underline-hover">All Reviews</a>
       </div>
-      <div class="reviews-container relative">
-        <div class="reviews-wrapper flex gap-5">
-          <div class="reviews-slide rounded-xl overflow-hidden">
+      <div class="reviews-container relative embla overflow-x-visible">
+        <div class="reviews-wrapper flex gap-2.5 md:gap-3.5 lg:gap-5">
+          <div class="reviews-slide flex-[0_0_320px] rounded-xl overflow-hidden">
             <Image src={import('@/assets/reviews/1.png')} class="size-full object-cover" alt="1" />
           </div>
-          <div class="reviews-slide rounded-xl overflow-hidden">
+          <div class="reviews-slide flex-[0_0_320px] rounded-xl overflow-hidden">
             <Image src={import('@/assets/reviews/1.png')} class="size-full object-cover" alt="1" />
           </div>
-          <div class="reviews-slide rounded-xl overflow-hidden">
+          <div class="reviews-slide flex-[0_0_320px] rounded-xl overflow-hidden">
             <Image src={import('@/assets/reviews/1.png')} class="size-full object-cover" alt="1" />
           </div>
-          <div class="reviews-slide rounded-xl overflow-hidden">
+          <div class="reviews-slide flex-[0_0_320px] rounded-xl overflow-hidden">
             <Image src={import('@/assets/reviews/1.png')} class="size-full object-cover" alt="1" />
           </div>
-          <div class="reviews-slide rounded-xl overflow-hidden">
+          <div class="reviews-slide flex-[0_0_320px] rounded-xl overflow-hidden">
             <Image src={import('@/assets/reviews/1.png')} class="size-full object-cover" alt="1" />
           </div>
-          <div class="reviews-slide rounded-xl overflow-hidden">
+          <div class="reviews-slide flex-[0_0_320px] rounded-xl overflow-hidden">
             <Image src={import('@/assets/reviews/1.png')} class="size-full object-cover" alt="1" />
           </div>
         </div>
@@ -51,32 +51,38 @@ import StarsIcons from '@/icons/stars.svg';
 <script>
   import { gsap } from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import EmblaCarousel from 'embla-carousel';
+  import Autoplay from 'embla-carousel-autoplay';
   gsap.registerPlugin(ScrollTrigger);
 
   document.addEventListener('DOMContentLoaded', () => {
-    if (window.innerWidth < 1024) return;
-
-    const reviews = gsap.utils.toArray('.reviews-slide');
-    const scrollTween = gsap.to(reviews, {
-      xPercent: -100 * (reviews.length - 1),
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '#reviews',
-        endTrigger: '#touchroom',
-        pin: true,
-        scrub: 1,
-        start: '50% 50%',
-        end: '+=3000'
+    // Initialize GSAP for desktop
+    if (window.innerWidth >= 1024) {
+      const reviews = gsap.utils.toArray('.reviews-slide');
+      const scrollTween = gsap.to(reviews, {
+        xPercent: -100 * (reviews.length - 1),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#reviews',
+          endTrigger: '#touchroom',
+          pin: true,
+          scrub: 1,
+          start: '50% 50%',
+          end: '+=3000'
+        }
+      });
+    } else {
+      const emblaNode = document.querySelector('.embla') as HTMLElement;
+      if (emblaNode) {
+        const emblaOptions = { loop: false, align: 'start' as const };
+        const autoplayOptions = { delay: 3000, stopOnInteraction: false };
+        const embla = EmblaCarousel(emblaNode, emblaOptions, [Autoplay(autoplayOptions)]);
       }
-    });
+    }
   });
 </script>
 
 <style>
-  .reviews-slide {
-    flex: 0 0 320px;
-  }
-
   .reviews-container {
     clip-path: inset(-100vw -100vw -100vw 0);
   }
