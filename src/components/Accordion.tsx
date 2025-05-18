@@ -50,7 +50,6 @@ const AccordionData = () => {
         </AccordionItem>
       ))}
     </Accordion>
-    
   );
 };
 

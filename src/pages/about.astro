@@ -1,0 +1,282 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '@/layouts/Layout.astro';
+import { YouTube } from 'astro-embed';
+import Button from '@/components/starwind/button';
+
+const team = [
+  {
+    name: 'Bill Henderson ',
+    role: 'Owner',
+    image: import('@/assets/team/bill.png')
+  },
+  {
+    name: 'Brenda Varnell',
+    role: 'Accounting',
+    image: import('@/assets/team/brenda.png')
+  },
+  {
+    name: 'Matt Stinson',
+    role: 'Logistics, Inside Sales',
+    image: import('@/assets/team/byron.png')
+  },
+  {
+    name: 'Pat Henderson',
+    role: 'Purchasing, Inside Sales, Estimating',
+    image: import('@/assets/team/carl.png')
+  },
+  {
+    name: 'Byron Griffin',
+    role: 'Inside Sales, Front Desk',
+    image: import('@/assets/team/jacoby.png')
+  },
+  {
+    name: 'Carl Levy',
+    role: 'Forklift Operator',
+    image: import('@/assets/team/matt.png')
+  },
+  {
+    name: 'Russell Sweatt',
+    role: 'Driver',
+    image: import('@/assets/team/pat.png')
+  },
+  {
+    name: 'Jacoby Williams ',
+    role: 'Driver',
+    image: import('@/assets/team/rusell.png')
+  }
+];
+---
+
+<Layout>
+  <div class="pb-20 md:pb-25 lg:pb-40">
+    <section class="pt-42.5">
+      <div class="container">
+        <h1 class="text-5xl lg:text-8xl font-bold uppercase font-heading mb-7.5">About Riverside</h1>
+        <Image src={import('@/assets/about-video.png')} format="avif" alt="About Riverside" class="min-h-[300px] object-cover rounded-xl" />
+      </div>
+    </section>
+
+    <section class="py-20 md:py-25 lg:py-40">
+      <div class="container">
+        <h2 class="section-title">Early beginnings</h2>
+        <div class="flex flex-col lg:flex-row justify-between items-start mb-7.5 gap-5">
+          <p class="lg:max-w-[570px]">
+            When it comes to Roofing materials, it matters where you buy. With over 30 years serving our community, we have proven the test of time
+            and we cherish our reputation of delivering exceptional service, on-time, every-time.
+          </p>
+          <div class="space-y-3 lg:max-w-[570px]">
+            <p>
+              Since 1994, Riverside Roofing Materials has stood as Shreveport, Louisiana's premier source for superior quality roofing supplies. From
+              day one, our vision extended beyond merely selling products – we set out to forge lasting partnerships built on trust, expertise, and
+              exceptional service.
+            </p>
+            <p>
+              We've positioned ourselves as the preferred business partner for contractors while remaining approachable and responsive to homeowners'
+              needs. Throughout our journey, our dedicated team has continuously elevated our industry knowledge and capabilities, consistently
+              exceeding the rigorous standards of the roofing industry.
+            </p>
+          </div>
+        </div>
+        <div class="flex justify-between items-stretch lg:items-start gap-2.5 md:gap-3.5">
+          <Image
+            src={import('@/assets/early-beginnings-1.png')}
+            format="avif"
+            alt="About Riverside"
+            class="w-1/2 lg:max-w-[355px] h-full object-cover rounded-xl"
+          />
+          <Image
+            src={import('@/assets/early-beginnings-2.png')}
+            format="avif"
+            alt="About Riverside"
+            class="w-1/2 lg:max-w-[570px] lg:h-full xl:max-w-[730px] object-cover rounded-xl"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-lightGray py-20 md:py-25 lg:py-40">
+      <div class="container">
+        <div class="flex justify-center items-start gap-5 md:gap-7.5 lg:gap-20">
+          <span class="text-[140px]/none lg:text-[180px]/none font-heading -mt-2 lg:mt-0">“</span>
+          <div class="flex flex-col max-w-[880px]">
+            <h2 class="section-title">Whether it’s a small job or big job... We take what you need very, very seriously.</h2>
+            <p class="text-secondary pt-3.75 border-t border-secondary">Founder of Riverside Roofing Materials</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 md:py-25 lg:py-40">
+      <div class="container">
+        <div class="flex flex-col lg:flex-row justify-between md:items-center gap-5 mb-6 lg:mb-10">
+          <h2 class="section-title mb-0">3 Pillars of Riverside</h2>
+          <p class="max-w-[570px]">
+            We believe that our values form the foundation for long-term and mutually beneficial relationships with our customers and partners. By
+            striving for excellence in everything we do, we build a solid reputation as a reliable supplier of roofing materials.
+          </p>
+        </div>
+        <Image
+          src={import('@/assets/pillars-of-riverside.png')}
+          format="avif"
+          alt="3 Pillars of Riverside"
+          class="mb-7.5 min-h-[300px] rounded-xl object-cover"
+        />
+        <div class="flex flex-col lg:flex-row justify-between gap-10 md:gap-4">
+          <div class="max-w-[355px]">
+            <h3 class="text-4xl lg:text-5xl font-heading mb-4">Connect</h3>
+            <p>
+              We want to get to know you! Understanding your unique needs while bringing together contractors, homeowners, and suppliers in a seamless
+              network of roofing excellence.
+            </p>
+          </div>
+          <div class="max-w-[355px]">
+            <h3 class="text-4xl lg:text-5xl font-heading mb-4">inform</h3>
+            <p>
+              As industry experts, we share valuable insights on emerging trends, superior materials, and cost-effective roofing solutions, empowering
+              your decisions with our comprehensive knowledge and personalized consultation.
+            </p>
+          </div>
+          <div class="max-w-[355px]">
+            <h3 class="text-4xl lg:text-5xl font-heading mb-4">Deliver</h3>
+            <p>
+              We consistently provide top-quality materials on time, every time, while honoring our commitment to exceptional service – proving
+              ourselves as the most reliable business partner for contractors and the most trusted resource for homeowners.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 class="section-title">Mission & Vision</h2>
+        <div class="flex flex-col lg:flex-row justify-between gap-6 items-center">
+          <div class="flex flex-col items-center max-w-[355px]">
+            <span class="text-secondary/30 section-title mb-2">01</span>
+            <h3 class="font-semibold mb-5 uppercase">Mission</h3>
+            <p class="text-center">
+              To provide superior roofing materials with exceptional service, product knowledge, and integrity while connecting quality contractors
+              with homeowners who need them.
+            </p>
+          </div>
+          <div
+            class="size-[350px] md:size-[450px] lg:size-[320px] xl:size-[550px] shrink-0 grid place-items-center rounded-full border border-secondary video-frame relative"
+          >
+            <YouTube
+              poster="/thumbnail.jpg"
+              class="size-[300px] md:size-[400px] lg:size-[270px] xl:size-[500px] z-10 relative rounded-full"
+              id="https://www.youtube.com/watch?v=Pa0mdpXcHx8"
+            />
+            <div class="dots-container absolute inset-0 pointer-events-none">
+              <div class="dot-wrapper dot-wrapper-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                <div class="dot absolute size-2.5 -translate-x-1/2 -translate-y-1/2" style="top: 0;">
+                  <div class="size-3 bg-primary rounded-full"></div>
+                  <div class="line bg-secondary -z-1 absolute h-[1px] w-[35px] top-1/2 right-0 origin-right"></div>
+                </div>
+              </div>
+              <div class="dot-wrapper dot-wrapper-1 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                <div class="dot absolute size-2.5 -translate-x-1/2 -translate-y-1/2" style="top: 0;">
+                  <div class="size-3 bg-primary rounded-full"></div>
+                  <div class="line bg-secondary -z-1 absolute h-[1px] w-[35px] top-1/2 left-0 origin-left"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col items-center max-w-[355px]">
+            <span class="text-secondary/30 section-title mb-2">02</span>
+            <h3 class="font-semibold mb-5 uppercase">Vision</h3>
+            <p class="text-center">
+              To provide superior roofing materials with exceptional service, product knowledge, and integrity while connecting quality contractors
+              with homeowners who need them.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 md:py-25 lg:py-40">
+      <div class="container">
+        <h2 class="section-title">Get to know our team</h2>
+        <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-2.5 gap-y-5 md:gap-x-4 lg:gap-x-5 lg:gap-y-10">
+          {
+            team.map((member) => (
+              <div class="flex flex-col">
+                <Image src={member.image} alt={member.name} quality={100} class="rounded-xl mb-5 min-h-[280px] object-cover" />
+                <h3 class="font-semibold leading-none mb-2.5 uppercase">{member.name}</h3>
+                <p class="text-secondary">{member.role}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 class="section-title">Join our team</h2>
+        <div class="flex flex-col md:flex-row gap-3.5">
+          <Image src={import('@/assets/team/join-out-team.png')} class="w-full md:max-w-[357px] lg:max-w-[730px]" format="avif" alt="Join our team" />
+          <div class="flex flex-col justify-between gap-7.5">
+            <div>
+              <h3 class="text-4xl lg:text-5xl mb-6 uppercase font-heading">What our employees say</h3>
+              <blockquote class="text-lg/none lg:text-xl/none pb-7.5 border-b border-secondary mb-3.75 max-w-[495px]">
+                “I wouldn't trade this place for any other... I have been offered other jobs like this but I said no.”
+              </blockquote>
+              <p class="text-secondary">Russel, Delivery Driver (7 years)</p>
+            </div>
+            <Button variant="primary" class="w-full lg:w-[355px]">Apply today</Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<script>
+  import { gsap } from 'gsap';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const videoFrame = document.querySelector('.video-frame') as HTMLElement;
+    if (!videoFrame) return;
+
+    // Получаем обертки для точек и сами точки
+    const dotWrappers = document.querySelectorAll('.dot-wrapper');
+    const dots = document.querySelectorAll('.dot') as NodeListOf<HTMLElement>;
+
+    // Функция для расчета и установки позиций точек
+    function positionDots() {
+      // Получаем размеры контейнера
+      const frameWidth = videoFrame.offsetWidth;
+      const radius = frameWidth / 2;
+
+      // Устанавливаем позиции для каждой точки
+      dots.forEach((dot, index) => {
+        // Первая точка справа, вторая слева
+        if (index === 0) {
+          dot.style.left = `${radius}px`;
+        } else {
+          dot.style.left = `-${radius}px`;
+        }
+      });
+    }
+
+    // Устанавливаем начальные позиции
+    positionDots();
+
+    // Обновляем позиции при изменении размера окна
+    window.addEventListener('resize', positionDots);
+
+    // Создаем анимацию вращения для каждой обертки
+    dotWrappers.forEach((wrapper) => {
+      // Просто вращаем обертку вокруг центра
+      gsap.to(wrapper, {
+        rotation: 360,
+        duration: 20,
+        repeat: -1,
+        ease: 'none',
+        transformOrigin: 'center center'
+      });
+    });
+  });
+</script>

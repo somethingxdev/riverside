@@ -1,0 +1,123 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Reviews from '@/partials/Reviews.astro';
+import ShowRoom from '@/partials/ShowRoom.astro';
+import { Image } from 'astro:assets';
+const productCategories = [
+  {
+    title: 'RESIDENTIAL',
+    description: 'A wide range of roofing materials, perfectly suited for private homes and cottages.',
+    image: import('@/assets/products/1.png'),
+    items: [
+      { title: 'Certainteed Shingles', href: '/products/certainteed-shingles' },
+      { title: 'Non-warranty Shingles', href: '/products/non-warranty-shingles' }
+    ]
+  },
+  {
+    title: 'COMMERCIAL',
+    description: 'We strive to be a reliable partner in your work to help you grow your business!',
+    image: import('@/assets/products/2.png'),
+    items: [
+      { title: 'TPO', href: '/products/tpo' },
+      { title: 'SA Modified Bitumen', href: '/products/sa-modified-bitumen' },
+      { title: 'SBS Modified Bitumen', href: '/products/sbs-modified-bitumen' },
+      { title: 'APP Modified Bitumen', href: '/products/app-modified-bitumen' }
+    ]
+  },
+  {
+    title: 'ACCESSORIES',
+    description: 'Items that enhance safety, convenience, and efficiency during roof installation and maintenance.',
+    image: import('@/assets/products/3.png'),
+    items: [
+      { title: 'Cougar Paws', href: '/products/cougar-paws' },
+      { title: 'Pitch Hopers', href: '/products/pitch-hopers' },
+      { title: 'ShingleGauges', href: '/products/shingle-gauges' },
+      { title: 'Pitch Finder', href: '/products/pitch-finder' },
+      { title: 'Ladder Stabilizer', href: '/products/ladder-stabilizer' },
+      { title: 'Fall Protection', href: '/products/fall-protection' }
+    ]
+  }
+];
+---
+
+<Layout>
+  <div class="pb-20 md:pb-25 lg:pb-40">
+    <section class="pt-42.5 border-b border-secondary">
+      <div class="container">
+        <h1 class="text-5xl lg:text-8xl font-bold uppercase font-heading mb-7.5">Products</h1>
+        <p class="max-w-[570px] mb-15">
+          We offer high-quality roofing solutions designed specifically to meet the diverse needs whether you are a contractor or homeowner. Browse
+          our categories to find the perfect product for your project!
+        </p>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="grid">
+        {
+          productCategories.map((category, index) => (
+            <div class="grid grid-cols-1 md:grid-cols-2 md:gap-3.5 relative after:content-[''] after:absolute after:bottom-0 after:-left-[calc((100vw-100%)/2)] after:-right-[calc((100vw-100%)/2)] after:w-screen after:h-[1px] after:bg-secondary">
+              <div class="overflow-hidden pb-7.5 md:py-6 md:min-h-[362px] lg:pr-7.5 lg:py-7.5 lg:border-r border-secondary order-last md:order-first">
+                <Image src={category.image} format="avif" quality={100} alt={category.title} class="size-full object-cover rounded-lg" />
+              </div>
+              <div class="flex flex-col justify-between gap-12.5 py-6 lg:py-7.5">
+                <div>
+                  <h2 class="text-4xl lg:text-5xl font-bold font-heading mb-4">{category.title}</h2>
+                  <p class="lg:max-w-[355px]">{category.description}</p>
+                </div>
+                <div class="flex flex-col items-start gap-3.5 md:gap-5">
+                  {category.items.map((item) => (
+                    <a href={item.href} class="flex relative items-center border-b gap-2 text-primary transition-all group">
+                      <span class="absolute left-0 arrow">
+                        <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M0 7H15M15 7L8.88889 1M15 7L8.88889 13" stroke="#313131" stroke-width="1.2" />
+                        </svg>
+                      </span>
+                      <span class="group-hover:pl-6 transition-all duration-300">{item.title}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="pt-20 md:pt-25 lg:pt-40">
+      <div class="container">
+        <span class="section-pretitle block mb-6">Stocking & Delivery Management: The Unseen Challenge</span>
+        <div class="flex flex-col max-w-[540px]lg:max-w-full lg:flex-row lg:items-end mb-6 md:mb-7.5">
+          <h2 class="section-title mb-6 lg:mb-0">Making sure your materials are on-time, every-time</h2>
+          <p class="max-w-[540px] xl:max-w-[712px] xl:-ml-20 lg:pb-3">
+            Making sure your materials arrive on-time, every time is critical but often overlooked. From preventing roofing supplies from taking up
+            valuable driveway space to coordinating precise delivery timing, effective material management eliminates the headaches of space
+            constraints and scheduling conflicts that plague many roofing projects.
+          </p>
+        </div>
+        <Image
+          src={import('@/assets/delivery.png')}
+          format="avif"
+          quality={100}
+          layout="constrained"
+          alt="Stocking & Delivery Management: The Unseen Challenge"
+          class="size-full object-cover rounded-xl min-h-[300px]"
+        />
+      </div>
+    </section>
+
+    <Reviews />
+    <ShowRoom />
+  </div>
+</Layout>
+
+<style>
+  .arrow {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 0.3s ease;
+  }
+
+  .group:hover .arrow {
+    clip-path: inset(0);
+  }
+</style>

@@ -1,4 +1,5 @@
 ---
+const { isHome = false } = Astro.props;
 import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem, DropdownLabel } from '@/components/starwind/dropdown';
 import Button from '@/components/starwind/button';
 import MenuIcon from '@/icons/menu.svg';
@@ -101,10 +102,10 @@ const menu: MenuItemType[] = [
 ];
 ---
 
-<header class="fixed top-0 left-0 z-10 w-full py-4 transition-all">
+<header class="fixed top-0 left-0 z-50 w-full py-4 transition-all" data-scroll={isHome ? 'home' : ''}>
   <div class="container">
     <div class="flex items-center justify-between gap-7">
-      <a href="/" class="flex flex-col text-white">
+      <a href="/" class="flex flex-col" class:list={[isHome ? 'text-white' : 'text-primary']}>
         <span class="text-[40px]/none font-bold font-heading"> Riverside </span>
         <span class="font-sans text-[13px] font-light uppercase tracking-tight">roofing materials</span>
       </a>
@@ -112,12 +113,22 @@ const menu: MenuItemType[] = [
         <ul class="flex justify-center items-center gap-7 2xl:gap-10">
           {
             menu.map((item) => (
-              <li class="text-lg text-white font-medium">
-                {item.hasSubmenu ? (
-                  <Dropdown>
-                    <DropdownTrigger>
-                      {item.title}
-                      <ArrowDownIcon class="group-aria-expanded:rotate-180 transition-transform size-3" />
+              <li class="text-lg font-medium" class:list={[isHome ? 'text-white' : 'text-primary']}>
+                {item.href === Astro.url.pathname ? (
+                  <a href={item.href} class="flex items-center gap-2 bg-primary py-2.5 px-3 leading-none text-white rounded-full font-medium">
+                    {item.title}
+                    <span class="size-2 rounded-full bg-white" />
+                  </a>
+                ) : item.hasSubmenu ? (
+                  <Dropdown openOnHover closeDelay={50}>
+                    <DropdownTrigger asChild>
+                      <a href={item.href} class="flex items-center gap-2">
+                        {item.title}
+                        <ArrowDownIcon
+                          class="group-aria-expanded:rotate-180 transition-transform size-3"
+                          class:list={[isHome ? 'text-white' : 'text-primary']}
+                        />
+                      </a>
                     </DropdownTrigger>
                     <DropdownContent align="center">
                       {item.submenu?.map((submenuItem, index) => {
@@ -144,7 +155,7 @@ const menu: MenuItemType[] = [
                     </DropdownContent>
                   </Dropdown>
                 ) : (
-                  <a href={item.href} class="underline-hover">{item.title}</a>
+                  <a href={item.href}>{item.title}</a>
                 )}
               </li>
             ))
@@ -215,10 +226,14 @@ const menu: MenuItemType[] = [
         </div>
       </nav>
       <div class="flex items-center gap-7.5">
-        <Button size="sm" class="px-5 xl:px-10 hidden lg:block">Success survey</Button>
-        <a href="tel:+13182229999" class="text-medium underline-hover text-white text-lg hidden xl:block">+1 (318) 222-9999</a>
+        <Button size="sm" variant={isHome ? 'default' : 'primary'} class="px-5 xl:px-10 hidden lg:block">Success survey</Button>
+        <a
+          href="tel:+13182229999"
+          class="text-medium underline-hover font-medium text-lg hidden xl:block"
+          class:list={[isHome ? 'text-white' : 'text-primary']}>+1 (318) 222-9999</a
+        >
         <button id="menu-toggle" aria-label="Menu" class="lg:hidden">
-          <MenuIcon />
+          <MenuIcon class={isHome ? 'text-white' : 'text-primary'} />
         </button>
       </div>
     </div>
@@ -255,9 +270,9 @@ const menu: MenuItemType[] = [
 
     window.addEventListener('scroll', () => {
       if (window.scrollY > 0) {
-        header?.classList.add('bg-primary', 'shadow-lg');
+        header?.classList.add(header.dataset.scroll === 'home' ? 'bg-primary' : 'bg-white', 'shadow-lg');
       } else {
-        header?.classList.remove('bg-primary', 'shadow-lg');
+        header?.classList.remove(header.dataset.scroll === 'home' ? 'bg-primary' : 'bg-white', 'shadow-lg');
       }
     });
   });

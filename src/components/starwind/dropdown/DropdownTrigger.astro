@@ -10,7 +10,7 @@ type Props = Omit<HTMLAttributes<'button'>, 'role' | 'type'> & {
 };
 
 const dropdownTrigger = tv({
-  base: ['starwind-dropdown-trigger cursor-pointer group', 'inline-flex items-center justify-center gap-2', ' focus-visible:outline-none']
+  base: ['starwind-dropdown-trigger cursor-pointer group', 'inline-flex items-center justify-center gap-2', ' focus-visible:outline-none ']
 });
 
 const { class: className, asChild = false, ...rest } = Astro.props;

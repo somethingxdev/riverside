@@ -1,7 +1,6 @@
 ---
 import { Font } from 'astro:assets';
 import '@/styles/global.css';
-import { SmoothCursor } from '@/components/ui/smooth-cursor';
 import Header from '@/components/app/Header.astro';
 import Footer from '@/components/app/Footer.astro';
 ---
@@ -18,9 +17,8 @@ import Footer from '@/components/app/Footer.astro';
     <title>Astro Basics</title>
   </head>
   <body class="font-sans min-h-full bg-body text-primary">
-    
     <div id="smooth-wrapper">
-      <Header />
+      <Header isHome={Astro.props.isHome} />
       <main class="overflow-x-hidden" id="smooth-content">
         <slot />
       </main>
@@ -35,41 +33,41 @@ import Footer from '@/components/app/Footer.astro';
 
   gsap.registerPlugin(ScrollTrigger);
 
-  window.addEventListener('DOMContentLoaded', () => {
-    const allSections = gsap.utils.toArray('section') as HTMLElement[];
-    const sections = allSections.slice(1);
+  // window.addEventListener('DOMContentLoaded', () => {
+  //   const allSections = gsap.utils.toArray('section') as HTMLElement[];
+  //   const sections = allSections.slice(1);
 
-    sections.forEach((section) => {
-      gsap.set(section, { y: 30, opacity: 0 });
+  //   sections.forEach((section) => {
+  //     gsap.set(section, { y: 30, opacity: 0 });
 
-      const headings = section.querySelectorAll('h2');
+  //     const headings = section.querySelectorAll('h2');
 
-      if (headings.length > 0) {
-        gsap.set(headings, {
-          y: 80,
-          opacity: 0
-        });
-      }
+  //     if (headings.length > 0) {
+  //       gsap.set(headings, {
+  //         y: 80,
+  //         opacity: 0
+  //       });
+  //     }
 
-      ScrollTrigger.create({
-        trigger: section,
-        start: 'top bottom-=100',
-        end: () => `+=${section.clientHeight - 30}`,
-        onEnter: () => {
-          section.classList.add('in-view');
-          gsap.to(section, { y: 0, opacity: 1, duration: 1 });
+  //     ScrollTrigger.create({
+  //       trigger: section,
+  //       start: 'top bottom-=100',
+  //       end: () => `+=${section.clientHeight - 30}`,
+  //       onEnter: () => {
+  //         section.classList.add('in-view');
+  //         gsap.to(section, { y: 0, opacity: 1, duration: 1 });
 
-          if (headings.length > 0) {
-            gsap.to(headings, {
-              y: 0,
-              opacity: 1,
-              duration: 0.7,
-              ease: 'power2.out',
-              delay: 0.2
-            });
-          }
-        }
-      });
-    });
-  });
+  //         if (headings.length > 0) {
+  //           gsap.to(headings, {
+  //             y: 0,
+  //             opacity: 1,
+  //             duration: 0.7,
+  //             ease: 'power2.out',
+  //             delay: 0.2
+  //           });
+  //         }
+  //       }
+  //     });
+  //   });
+  // });
 </script>
