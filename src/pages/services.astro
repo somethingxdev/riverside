@@ -1,0 +1,127 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '@/layouts/Layout.astro';
+import Button from '@/components/starwind/button';
+import ArrowRightTopIcon from '@/icons/arrow-right-top.svg';
+---
+
+<Layout>
+  <section>
+    <div class="container">
+      <h1 class="page-title mb-7.5 lg:mb-15">Services</h1>
+      <div class="grid lg:grid-cols-[260px_1fr] gap-7.5 lg:gap-15 xl:gap-58 items-start py-10 border-t border-secondary">
+        <div class="flex flex-col">
+          <span class="text-secondary/30 section-title leading-none mb-3">01</span>
+          <span class="uppercase font-heading text-4xl lg:text-5xl">Delivery</span>
+        </div>
+        <div class="lg:pt-[110px]">
+          <div class="max-w-[570px] space-y-3 mb-7.5">
+            <p>
+              We guarantee prompt and secure delivery of your roofing materials directly to your construction site with attention to both time and
+              space:
+            </p>
+            <ul class="pl-5">
+              <li class="list-disc">On-time delivery, every time thanks to our extensive stocking operation.</li>
+              <li class="list-disc">Professional unloading by experienced specialists who ensure material integrity.</li>
+              <li class="list-disc">Strategic planning for all projects, whether commercial or residential.</li>
+              <li class="list-disc">Respect for your property and space constraints.</li>
+              <li class="list-disc">Coordinated scheduling to prevent materials from arriving too early or taking up valuable space.</li>
+            </ul>
+            <p class="mb-7.5">
+              At Riverside, we understand that timing and space management are critical for all roofing projects. Unlike others, we're always
+              respectful of your time and space, delivering materials precisely when needed - not too early, not too late.
+            </p>
+            <Button variant="primary" class="px-20">Set up an order now</Button>
+          </div>
+          <div class="flex gap-5">
+            <Image src={import('@/assets/services/delivery/1.png')} format="avif" alt="Delivery" class="min-h-[220px] rounded-xl size-full object-cover" />
+            <Image src={import('@/assets/services/delivery/2.png')} format="avif" alt="Delivery" class="min-h-[220px] rounded-xl size-full object-cover" />
+          </div>
+        </div>
+      </div>
+      <div class="grid lg:grid-cols-[260px_1fr] gap-7.5 lg:gap-15 xl:gap-58 items-start py-10 border-t border-secondary">
+        <div class="flex flex-col">
+          <span class="text-secondary/30 section-title leading-none mb-3">02</span>
+          <span class="uppercase font-heading text-4xl lg:text-5xl">QUICK PICKUP</span>
+        </div>
+        <div class="lg:pt-[110px]">
+          <div class="mb-7.5">
+            <div class="flex flex-col md:flex-row gap-5 justify-between mb-7.5">
+              <div class="md:max-w-[350px] lg:max-w-[570px] space-y-3">
+                <p>
+                  Experience the Riverside Advantage ® with our industry-leading quick store pickup service – just
+                  <strong>6 minutes average wait time!</strong>
+                </p>
+                <p>Advantages:</p>
+                <ul class="pl-5">
+                  <li class="list-disc">Instant Material Access: Get the materials you need immediately.</li>
+                  <li class="list-disc">Flexible Schedule Control: Plan pickups around your timeline, not ours.</li>
+                  <li class="list-disc">Cost Savings: Reduce expenses by picking up materials yourself.</li>
+                </ul>
+                <p>Our streamlined process ensures you're back on the road quickly, saving valuable time on every project.</p>
+              </div>
+              <div class="space-y-3 shrink-0">
+                <p class="uppercase font-semibold mb-5">Location & Hours:</p>
+                <p>975 Louisiana Avenue,</p>
+                <p>Shreveport, LA 71101</p>
+                <p>Monday-Friday: 7:00 am - 4:00 pm</p>
+                <p>Closed weekends</p>
+              </div>
+            </div>
+            <Button variant="primary" class="w-full md:w-auto md:px-20">Let us know you’re coming</Button>
+          </div>
+
+          <div class="flex gap-5">
+            <Image src={import('@/assets/services/quick-pick/1.png')} format="avif" alt="Delivery" class="min-h-[220px] rounded-xl size-full object-cover" />
+            <Image src={import('@/assets/services/quick-pick/2.png')} format="avif" alt="Delivery" class="min-h-[220px] rounded-xl size-full object-cover" />
+          </div>
+        </div>
+      </div>
+      <div class="grid lg:grid-cols-[260px_1fr] gap-7.5 lg:gap-15 xl:gap-58 items-start pt-10 border-t border-secondary">
+        <div class="flex flex-col">
+          <span class="text-secondary/30 section-title leading-none mb-3">03</span>
+          <span class="uppercase font-heading text-4xl lg:text-5xl">ROOFING CALCULATION</span>
+        </div>
+        <div class="lg:pt-[110px]">
+          <div class="space-y-3 mb-7.5">
+            <p>
+              Want to know exactly what materials you'll need for your roofing project? We'll provide a comprehensive estimate within one business
+              day.
+            </p>
+            <p>Simply:</p>
+            <ul class="pl-5">
+              <li class="list-disc">See if you qualify (Click on the success survey)</li>
+              <li class="list-disc">Upload your architectural plan, or bring it to our office.</li>
+              <li class="list-disc">Receive a detailed materials list and estimate within 24 hours.</li>
+            </ul>
+          </div>
+          <div class="flex flex-col md:flex-row gap-4 lg:gap-5">
+            <div class="bg-lightGray p-6 lg:p-7.5 md:w-1/2 h-[300px] lg:h-[408px] rounded-xl">
+              <div class="flex flex-col justify-between h-full">
+                <div>
+                  <h3 class="text-4xl lg:text-5xl font-heading text-center mb-2.5">FREE ROOFING CALCULATION</h3>
+                  <p class="text-secondary font-semibold text-center">FOR NEW HOME OWNERS</p>
+                </div>
+                <Button variant="primary" class="w-full">FREE ROOFING CALCULATION</Button>
+              </div>
+            </div>
+            <div class="bg-lightGray p-6 lg:p-7.5 md:w-1/2 h-[300px] lg:h-[408px] rounded-xl">
+              <div class="flex flex-col justify-between h-full">
+                <div>
+                  <h3 class="text-4xl lg:text-5xl font-heading text-center mb-2.5">THIRD-PARTY SERVICE</h3>
+                  <p class="text-secondary font-semibold text-center">$100</p>
+                </div>
+                <Image src={import('@/assets/services/eagleview.png')} alt="eagleview" class="mx-auto" />
+                <div class="self-end group">
+                  <a href="#" class="grid place-items-center size-12.5 rounded-full bg-primary">
+                    <ArrowRightTopIcon />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

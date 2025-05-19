@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
+@plugin "@tailwindcss/typography";
 
 @theme {
   --color-primary: #313131;
@@ -59,6 +60,9 @@
 }
 
 @layer components {
+  .page-title {
+    @apply text-5xl lg:text-8xl uppercase font-heading;
+  }
   .section-title {
     @apply font-heading text-primary text-[40px]/none lg:text-[85px]/none mb-6 lg:mb-8;
   }

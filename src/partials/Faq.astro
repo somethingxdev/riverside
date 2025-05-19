@@ -1,14 +1,15 @@
 ---
 import AccordionData from '@/components/Accordion';
+const { data } = Astro.props;
 ---
 
-<section id="faq" class="pb-20 md:pb-25 lg:pb-40">
+<section id="faq">
   <div class="container">
     <span class="section-pretitle block uppercase mb-5">FAQ</span>
     <h2 class="section-title">questions WITH ANSWERS</h2>
-    <AccordionData client:visible />
+    <AccordionData client:visible data={data} />
     <div class="md:text-end mt-7.5">
-      <a href="#" class="underline-hover uppercase font-semibold ">READ MORE FAQ’s</a>
+      <a href="#" class="underline-hover uppercase font-semibold">READ MORE FAQ’s</a>
     </div>
   </div>
 </section>

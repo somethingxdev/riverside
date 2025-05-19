@@ -1,0 +1,49 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { Image } from 'astro:assets';
+
+const customers = [
+  {
+    author: 'John Smith',
+    job: 'Homeowner - Bossier City',
+    text: 'Riverside exceeded my expectations! Their products and service are top-notch. My roof looks amazing now.'
+  },
+  {
+    author: 'John Smith',
+    job: 'Homeowner - Bossier City',
+    text: 'Riverside exceeded my expectations! Their products and service are top-notch. My roof looks amazing now.'
+  },
+  {
+    author: 'John Smith',
+    job: 'Homeowner - Bossier City',
+    text: 'Riverside exceeded my expectations! Their products and service are top-notch. My roof looks amazing now.'
+  },
+  {
+    author: 'John Smith',
+    job: 'Homeowner - Bossier City',
+    text: 'Riverside exceeded my expectations! Their products and service are top-notch. My roof looks amazing now.'
+  }
+];
+---
+
+<Layout>
+  <div class="container">
+    <h2 class="page-title mb-15">Reviews</h2>
+    <h2 class="section-title">What our customers say</h2>
+    <div class="flex gap-5">
+      {
+        customers.map((item) => (
+          <div class="bg-lightGray p-5 rounded-xl min-h-[260px]">
+            <div class="flex flex-col justify-between h-full">
+              <div class="space-y-2.5 flex flex-col">
+                <span class="uppercase font-semibold">{item.author}</span>
+                <span class="text-secondary">{item.job}</span>
+              </div>
+              <p>“{item.text}”</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</Layout>

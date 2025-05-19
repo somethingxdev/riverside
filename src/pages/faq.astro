@@ -1,17 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import About from '@/partials/About.astro';
-import Advantages from '@/partials/Advantages.astro';
-import Products from '@/partials/Products.astro';
-import Contractor from '@/partials/Contractor.astro';
-import Suppliers from '@/partials/Suppliers.astro';
-import Roadmap from '@/partials/Roadmap.astro';
-import Reviews from '@/partials/Reviews.astro';
-import Hero from '@/partials/Hero.astro';
-import ShowRoom from '@/partials/ShowRoom.astro';
-import Blog from '@/partials/Blog.astro';
-import Faq from '@/partials/Faq.astro';
-
+import AccordionData from '@/components/Accordion';
 const questions = [
   {
     question: 'Are you a fit for contractors or homeowners?',
@@ -46,16 +35,9 @@ const questions = [
 ];
 ---
 
-<Layout isHome>
-  <Hero />
-  <Advantages />
-  <Products />
-  <About />
-  <Contractor />
-  <Suppliers />
-  <Roadmap />
-  <Reviews />
-  <ShowRoom />
-  <Blog />
-  <Faq data={questions} />
+<Layout>
+  <div class="container">
+    <h1 class="page-title mb-7.5 lg:mb-15">Frequently asked questions</h1>
+    <AccordionData data={questions} client:load />
+  </div>
 </Layout>

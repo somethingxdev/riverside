@@ -19,7 +19,7 @@ import Footer from '@/components/app/Footer.astro';
   <body class="font-sans min-h-full bg-body text-primary">
     <div id="smooth-wrapper">
       <Header isHome={Astro.props.isHome} />
-      <main class="overflow-x-hidden" id="smooth-content">
+      <main class="overflow-x-clip pb-20 md:pb-25 lg:pb-40" class:list={[Astro.props.isHome ? '' : 'pt-31 md:pt-42.5']} id="smooth-content">
         <slot />
       </main>
       <Footer />

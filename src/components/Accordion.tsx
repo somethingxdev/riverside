@@ -1,55 +1,35 @@
-import React from 'react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
-const questions = [
-  {
-    id: 'item-1',
-    question: 'Are you a fit for contractors or homeowners?',
-    answer:
-      'We serve both sides of the aisle! Contractors: in helping sustain and bring growth to their business with dependably quality roofing products, on time every time. Homeowners: with finding the proper product by navigation new construction, or repairs.'
-  },
-  {
-    id: 'item-2',
-    question: 'What is the best way to get in touch with you?',
-    answer:
-      'You can reach us through our contact form on the website, by phone at (555) 123-4567, or by email at info@riverside.com. Our customer service team is available Monday to Friday from 9 AM to 5 PM.'
-  },
-  {
-    id: 'item-3',
-    question: 'Do you offer free consultations?',
-    answer:
-      "Yes, we offer free initial consultations for all new projects. During the consultation, we'll discuss your needs, assess the scope of work, and provide you with a detailed estimate."
-  },
-  {
-    id: 'item-4',
-    question: 'What areas do you serve?',
-    answer:
-      'We proudly serve the entire Riverside County area, including but not limited to Riverside, Corona, Moreno Valley, and Temecula. Contact us to verify if we service your specific location.'
-  },
-  {
-    id: 'item-5',
-    question: 'How long does a typical project take?',
-    answer:
-      "Project timelines vary depending on the scope and complexity. Most residential projects take between 2-4 weeks from start to finish. We'll provide you with a detailed timeline during our initial consultation."
-  },
-  {
-    id: 'item-6',
-    question: 'Are your contractors licensed and insured?',
-    answer:
-      'Absolutely! All our contractors are fully licensed, bonded, and insured. We take pride in maintaining the highest industry standards and can provide proof of insurance and licensing upon request.'
-  }
-];
+interface accordionData {
+  question: string;
+  answer: string;
+}
 
-const AccordionData = () => {
+const AccordionData = ({ data }: { data: accordionData[] }) => {
+  const halfLength = Math.ceil(data.length / 2);
+  const firstHalf = data.slice(0, halfLength);
+  const secondHalf = data.slice(halfLength);
+
   return (
-    <Accordion type="multiple" className="grid md:grid-cols-2 items-start gap-5 mb-7.5">
-      {questions.map((item) => (
-        <AccordionItem key={item.id} value={item.id} className="bg-lightGray rounded-xl border-none ">
-          <AccordionTrigger className="p-5 md:p-7.5 text-lg md:text-xl gap-7">{item.question}</AccordionTrigger>
-          <AccordionContent className="px-5 md:pb-7.5 md:px-7.5 text-secondary">{item.answer}</AccordionContent>
-        </AccordionItem>
-      ))}
-    </Accordion>
+    <div className="grid md:grid-cols-2 gap-5">
+      <Accordion type="multiple" className="w-full">
+        {firstHalf.map((item, index) => (
+          <AccordionItem key={item.question} value={`item-${index}`} className="bg-lightGray rounded-xl border-none mb-5 last:mb-0">
+            <AccordionTrigger className="p-5 md:p-7.5 text-lg md:text-xl gap-7">{item.question}</AccordionTrigger>
+            <AccordionContent className="px-5 md:pb-7.5 md:px-7.5 text-secondary">{item.answer}</AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
+
+      <Accordion type="multiple" className="w-full">
+        {secondHalf.map((item, index) => (
+          <AccordionItem key={item.question} value={`item-${index + halfLength}`} className="bg-lightGray rounded-xl border-none mb-5 last:mb-0">
+            <AccordionTrigger className="p-5 md:p-7.5 text-lg md:text-xl gap-7">{item.question}</AccordionTrigger>
+            <AccordionContent className="px-5 md:pb-7.5 md:px-7.5 text-secondary">{item.answer}</AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
+    </div>
   );
 };
 
