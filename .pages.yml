@@ -25,7 +25,9 @@ content:
       - name: cover
         label: Cover
         type: image
-        path: "src/assets/blog"
+        options:
+          path: "src/assets/blog"
+          extensions: ["png", "jpg", "jpeg", "webp"]
       - name: body
         label: Body
         type: rich-text
