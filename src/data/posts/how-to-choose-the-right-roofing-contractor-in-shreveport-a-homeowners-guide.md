@@ -2,8 +2,7 @@
 published: true
 date: 2025-05-26
 title: "How to Choose the Right Roofing Contractor in Shreveport: A Homeowner's Guide"
-description: "Beware of Roofing Scams: How Shreveport Homeowners Can Find
-  Trustworthy Contractors."
+description: "Beware of Roofing Scams: How Shreveport Homeowners Can Find Trustworthy Contractors."
 ---
 Beware of Roofing Scams: How Shreveport Homeowners Can Find Trustworthy Contractors.
 
