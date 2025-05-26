@@ -1,0 +1,63 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import { getCollection, render } from 'astro:content';
+import { formatDate } from '@/utils';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const posts = await getCollection('blog');
+const recentPosts = posts.filter((p) => p.id !== post.id).slice(0, 4);
+
+const { Content } = await render(post);
+---
+
+<Layout>
+  <div class="container">
+    <h1 class="page-title mb-7.5">{post.data.title}</h1>
+    <Image src={post.data.cover} alt="post" class="min-h-[300px] h-[600px] w-full object-cover rounded-xl mb-7.5" />
+    <div class="grid lg:grid-cols-[150px_1fr_250px] items-start gap-5">
+      <span>{formatDate(post.data.date)}</span>
+      <article class="prose flex-auto prose-p:leading-6 max-w-[730px] mx-auto prose-headings:mb-5 prose-headings:font-heading prose-headings:font-normal prose-headings:text-4xl lg:prose-headings:text-5xl">
+        <Content />
+      </article>
+    </div>
+
+    {
+      recentPosts.length > 0 && (
+        <section class="mt-20 md:mt-25 lg:mt-40">
+          <h2 class="section-title">Also read</h2>
+          <div class="embla">
+            <div class="flex lg:grid lg:grid-cols-2 xl:grid-cols-4 gap-2.5 md:gap-3.5 lg:gap-5">
+              {recentPosts.map((post, index) => (
+                <a href={`/blog/${post.id}`} class="flex flex-col flex-[0_0_90%] md:flex-[0_0_49%] lg:flex-auto">
+                  <Image src={import('@/assets/blog/post.png')} alt="post" class="min-h-[260px] object-cover rounded-xl mb-3.75" />
+                  <h3 class="text-xl/6 mb-5">{post.data.title}</h3>
+                  <p class="text-secondary mb-5 max-w-[320px]">{post.data.description}</p>
+                  <span>{formatDate(post.data.date)}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+  </div>
+</Layout>
+
+<script>
+  import EmblaCarousel from 'embla-carousel';
+  if (window.innerWidth <= 1024) {
+    const emblaNode = document.querySelector('.embla') as HTMLElement;
+    const options = { loop: false, align: 'start' as const };
+    const emblaApi = EmblaCarousel(emblaNode, options);
+  }
+</script>

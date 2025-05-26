@@ -25,7 +25,7 @@ const formatDate = (date: Date) => {
         posts.map((post, index) => (
           <>
             <a href={`/blog/${post.id}`} class={index === 0 || index === 6 ? 'lg:col-span-2' : 'col-span-1'}>
-              <Image src={post.data.cover} alt="post" class="mb-3.75 w-full min-h-[260px] rounded-xl object-cover" />
+              <Image src={post.data.cover} format="avif" quality={100} alt="post" class="mb-3.75 w-full min-h-[260px] rounded-xl object-cover" />
               <div>
                 <h2 class="text-lg/none lg:text-xl mb-3.75 lg:mb-5">{post.data.title}</h2>
                 <p class="text-secondary mb-5">{post.data.description}</p>
