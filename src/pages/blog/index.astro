@@ -1,69 +1,20 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
 
-const posts = [
-  {
-    image: import('@/assets/blog/1.png'),
-    title: 'How to choose the perfect roof for your home 1',
-    description: 'Guide to choosing roofing materials, taking into account climate conditions, house style, and budget.',
-    date: '26 March, 2025'
-  },
-  {
-    image: import('@/assets/blog/1.png'),
-    title: 'How to choose the perfect roof for your home 2',
-    description: 'Guide to choosing roofing materials, taking into account climate conditions, house style, and budget.',
-    date: '26 March, 2025'
-  },
-  {
-    image: import('@/assets/blog/1.png'),
-    title: 'How to choose the perfect roof for your home 3',
-    description: 'Guide to choosing roofing materials, taking into account climate conditions, house style, and budget.',
-    date: '26 March, 2025'
-  },
-  {
-    image: import('@/assets/blog/1.png'),
-    title: 'How to choose the perfect roof for your home 4',
-    description: 'Guide to choosing roofing materials, taking into account climate conditions, house style, and budget.',
-    date: '26 March, 2025'
-  },
-  {
-    image: import('@/assets/blog/1.png'),
-    title: 'How to choose the perfect roof for your home 5',
-    description: 'Guide to choosing roofing materials, taking into account climate conditions, house style, and budget.',
-    date: '26 March, 2025'
-  },
-  {
-    image: import('@/assets/blog/1.png'),
-    title: 'How to choose the perfect roof for your home 6',
-    description: 'Guide to choosing roofing materials, taking into account climate conditions, house style, and budget.',
-    date: '26 March, 2025'
-  },
-  {
-    image: import('@/assets/blog/1.png'),
-    title: 'How to choose the perfect roof for your home 7',
-    description: 'Guide to choosing roofing materials, taking into account climate conditions, house style, and budget.',
-    date: '26 March, 2025'
-  },
-  {
-    image: import('@/assets/blog/1.png'),
-    title: 'How to choose the perfect roof for your home 8',
-    description: 'Guide to choosing roofing materials, taking into account climate conditions, house style, and budget.',
-    date: '26 March, 2025'
-  },
-  {
-    image: import('@/assets/blog/1.png'),
-    title: 'How to choose the perfect roof for your home 9',
-    description: 'Guide to choosing roofing materials, taking into account climate conditions, house style, and budget.',
-    date: '26 March, 2025'
-  },
-  {
-    image: import('@/assets/blog/1.png'),
-    title: 'How to choose the perfect roof for your home 10',
-    description: 'Guide to choosing roofing materials, taking into account climate conditions, house style, and budget.',
-    date: '26 March, 2025'
-  }
-];
+const posts = await getCollection('blog');
+
+console.log(posts);
+
+const formatDate = (date: Date) => {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+};
+
 ---
 
 <Layout>
@@ -73,14 +24,14 @@ const posts = [
       {
         posts.map((post, index) => (
           <>
-            <div class={index === 0 || index === 6 ? 'lg:col-span-2' : 'col-span-1'}>
-              <Image src={post.image} alt="post" class="mb-3.75 w-full min-h-[260px] rounded-xl object-cover" />
+            <a href={`/blog/${post.id}`} class={index === 0 || index === 6 ? 'lg:col-span-2' : 'col-span-1'}>
+              <Image src={post.data.cover} alt="post" class="mb-3.75 w-full min-h-[260px] rounded-xl object-cover" />
               <div>
-                <h2 class="text-lg/none lg:text-xl mb-3.75 lg:mb-5">{post.title}</h2>
-                <p class="text-secondary mb-5">{post.description}</p>
-                <span>{post.date}</span>
+                <h2 class="text-lg/none lg:text-xl mb-3.75 lg:mb-5">{post.data.title}</h2>
+                <p class="text-secondary mb-5">{post.data.description}</p>
+                <span>{formatDate(post.data.date)}</span>
               </div>
-            </div>
+            </a>
             {[0, 2, 4, 8].includes(index) && <div class="hidden lg:block w-[355px]" />}
           </>
         ))

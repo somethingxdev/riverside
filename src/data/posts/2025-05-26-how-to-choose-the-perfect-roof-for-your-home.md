@@ -2,10 +2,10 @@
 published: true
 date: 2025-05-26
 title: How to choose the perfect roof for your home
-description: Guide to choosing roofing materials, taking into account climate
-  conditions, house style, and budget.
-cover: /assets/blog/1-1.png
+description: Guide to choosing roofing materials, taking into account climate conditions, house style, and budget.
+cover: "../../assets/blog/1-1.png"
 ---
+
 Beware of Roofing Scams: How Shreveport Homeowners Can Find Trustworthy Contractors.
 
 Has someone knocked on your door recently offering a "free roof inspection" after a storm? If you're a homeowner in Shreveport, Bossier City, or anywhere within 60 miles of the area, you need to be able to distinguish between different types of roofing services available in our community.
@@ -15,11 +15,8 @@ Has someone knocked on your door recently offering a "free roof inspection" afte
 What Every Homeowner Should Know:
 
 1.  Temporary business arrangements might make warranty fulfillment challenging years later.
-    
 2.  Varying levels of experience with local building codes and Northwest Louisiana weather conditions.
-    
 3.  Different approaches to customer service and long-term relationship building.
-    
 
 > "In our 30 years of experience, we've seen that homeowners are most satisfied when they work with contractors who maintain clear communication throughout the project and remain accessible for follow-up service," says Patt Henderson "Building strong relationships between homeowners and contractors benefits everyone in our community."
 
@@ -33,33 +30,22 @@ With over 30 years serving the Shreveport roofing industry, Riverside Roofing Ma
 
 To assist homeowners in Shreveport, Bossier City, Minden, and surrounding areas, we've established the Riverside Trusted Contractor® network – a resource connecting homeowners with roofing professionals who meet our standards for:
 
-*   Consistent communication and accessibility for your questions.
-    
-*   Proven workmanship with verifiable references and project history.
-    
-*   Professional credentials including proper insurance and business licensing.
-    
-*   Quality installations using industry-recommended materials and techniques.
-    
-*   Clear warranty information and straightforward service policies.
-    
+- Consistent communication and accessibility for your questions.
+- Proven workmanship with verifiable references and project history.
+- Professional credentials including proper insurance and business licensing.
+- Quality installations using industry-recommended materials and techniques.
+- Clear warranty information and straightforward service policies.
 
 ## How to Make an Informed Roofing Decision in Shreveport
 
 What to Consider When Evaluating Roofing Proposals
 
 1.  Communication style - Do they explain options clearly without pressure?
-    
 2.  Documentation - Are estimates, warranties and policies provided in writing?
-    
 3.  Reference availability - Can they share examples of similar projects?
-    
 4.  Insurance details - Is the contractor properly insured for your protection?
-    
 5.  Payment structure - Are payment terms reasonable and clearly outlined?
-    
 6.  Warranty information - Who will handle service if issues arise later?
-    
 
 ## Why We Created the Riverside Trusted Contractor® Network
 
