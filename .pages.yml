@@ -22,6 +22,10 @@ content:
       - name: description
         label: Descripition
         type: text
+      - name: cover
+        label: Cover
+        type: image
+        path: "src/assets/blog"
       - name: body
         label: Body
         type: rich-text
