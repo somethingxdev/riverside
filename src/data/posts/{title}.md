@@ -1,7 +1,8 @@
 ---
 published: true
 date: 2025-05-26
-title: "How to Choose the Right Roofing Contractor in Shreveport: A Homeowner's Guide"
+title: "How to Choose the Right Roofing Contractor in Shreveport: A Homeowner's
+  Guide!"
 description: Guide to choosing roofing materials, taking into account climate
   conditions, house style, and budget.
 cover: /assets/blog/1-3.png
