@@ -6,6 +6,7 @@ content:
     label: Posts
     type: collection
     path: "src/data/posts"
+    filename: title
     view:
       fields: [title, published, date]
     fields:
