@@ -1,0 +1,18 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import Button from '@/components/starwind/button';
+---
+
+<Layout>
+  <section>
+    <div class="container">
+      <div class="flex flex-col justify-center items-center max-w-[570px] mx-auto">
+        <Image src={import('@/assets/not-found.png')} alt="not found" class='mb-10' />
+        <h1 class='page-title mb-5'>Not Found</h1>
+        <p class='text-center md:text-lg mb-7.5'>It looks like the page you’re looking for doesn’t exist. Don’t worry, let’s take you back to explore more of our site!</p>
+        <Button href='/' variant='primary' class='w-full'>Back to home</Button>
+      </div>
+    </div>
+  </section>
+</Layout>

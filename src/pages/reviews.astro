@@ -28,12 +28,12 @@ const customers = [
 
 <Layout>
   <div class="container">
-    <h2 class="page-title mb-15">Reviews</h2>
+    <h2 class="page-title mb-12.5 md:mb-15">Reviews</h2>
     <h2 class="section-title">What our customers say</h2>
-    <div class="flex gap-5">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5 mb-20 md:mb-25 lg:mb-40">
       {
         customers.map((item) => (
-          <div class="bg-lightGray p-5 rounded-xl min-h-[260px]">
+          <div class="bg-lightGray p-5 rounded-xl h-[220px] md:h-[260px]">
             <div class="flex flex-col justify-between h-full">
               <div class="space-y-2.5 flex flex-col">
                 <span class="uppercase font-semibold">{item.author}</span>
@@ -44,6 +44,41 @@ const customers = [
           </div>
         ))
       }
+    </div>
+
+    <h2 class="section-title">Join ThousandS OF Satisfied Owners</h2>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 lg:grid-rows-3 gap-2.5 md:gap-4">
+      <div class="h-[220px] md:h-[260px] lg:h-[320px] hidden lg:block">
+        <p>
+          Whether you're a business owner or homeowner, we aim to connect, inform, and deliver exceptional materials while being the best partner for
+          all your roofing needs.
+        </p>
+      </div>
+      <div class="h-[220px] md:h-[260px] lg:h-[320px]">
+        <Image src={import('@/assets/reviews/owners/1.png')} alt="owner" class="size-full object-cover rounded-xl object-center" />
+      </div>
+      <div class="h-[220px] md:h-[260px] lg:h-[320px]">
+        <Image src={import('@/assets/reviews/owners/2.png')} alt="owner" class="size-full object-cover rounded-xl object-center" />
+      </div>
+      <div class="h-[220px] md:h-[260px] col-span-2 lg:col-span-1 lg:h-auto lg:row-span-2">
+        <Image src={import('@/assets/reviews/owners/5.png')} alt="owner" class="size-full object-cover rounded-xl object-center" />
+      </div>
+      <div class="h-[220px] md:h-[260px] lg:h-[320px] lg:col-span-2">
+        <Image src={import('@/assets/reviews/owners/3.png')} alt="owner" class="size-full object-cover rounded-xl object-center" />
+      </div>
+      <div class="lg:col-start-3 h-[220px] md:h-[260px] lg:h-[320px] col-span-2 lg:col-span-1">
+        <Image src={import('@/assets/reviews/owners/4.png')} alt="owner" class="size-full object-cover rounded-xl object-center" />
+      </div>
+      <div class="lg:row-start-3  h-[220px] md:h-[260px] lg:h-[320px]">
+        <Image src={import('@/assets/reviews/owners/6.png')} alt="owner" class="size-full object-cover rounded-xl object-center" />
+      </div>
+      <div class="lg:row-start-3 h-[220px] md:h-[260px] lg:h-[320px]">
+        <Image src={import('@/assets/reviews/owners/7.png')} alt="owner" class="size-full object-cover rounded-xl object-center" />
+      </div>
+      <div class="lg:col-span-2 h-[220px] md:h-[260px] lg:h-[320px] row-start-3">
+        <Image src={import('@/assets/reviews/owners/8.png')} alt="owner" class="size-full object-cover rounded-xl object-center" />
+      </div>
     </div>
   </div>
 </Layout>

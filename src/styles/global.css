@@ -73,7 +73,7 @@
 
 @layer base {
   p {
-    @apply leading-none;
+    @apply leading-tight;
   }
   button {
     @apply cursor-pointer;
