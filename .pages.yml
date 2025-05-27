@@ -1,6 +1,6 @@
 media:
   input: src/assets
-  output: /assets
+  output: src/assets
 content:
   - name: posts
     label: Posts
@@ -34,7 +34,7 @@ content:
         label: Body
         type: rich-text
   - name: config
-    label: Jekyll config
+    label: Site Settings
     path: _config.yml
     type: file
     fields:
