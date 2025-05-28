@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import Layout from '@/layouts/Layout.astro';
 import { YouTube } from 'astro-embed';
-import Button from '@/components/starwind/button';
+import AboutModal from '@/components/AboutModal';
 
 const team = [
   {
@@ -163,7 +163,7 @@ const team = [
           <YouTube
             poster="/thumbnail.jpg"
             class="size-[300px] md:size-[400px] lg:size-[270px] xl:size-[500px] z-10 relative rounded-full"
-            id="https://www.youtube.com/watch?v=Pa0mdpXcHx8"
+            id="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
           />
           <div class="dots-container absolute inset-0 pointer-events-none">
             <div class="dot-wrapper dot-wrapper-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -222,57 +222,60 @@ const team = [
             </blockquote>
             <p class="text-secondary">Russel, Delivery Driver (7 years)</p>
           </div>
-          <Button variant="primary" class="w-full lg:w-[355px]">Apply today</Button>
+
+          <AboutModal client:idle>
+            <Image src={import('@/assets/about/job-board.png')} alt="Job Board" />
+          </AboutModal>
         </div>
       </div>
     </div>
   </section>
-</Layout>
 
-<script>
-  import { gsap } from 'gsap';
+  <script>
+    import { gsap } from 'gsap';
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const videoFrame = document.querySelector('.video-frame') as HTMLElement;
-    if (!videoFrame) return;
+    document.addEventListener('DOMContentLoaded', () => {
+      const videoFrame = document.querySelector('.video-frame') as HTMLElement;
+      if (!videoFrame) return;
 
-    // Получаем обертки для точек и сами точки
-    const dotWrappers = document.querySelectorAll('.dot-wrapper');
-    const dots = document.querySelectorAll('.dot') as NodeListOf<HTMLElement>;
+      // Получаем обертки для точек и сами точки
+      const dotWrappers = document.querySelectorAll('.dot-wrapper');
+      const dots = document.querySelectorAll('.dot') as NodeListOf<HTMLElement>;
 
-    // Функция для расчета и установки позиций точек
-    function positionDots() {
-      // Получаем размеры контейнера
-      const frameWidth = videoFrame.offsetWidth;
-      const radius = frameWidth / 2;
+      // Функция для расчета и установки позиций точек
+      function positionDots() {
+        // Получаем размеры контейнера
+        const frameWidth = videoFrame.offsetWidth;
+        const radius = frameWidth / 2;
 
-      // Устанавливаем позиции для каждой точки
-      dots.forEach((dot, index) => {
-        // Первая точка справа, вторая слева
-        if (index === 0) {
-          dot.style.left = `${radius}px`;
-        } else {
-          dot.style.left = `-${radius}px`;
-        }
-      });
-    }
+        // Устанавливаем позиции для каждой точки
+        dots.forEach((dot, index) => {
+          // Первая точка справа, вторая слева
+          if (index === 0) {
+            dot.style.left = `${radius}px`;
+          } else {
+            dot.style.left = `-${radius}px`;
+          }
+        });
+      }
 
-    // Устанавливаем начальные позиции
-    positionDots();
+      // Устанавливаем начальные позиции
+      positionDots();
 
-    // Обновляем позиции при изменении размера окна
-    window.addEventListener('resize', positionDots);
+      // Обновляем позиции при изменении размера окна
+      window.addEventListener('resize', positionDots);
 
-    // Создаем анимацию вращения для каждой обертки
-    dotWrappers.forEach((wrapper) => {
-      // Просто вращаем обертку вокруг центра
-      gsap.to(wrapper, {
-        rotation: 360,
-        duration: 20,
-        repeat: -1,
-        ease: 'none',
-        transformOrigin: 'center center'
+      // Создаем анимацию вращения для каждой обертки
+      dotWrappers.forEach((wrapper) => {
+        // Просто вращаем обертку вокруг центра
+        gsap.to(wrapper, {
+          rotation: 360,
+          duration: 20,
+          repeat: -1,
+          ease: 'none',
+          transformOrigin: 'center center'
+        });
       });
     });
-  });
-</script>
+  </script>
+</Layout>

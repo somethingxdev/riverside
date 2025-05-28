@@ -19,7 +19,7 @@ import Footer from '@/components/app/Footer.astro';
   <body class="font-sans min-h-full bg-body text-primary">
     <div id="smooth-wrapper">
       <Header isHome={Astro.props.isHome} />
-      <main class="overflow-x-clip pb-20 md:pb-25 lg:pb-40" class:list={[Astro.props.isHome ? '' : 'pt-31 md:pt-42.5']} id="smooth-content">
+      <main class="overflow-x-clip pb-20 md:pb-25 lg:pb-40" class:list={[Astro.props.isHome ? 'home' : 'pt-31 md:pt-42.5']} id="smooth-content">
         <slot />
       </main>
       <Footer />
@@ -34,7 +34,7 @@ import Footer from '@/components/app/Footer.astro';
   gsap.registerPlugin(ScrollTrigger);
 
   window.addEventListener('DOMContentLoaded', () => {
-    const allSections = gsap.utils.toArray('section') as HTMLElement[];
+    const allSections = gsap.utils.toArray('.home section') as HTMLElement[];
     const sections = allSections.slice(1);
 
     sections.forEach((section) => {

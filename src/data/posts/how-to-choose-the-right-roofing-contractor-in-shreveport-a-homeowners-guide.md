@@ -3,7 +3,7 @@ published: true
 date: 2025-05-26
 title: 'Roof design trends of 2025'
 description: 'Review of modern trends in roof design that will make your house unique and stylish.'
-cover: src/assets/covers/roof-design
+cover: src/assets/blog/covers/roof-design.png
 ---
 
 Beware of Roofing Scams: How Shreveport Homeowners Can Find Trustworthy Contractors.

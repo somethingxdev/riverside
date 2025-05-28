@@ -110,19 +110,19 @@ const menu: MenuItemType[] = [
         <span class="font-sans text-xs font-light uppercase tracking-tight">roofing materials</span>
       </a>
       <nav class="flex-auto hidden lg:block">
-        <ul class="flex justify-center items-center gap-7 2xl:gap-10">
+        <ul class="flex justify-center items-center gap-6 md:gap-10">
           {
             menu.map((item) => (
-              <li class="text-lg font-medium" class:list={[isHome ? 'text-white' : 'text-primary']}>
+              <li class="font-medium" class:list={[isHome ? 'text-white' : 'text-primary']}>
                 {item.href === Astro.url.pathname ? (
-                  <a href={item.href} class="flex items-center gap-2 bg-primary py-2.5 px-3 leading-none text-white rounded-full font-medium">
+                  <a href={item.href} class="flex items-center gap-2 bg-primary px-3 py-2.5 leading-none text-white rounded-full font-medium">
                     {item.title}
                     <span class="size-2 rounded-full bg-white" />
                   </a>
                 ) : item.hasSubmenu ? (
                   <Dropdown openOnHover closeDelay={50}>
                     <DropdownTrigger asChild>
-                      <a href={item.href} class="flex items-center gap-2">
+                      <a href={item.href} class="flex items-center gap-2 group">
                         {item.title}
                         <ArrowDownIcon
                           class="group-aria-expanded:rotate-180 transition-transform size-3"
@@ -136,7 +136,7 @@ const menu: MenuItemType[] = [
                         return (
                           <div class={isCategory ? 'not-last:mb-7.5' : 'not-last:mb-3'}>
                             {isCategory ? (
-                              <div class="space-y-3 pt-3">
+                              <div class="space-y-3">
                                 <DropdownLabel>{submenuItem.title}</DropdownLabel>
                                 {(submenuItem as CategorySubmenuItem).items.map((subItem) => (
                                   <DropdownItem as="a" href={subItem.href}>
@@ -155,7 +155,7 @@ const menu: MenuItemType[] = [
                     </DropdownContent>
                   </Dropdown>
                 ) : (
-                  <a href={item.href}>{item.title}</a>
+                  <a href={item.href} class='underline-hover'>{item.title}</a>
                 )}
               </li>
             ))
