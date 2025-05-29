@@ -53,52 +53,125 @@ content:
         label: Preview image
         type: image
         description: Image used in the social preview on social networks (e.g. Facebook, Twitter...)
-
-  - name: home
-    label: Home
-    type: page
-    path: /
+  - name: Products Category
+    label: Products Category
+    type: collection
+    path: "src/data/products-category"
+    filename: "{primary}.json"
+    extension: json
     view:
-      fields: [title, description, cover]
-      primary: title  
+      fields: [title, published, date]
+      primary: title
     fields:
-      - name: hero_section
-        label: Hero section
-        type: object
-        fields:
-          - name: caption
-            label: Caption
-            type: string
-          - name: title
-            label: Title
-            type: string
-          - name: button_text
-            label: Button
-            type: string
-          - name: background
-            label: Background
-            type: image
-            options:
-              path: "src/assets/"
-              extensions: ["png", "jpg", "jpeg", "webp"]
-      - name: advantage_section
-        label: The riverside advantage
-        type: object
-        fields:
-          - name: caption
-            label: Caption
-            type: string
-          - name: title
-            label: Title
-            type: string
-
-          - name: items
-            label: Items
-            type: list
-            fields:
-              - name: title
-                label: Title
-                type: string
-              - name: description
-                label: Description
-                type: string
+      - name: title
+        label: Title
+        type: string
+      - name: description
+        label: Description
+        type: string
+      - name: cover
+        label: Cover
+        type: image
+        options:
+          path: "src/assets/products/category"
+          extensions: ["png", "jpg", "jpeg", "webp"]
+  - name: Products
+    label: Products
+    type: collection
+    path: "src/data/products"
+    filename: "{primary}.md"
+    view:
+      fields: [title, published, date]
+      primary: title
+    fields:
+      - name: title
+        label: Title
+        type: string
+      - name: description
+        label: Description
+        type: string
+      - name: cover
+        label: Cover
+        type: image
+        options:
+          path: "src/assets/products"
+          extensions: ["png", "jpg", "jpeg", "webp"]
+      - name: category
+        label: Category
+        type: reference
+        options: 
+          collection: products_category
+          
+  # - name: home
+  #   label: Home
+  #   type: page
+  #   path: /
+  #   view:
+  #     fields: [title, description, cover]
+  #     primary: title  
+  #   fields:
+  #     - name: hero_section
+  #       label: Hero section
+  #       type: object
+  #       fields:
+  #         - name: caption
+  #           label: Caption
+  #           type: string
+  #         - name: title
+  #           label: Title
+  #           type: string
+  #         - name: button_text
+  #           label: Button
+  #           type: string
+  #         - name: background
+  #           label: Background
+  #           type: image
+  #           options:
+  #             path: "src/assets/"
+  #             extensions: ["png", "jpg", "jpeg", "webp"]
+  #     - name: advantage_section
+  #       label: The riverside advantage
+  #       type: object
+  #       fields:
+  #         - name: caption
+  #           label: Caption
+  #           type: string
+  #         - name: title
+  #           label: Title
+  #           type: string
+  #         - name: items
+  #           label: Items
+  #           type: list
+  #           fields:
+  #             - name: title
+  #               label: Title
+  #               type: string
+  #             - name: description
+  #               label: Description
+  #               type: string
+  #     - name: about_section
+  #       label: About section
+  #       type: object
+  #       fields:
+  #         - name: caption
+  #           label: Caption
+  #           type: string
+  #         - name: title
+  #           label: Title
+  #           type: string
+  #         - name: quote
+  #           label: Quote
+  #           type: string
+  #           type: string
+  #         - name: quote_author_position
+  #           label: Quote author
+  #           type: string
+  #         - name: text
+  #           label: Text
+  #           type: text
+  #         - name: attachment
+  #           label: Attachment
+  #           type: file
+  #           options:
+  #             path: "public"
+  #             extensions: ["mp4", "webm"]    
