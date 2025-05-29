@@ -55,8 +55,9 @@ content:
         description: Image used in the social preview on social networks (e.g. Facebook, Twitter...)
   - name: products_category
     label: Products Category
-    type: file
-    path: "src/data/products-category.json"
+    type: collection
+    path: "src/data/products-category"
+    filename: "{primary}.json"
     view:
       fields: [title, published, date]
       primary: title
