@@ -58,7 +58,6 @@ content:
     type: collection
     path: "src/data/products-category"
     filename: "{primary}.json"
-    extension: json
     view:
       fields: [title, published, date]
       primary: title
