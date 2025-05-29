@@ -107,4 +107,22 @@ content:
       - name: body
         label: Body
         type: rich-text
-          
+  - name: reviews
+    label: Reviews
+    type: file
+    path: "src/data/reviews/index.json"
+    fields:
+      - name: customers
+        label: What our customers say
+        type: list
+        fields:
+          - name: name
+            label: Name
+            type: string
+          - name: position
+            label: Position
+            type: string
+          - name: text
+            label: Text
+            type: text
+            
