@@ -98,6 +98,7 @@ content:
       - name: category
         label: Category
         type: reference
+        required: true
         options: 
           collection: products_category
           label: "{title}"
