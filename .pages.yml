@@ -86,6 +86,7 @@ content:
       - name: title
         label: Title
         type: string
+        required: true
       - name: description
         label: Description
         type: string
