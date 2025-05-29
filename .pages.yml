@@ -80,7 +80,7 @@ content:
     path: "src/data/products"
     filename: "{primary}.md"
     view:
-      fields: [title, published, date]
+      fields: [title, category, published, date]
       primary: title
     fields:
       - name: title
