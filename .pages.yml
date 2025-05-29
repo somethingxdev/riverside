@@ -101,7 +101,7 @@ content:
         options: 
           collection: products_category
           label: "{title}"
-          value: "{id}"
+          value: "{title}"
           
   # - name: home
   #   label: Home
