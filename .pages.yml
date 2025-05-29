@@ -53,7 +53,7 @@ content:
         label: Preview image
         type: image
         description: Image used in the social preview on social networks (e.g. Facebook, Twitter...)
-  - name: Products Category
+  - name: products_category
     label: Products Category
     type: collection
     path: "src/data/products-category"
