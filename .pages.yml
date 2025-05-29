@@ -104,4 +104,7 @@ content:
           collection: products_category
           label: "{title}"
           value: "{title}"
+      - name: body
+        label: Body
+        type: rich-text
           
