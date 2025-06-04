@@ -1,6 +1,7 @@
 ---
 import AboutPlayer from '@/components/AboutPlayer';
-import { Image } from 'astro:assets';
+import { YouTube } from 'astro-embed';
+import AboutPoster from '@/assets/about/main.png';
 ---
 
 <section id="about" class="pb-20 md:pb-25 lg:pb-40">
@@ -15,8 +16,7 @@ import { Image } from 'astro:assets';
     </div>
     <div class="flex flex-col md:flex-row gap-5">
       <div class="flex-[0_0_357px] lg:flex-[0_0_550px] xl:flex-[0_0_730px] h-75 lg:h-auto shrink-0 rounded-xl overflow-hidden">
-        <!-- <Image src={import("@/assets/about/main.png")} class='size-full object-cover' alt="about reverside" /> -->
-        <AboutPlayer client:idle />
+        <YouTube id="CyvdrYz1myM" poster={AboutPoster.src} />
       </div>
       <div class="max-w-[570px] flex flex-col justify-between gap-6">
         <div class="hidden lg:block">
@@ -27,12 +27,12 @@ import { Image } from 'astro:assets';
         </div>
         <div class="mt-auto text-primary">
           <p class="mb-3">
-            Established in 1994, Riverside stands as Shreveport, Louisiana’s top local distributor of roofing materials. We’re built on hard work,
-            delivering top-notch American-made products and honest service to protect your homes and businesses.
+            Established in 1994, Riverside stands as Shreveport, Louisiana’s top local distributor of roofing materials. We’re built on hard work, delivering top-notch American-made products and
+            honest service to protect your homes and businesses.
           </p>
           <p class="mb-7.5">
-            At Riverside, you’re welcomed like family by our dedicated team – no nonsense, just real care. Rooted in the strength of local business,
-            we’ve stood by our community with integrity for over 25 years.
+            At Riverside, you’re welcomed like family by our dedicated team – no nonsense, just real care. Rooted in the strength of local business, we’ve stood by our community with integrity for
+            over 25 years.
           </p>
           <a href="#" class="uppercase underline-hover font-semibold">Learn more</a>
         </div>

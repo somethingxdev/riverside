@@ -10,7 +10,7 @@ type Props = Omit<HTMLAttributes<'button'>, 'role' | 'type'> & {
 };
 
 const dropdownTrigger = tv({
-  base: ['starwind-dropdown-trigger cursor-pointer', 'inline-flex items-center justify-center gap-2 outline-none']
+  base: ['starwind-dropdown-trigger cursor-pointer', 'inline-flex items-center justify-center gap-2']
 });
 
 const { class: className, asChild = false, ...rest } = Astro.props;
@@ -30,7 +30,6 @@ if (Astro.slots.has('default')) {
   ) : (
     <button class={dropdownTrigger({ class: className })} type="button" aria-haspopup="true" aria-expanded="false" data-state="closed" {...rest}>
       <slot />
-
     </button>
   )
 }

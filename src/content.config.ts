@@ -18,7 +18,8 @@ const products = defineCollection({
   schema: ({ image }) =>
     z.object({
       title: z.string(),
-      category: z.string()
+      category: z.string(),
+      externalLink: z.string().optional()
     })
 });
 

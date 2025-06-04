@@ -19,6 +19,7 @@ type CategorySubmenuItem = {
 type SimpleSubmenuItem = {
   title: string;
   href: string;
+  anchor?: string;
 };
 
 type SubmenuItem = CategorySubmenuItem | SimpleSubmenuItem;
@@ -37,7 +38,7 @@ const menu: MenuItemType[] = [
     hasSubmenu: true,
     submenu: [
       {
-        title: 'RESIDENTAL',
+        title: 'RESIDENTIAL',
         items: [
           { title: 'Certainteed Shingles', href: '/products/certainteed-shingles' },
           { title: 'Non-warranty Shingles', href: '/products/non-warranty-shingles' }
@@ -52,7 +53,7 @@ const menu: MenuItemType[] = [
         ]
       },
       {
-        title: 'ACCESORIES',
+        title: 'ACCESSORIES',
         items: [
           { title: 'Cougar Paws', href: '/products/cougar-paws' },
           { title: 'Pitch Hopers', href: '/products/pitch-hopers' },
@@ -69,9 +70,9 @@ const menu: MenuItemType[] = [
     href: '/services',
     hasSubmenu: true,
     submenu: [
-      { title: 'Delivery', href: '/services/delivery' },
-      { title: 'Quick Pickup', href: '/services/quick-pickup' },
-      { title: 'Free Roofing Calculation', href: '/services/free-roofing-calculation' }
+      { title: 'Delivery', href: '/services/delivery', anchor: 'delivery' },
+      { title: 'Quick Pickup', href: '/services/quick-pickup', anchor: 'quick-pickup' },
+      { title: 'Free Roofing Calculation', href: '/services/free-roofing-calculation', anchor: 'roofing-calculation' }
     ]
   },
   {
@@ -96,7 +97,7 @@ const menu: MenuItemType[] = [
   },
   {
     title: 'Contact',
-    href: '/contacts',
+    href: '/contact',
     hasSubmenu: false
   }
 ];
@@ -122,12 +123,9 @@ const menu: MenuItemType[] = [
                 ) : item.hasSubmenu ? (
                   <Dropdown openOnHover closeDelay={50}>
                     <DropdownTrigger asChild>
-                      <a href={item.href} class="flex items-center gap-2 group">
+                      <a href={item.href} class="flex items-center gap-2 group outline-none">
                         {item.title}
-                        <ArrowDownIcon
-                          class="group-aria-expanded:rotate-180 transition-transform size-3"
-                          class:list={[isHome ? 'text-white' : 'text-primary']}
-                        />
+                        <ArrowDownIcon class="group-aria-expanded:rotate-180 transition-transform size-3" class:list={[isHome ? 'text-white' : 'text-primary']} />
                       </a>
                     </DropdownTrigger>
                     <DropdownContent align="center">
@@ -139,13 +137,13 @@ const menu: MenuItemType[] = [
                               <div class="space-y-3">
                                 <DropdownLabel>{submenuItem.title}</DropdownLabel>
                                 {(submenuItem as CategorySubmenuItem).items.map((subItem) => (
-                                  <DropdownItem as="a" href={subItem.href}>
+                                  <DropdownItem as="a" href={`/products/#${submenuItem.title.toLowerCase()}`}>
                                     {subItem.title}
                                   </DropdownItem>
                                 ))}
                               </div>
                             ) : (
-                              <DropdownItem as="a" href={(submenuItem as SimpleSubmenuItem).href}>
+                              <DropdownItem as="a" href={`/services/#${submenuItem.anchor}`}>
                                 {submenuItem.title}
                               </DropdownItem>
                             )}
@@ -155,71 +153,35 @@ const menu: MenuItemType[] = [
                     </DropdownContent>
                   </Dropdown>
                 ) : (
-                  <a href={item.href} class='underline-hover'>{item.title}</a>
+                  <a href={item.href} class="underline-hover">
+                    {item.title}
+                  </a>
                 )}
               </li>
             ))
           }
         </ul>
       </nav>
-      <div
-        id="menu-overlay"
-        class="lg:hidden fixed inset-0 bg-black/50 opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out z-10"
-      >
-      </div>
-      <nav
-        class="lg:hidden fixed inset-0 right-0 left-auto size-full max-w-md bg-[#F8F8FA] translate-x-full transition-transform duration-300 ease-in-out z-50"
-        id="mobile-menu"
-      >
+      <div id="menu-overlay" class="lg:hidden fixed inset-0 bg-black/50 opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out z-10"></div>
+      <nav class="lg:hidden fixed inset-0 right-0 left-auto size-full max-w-md bg-[#F8F8FA] translate-x-full transition-transform duration-300 ease-in-out z-50" id="mobile-menu">
         <div class="flex flex-col h-full overflow-y-auto pt-10 px-5">
           <button id="close-menu" class="ml-auto" aria-label="Close menu"> <X /> </button>
 
           <div class="pt-5">
             <Accordion type="multiple">
               {
-                menu.map((item) =>
-                  item.hasSubmenu ? (
-                    <AccordionItem value={item.title.toLowerCase()}>
-                      <AccordionTrigger class="mt-3.5">{item.title}</AccordionTrigger>
-                      <AccordionContent>
-                        <div class="py-5 border-b" class:list={item.submenu?.some((item) => 'items' in item) ? 'space-y-8' : 'space-y-3'}>
-                          {item.submenu?.map((submenuItem) => {
-                            const isCategory = 'items' in submenuItem;
-                            return isCategory ? (
-                              <div>
-                                <span class="font-semibold text-sm text-primary mb-5 block uppercase">{submenuItem.title}</span>
-                                <ul class="space-y-3">
-                                  {(submenuItem as CategorySubmenuItem).items.map((subItem) => (
-                                    <li>
-                                      <a href={subItem.href} class="block hover:underline">
-                                        {subItem.title}
-                                      </a>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            ) : (
-                              <a href={(submenuItem as SimpleSubmenuItem).href} class="block hover:underline">
-                                {submenuItem.title}
-                              </a>
-                            );
-                          })}
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  ) : (
-                    <div class="mt-3.5">
-                      <a href={item.href} class="block text-primary">
-                        {item.title}
-                      </a>
-                    </div>
-                  )
-                )
+                menu.map((item) => (
+                  <div class="mt-3.5">
+                    <a href={item.href} class="block text-primary text-4xl underline-hover w-fit uppercase font-heading">
+                      {item.title}
+                    </a>
+                  </div>
+                ))
               }
             </Accordion>
 
             <div class="mt-10 flex flex-col gap-7.5">
-              <a href="tel:+13182229999" class="text-primary">+1 (318) 222-9999</a>
+              <a href="tel:+13182229999" class="text-primary text-xl">+1 (318) 222-9999</a>
               <Button variant="primary" size="sm" class="w-full hover:bg-primary/90 hover:text-white">SUCCESS SURVEY</Button>
             </div>
           </div>
@@ -227,11 +189,7 @@ const menu: MenuItemType[] = [
       </nav>
       <div class="flex items-center gap-7.5">
         <Button size="sm" variant={isHome ? 'default' : 'primary'} class="px-5 xl:px-10 hidden lg:block">Success survey</Button>
-        <a
-          href="tel:+13182229999"
-          class="text-medium underline-hover font-medium text-lg hidden xl:block"
-          class:list={[isHome ? 'text-white' : 'text-primary']}>+1 (318) 222-9999</a
-        >
+        <a href="tel:+13182229999" class="text-medium underline-hover font-medium text-lg hidden xl:block" class:list={[isHome ? 'text-white' : 'text-primary']}>+1 (318) 222-9999</a>
         <button id="menu-toggle" aria-label="Menu" class="lg:hidden">
           <MenuIcon class={isHome ? 'text-white' : 'text-primary'} />
         </button>
@@ -268,12 +226,16 @@ const menu: MenuItemType[] = [
     closeButton?.addEventListener('click', closeMenu);
     menuOverlay?.addEventListener('click', closeMenu);
 
-    window.addEventListener('scroll', () => {
+    const updateHeaderAppearance = () => {
       if (window.scrollY > 0) {
         header?.classList.add(header.dataset.scroll === 'home' ? 'bg-primary' : 'bg-white', 'shadow-lg');
       } else {
         header?.classList.remove(header.dataset.scroll === 'home' ? 'bg-primary' : 'bg-white', 'shadow-lg');
       }
-    });
+    };
+
+    updateHeaderAppearance();
+
+    window.addEventListener('scroll', updateHeaderAppearance);
   });
 </script>

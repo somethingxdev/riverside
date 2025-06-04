@@ -18,12 +18,7 @@ type Props = HTMLAttributes<'div'> & {
 const { class: className, openOnHover = false, closeDelay = 200, ...rest } = Astro.props;
 ---
 
-<div
-  class:list={['starwind-dropdown', 'relative', className]}
-  data-open-on-hover={openOnHover ? 'true' : undefined}
-  data-close-delay={closeDelay}
-  {...rest}
->
+<div class:list={['starwind-dropdown', 'relative', className]} data-open-on-hover={openOnHover ? 'true' : undefined} data-close-delay={closeDelay} {...rest}>
   <slot />
 </div>
 
@@ -165,7 +160,6 @@ const { class: className, openOnHover = false, closeDelay = 200, ...rest } = Ast
         if (item && !(item as HTMLElement).hasAttribute('data-disabled')) {
           // Close the dropdown after item selection
           this.closeDropdown();
-          console.log('click closing');
         }
       });
 

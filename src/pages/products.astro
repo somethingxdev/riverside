@@ -4,6 +4,8 @@ import Reviews from '@/partials/Reviews.astro';
 import ShowRoom from '@/partials/ShowRoom.astro';
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
+import { YouTube } from 'astro-embed';
+import DeliveryPoster from '@/assets/delivery.png';
 
 // Accesories images
 import CougarPaws from '@/assets/products/category/accesories/cougar-paws.jpg';
@@ -67,14 +69,17 @@ const productImageMap: ProductImageMapType = {
     <div class="grid">
       {
         categories.map((category) => (
-          <div class="grid grid-cols-1 md:grid-cols-2 md:gap-3.5 relative after:content-[''] after:absolute after:bottom-0 after:-left-[calc((100vw-100%)/2)] after:-right-[calc((100vw-100%)/2)] after:w-screen after:h-[1px] after:bg-secondary">
+          <div
+            id={category.id}
+            class="scroll-mt-40 grid grid-cols-1 md:grid-cols-2 md:gap-3.5 relative after:content-[''] after:absolute after:bottom-0 after:-left-[calc((100vw-100%)/2)] after:-right-[calc((100vw-100%)/2)] after:w-screen after:h-[1px] after:bg-secondary"
+          >
             <div class="overflow-hidden pb-7.5 md:py-6 md:min-h-[362px] lg:pr-7.5 lg:py-7.5 lg:border-r border-secondary order-last md:order-first relative">
               {/* Default category image */}
               <Image
                 src={category.data.cover}
                 quality={100}
                 alt={category.data.title}
-                class="size-full object-cover rounded-lg product-image active"
+                class="size-full object-cover rounded-xl product-image active"
                 data-category={category.id}
                 data-product="default"
               />
@@ -84,12 +89,12 @@ const productImageMap: ProductImageMapType = {
                 .map((item) => {
                   const productImage = item.id in productImageMap ? productImageMap[item.id] : category.data.cover;
                   return (
-                    <div class="rounded-lg overflow-hidden h-full pb-7.5 md:py-6 lg:pr-7.5 lg:py-7.5 absolute top-0 left-0 w-full">
+                    <div class="rounded-xl overflow-hidden h-full pb-7.5 md:py-6 lg:pr-7.5 lg:py-7.5 absolute top-0 left-0 w-full">
                       <Image
                         src={productImage}
                         quality={100}
                         alt={item.data.title}
-                        class="object-cover rounded-lg size-full product-image opacity-0 transition-opacity duration-300"
+                        class="object-cover rounded-xl size-full product-image opacity-0 transition-opacity duration-300"
                         data-category={category.id}
                         data-product={item.id}
                       />
@@ -106,22 +111,28 @@ const productImageMap: ProductImageMapType = {
               <div class="flex flex-col items-start gap-3.5 md:gap-5">
                 {products
                   .filter((item) => item.data.category.toLowerCase() === category.id)
-                  .map((item) => (
-                    <button
-                      type="button"
-                      class="flex relative items-center border-b gap-2 text-primary transition-all group text-left product-button"
-                      data-category={category.id}
-                      data-product={item.id}
-                      data-image-id={item.id}
-                    >
-                      <span class="absolute left-0 arrow">
-                        <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M0 7H15M15 7L8.88889 1M15 7L8.88889 13" stroke="#313131" stroke-width="1.2" />
-                        </svg>
-                      </span>
-                      <span class="group-hover:pl-6 transition-all duration-300">{item.data.title}</span>
-                    </button>
-                  ))}
+                  .map((item) =>
+                    item.data.externalLink ? (
+                      <a href={item.data.externalLink} target="_blank" class="flex relative items-center border-b gap-2 text-primary transition-all group text-left product-button">
+                        <span class="absolute left-0 arrow">
+                          <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 7H15M15 7L8.88889 1M15 7L8.88889 13" stroke="#313131" stroke-width="1.2" />
+                          </svg>
+                        </span>
+                        <span class="group-hover:pl-6 transition-all duration-300">{item.data.title}</span>
+                      </a>
+                    ) : (
+                      <button
+                        type="button"
+                        class="flex relative cursor-default items-center border-b gap-2 text-primary transition-all group text-left product-button"
+                        data-category={category.id}
+                        data-product={item.id}
+                        data-image-id={item.id}
+                      >
+                        <span>{item.data.title}</span>
+                      </button>
+                    )
+                  )}
               </div>
             </div>
           </div>
@@ -137,17 +148,10 @@ const productImageMap: ProductImageMapType = {
         <h2 class="section-title mb-6 lg:mb-0">Making sure your materials are on-time, every-time</h2>
         <p class="max-w-[540px] xl:max-w-[712px] xl:-ml-20 lg:pb-3">
           Making sure your materials arrive on-time, every time is critical but often overlooked. From preventing roofing supplies from taking up valuable driveway space to coordinating precise
-          delivery timing, effective material management eliminates the headaches of space constraints and scheduling conflicts that plague many roofing projects.
+          delivery timing, effective material management eli minates the headaches of space constraints and scheduling conflicts that plague many roofing projects.
         </p>
       </div>
-      <Image
-        src={import('@/assets/delivery.png')}
-        format="avif"
-        quality={100}
-        layout="constrained"
-        alt="Stocking & Delivery Management: The Unseen Challenge"
-        class="size-full object-cover rounded-xl min-h-[300px]"
-      />
+      <YouTube id="S2iy2C2F0bc" poster={DeliveryPoster.src} class="size-full object-cover rounded-xl min-h-[300px] max-h-[600px]" />
     </div>
   </section>
 

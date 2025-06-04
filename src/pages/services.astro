@@ -9,7 +9,7 @@ import ArrowRightTopIcon from '@/icons/arrow-right-top.svg';
   <section>
     <div class="container">
       <h1 class="page-title mb-7.5 lg:mb-15">Services</h1>
-      <div class="grid lg:grid-cols-[260px_1fr] gap-7.5 lg:gap-15 xl:gap-58 items-start py-10 border-t border-secondary">
+      <div class="grid lg:grid-cols-[260px_1fr] gap-7.5 lg:gap-15 xl:gap-58 items-start py-10 border-t border-secondary scroll-mt-40" id="delivery">
         <div class="flex flex-col">
           <span class="text-secondary/30 section-title leading-none mb-3">01</span>
           <span class="uppercase font-heading text-4xl lg:text-5xl">Delivery</span>
@@ -31,7 +31,7 @@ import ArrowRightTopIcon from '@/icons/arrow-right-top.svg';
               At Riverside, we understand that timing and space management are critical for all roofing projects. Unlike others, we're always
               respectful of your time and space, delivering materials precisely when needed - not too early, not too late.
             </p>
-            <Button variant="primary" class="px-20">Set up an order now</Button>
+            <Button variant="primary" class="px-20" href='tel:3182229999'>Set up an order now</Button>
           </div>
           <div class="flex gap-5">
             <Image src={import('@/assets/services/delivery/1.png')} format="avif" alt="Delivery" class="min-h-[220px] rounded-xl size-full object-cover" />
@@ -39,7 +39,7 @@ import ArrowRightTopIcon from '@/icons/arrow-right-top.svg';
           </div>
         </div>
       </div>
-      <div class="grid lg:grid-cols-[260px_1fr] gap-7.5 lg:gap-15 xl:gap-58 items-start py-10 border-t border-secondary">
+      <div class="grid lg:grid-cols-[260px_1fr] gap-7.5 lg:gap-15 xl:gap-58 items-start py-10 border-t border-secondary scroll-mt-40" id="quick-pickup">
         <div class="flex flex-col">
           <span class="text-secondary/30 section-title leading-none mb-3">02</span>
           <span class="uppercase font-heading text-4xl lg:text-5xl">QUICK PICKUP</span>
@@ -68,7 +68,7 @@ import ArrowRightTopIcon from '@/icons/arrow-right-top.svg';
                 <p>Closed weekends</p>
               </div>
             </div>
-            <Button variant="primary" class="w-full md:w-auto md:px-20">Let us know you’re coming</Button>
+            <Button variant="primary" class="w-full md:w-auto md:px-20" href="tel:3182229999">Let us know you’re coming</Button>
           </div>
 
           <div class="flex gap-5">
@@ -77,7 +77,7 @@ import ArrowRightTopIcon from '@/icons/arrow-right-top.svg';
           </div>
         </div>
       </div>
-      <div class="grid lg:grid-cols-[260px_1fr] gap-7.5 lg:gap-15 xl:gap-58 items-start pt-10 border-t border-secondary">
+      <div class="grid lg:grid-cols-[260px_1fr] gap-7.5 lg:gap-15 xl:gap-58 items-start pt-10 border-t border-secondary scroll-mt-40" id="roofing-calculation">
         <div class="flex flex-col">
           <span class="text-secondary/30 section-title leading-none mb-3">03</span>
           <span class="uppercase font-heading text-4xl lg:text-5xl">ROOFING CALCULATION</span>
@@ -102,10 +102,10 @@ import ArrowRightTopIcon from '@/icons/arrow-right-top.svg';
                   <h3 class="text-4xl lg:text-5xl font-heading text-center mb-2.5">FREE ROOFING CALCULATION</h3>
                   <p class="text-secondary font-semibold text-center">FOR NEW HOME OWNERS</p>
                 </div>
-                <Button variant="primary" class="w-full">FREE ROOFING CALCULATION</Button>
+                <Button variant="primary" class="w-full" href="#calc-form">FREE ROOFING CALCULATION</Button>
               </div>
             </div>
-            <div class="bg-lightGray p-6 lg:p-7.5 md:w-1/2 h-[300px] lg:h-[408px] rounded-xl">
+            <a href="https://myev.eagleview.com/place-order/" target="_blank" class="bg-lightGray p-6 lg:p-7.5 md:w-1/2 h-[300px] lg:h-[408px] rounded-xl hover:scale-102 transition-transform">
               <div class="flex flex-col justify-between h-full">
                 <div>
                   <h3 class="text-4xl lg:text-5xl font-heading text-center mb-2.5">THIRD-PARTY SERVICE</h3>
@@ -113,12 +113,12 @@ import ArrowRightTopIcon from '@/icons/arrow-right-top.svg';
                 </div>
                 <Image src={import('@/assets/services/eagleview.png')} alt="eagleview" class="mx-auto" />
                 <div class="self-end group">
-                  <a href="#" class="grid place-items-center size-12.5 rounded-full bg-primary">
+                  <span class="grid place-items-center size-12.5 rounded-full bg-primary">
                     <ArrowRightTopIcon />
-                  </a>
+                  </span>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </div>
