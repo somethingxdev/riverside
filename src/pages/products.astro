@@ -5,8 +5,51 @@ import ShowRoom from '@/partials/ShowRoom.astro';
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 
+// Accesories images
+import CougarPaws from '@/assets/products/category/accesories/cougar-paws.jpg';
+import FallProtection from '@/assets/products/category/accesories/fall-protection.jpg';
+import LadderStabilizer from '@/assets/products/category/accesories/ladder-stabilizer.avif';
+import PitchFinder from '@/assets/products/category/accesories/pitch-finder.png';
+import PitchHoppers from '@/assets/products/category/accesories/pitch-hoppers.avif';
+import ShingleGauges from '@/assets/products/category/accesories/shingle-gauges.jpg';
+
+// Commercial images
+import AppModifiedBitumen from '@/assets/products/category/commercial/app-modified-bitumen.jpeg';
+import SAModifiedBitumen from '@/assets/products/category/commercial/sa-modified-bitumen.webp';
+import SBSModifiedBitumen from '@/assets/products/category/commercial/sbs-modified-bitumen.avif';
+import TPO from '@/assets/products/category/commercial/tpo.jpeg';
+
+// Resudential Image
+import Certainteed from '@/assets/products/category/residential/certainteed.jpg';
+import NonWarranty from '@/assets/products/category/residential/non-warrantied.jpg';
+
 const products = await getCollection('products');
 const categories = await getCollection('products_category');
+
+// Create a mapping of product IDs to their corresponding imported images
+type ProductImageMapType = {
+  [key: string]: any;
+};
+
+const productImageMap: ProductImageMapType = {
+  // Accessories category
+  'cougar-paws': CougarPaws,
+  'fall-protection': FallProtection,
+  'ladder-stabilizer': LadderStabilizer,
+  'pitch-finder': PitchFinder,
+  'pitch-hoppers': PitchHoppers,
+  shinglegauges: ShingleGauges,
+
+  // Commercial category
+  'app-modified-bitumen': AppModifiedBitumen,
+  'sa-modified-bitumen': SAModifiedBitumen,
+  'sbs-modified-bitumen': SBSModifiedBitumen,
+  tpo: TPO,
+
+  // Residential category
+  'certainteed-shingles': Certainteed,
+  'non-warranty-shingles': NonWarranty
+};
 ---
 
 <Layout>
@@ -14,9 +57,8 @@ const categories = await getCollection('products_category');
     <div class="container">
       <h1 class="text-5xl lg:text-8xl font-bold uppercase font-heading mb-7.5">Products</h1>
       <p class="max-w-[570px] mb-15">
-        We offer high-quality roofing solutions designed specifically to meet the diverse needs
-        whether you are a contractor or homeowner. Browse our categories to find the perfect product
-        for your project!
+        We offer high-quality roofing solutions designed specifically to meet the diverse needs whether you are a contractor or homeowner. Browse our categories to find the perfect product for your
+        project!
       </p>
     </div>
   </section>
@@ -24,22 +66,40 @@ const categories = await getCollection('products_category');
   <section class="container">
     <div class="grid">
       {
-        categories.map((category, index) => (
+        categories.map((category) => (
           <div class="grid grid-cols-1 md:grid-cols-2 md:gap-3.5 relative after:content-[''] after:absolute after:bottom-0 after:-left-[calc((100vw-100%)/2)] after:-right-[calc((100vw-100%)/2)] after:w-screen after:h-[1px] after:bg-secondary">
-            <div class="overflow-hidden pb-7.5 md:py-6 md:min-h-[362px] lg:pr-7.5 lg:py-7.5 lg:border-r border-secondary order-last md:order-first">
+            <div class="overflow-hidden pb-7.5 md:py-6 md:min-h-[362px] lg:pr-7.5 lg:py-7.5 lg:border-r border-secondary order-last md:order-first relative">
+              {/* Default category image */}
               <Image
                 src={category.data.cover}
-                format="avif"
                 quality={100}
                 alt={category.data.title}
-                class="size-full object-cover rounded-lg"
+                class="size-full object-cover rounded-lg product-image active"
+                data-category={category.id}
+                data-product="default"
               />
+
+              {products
+                .filter((item) => item.data.category.toLowerCase() === category.id)
+                .map((item) => {
+                  const productImage = item.id in productImageMap ? productImageMap[item.id] : category.data.cover;
+                  return (
+                    <div class="rounded-lg overflow-hidden h-full pb-7.5 md:py-6 lg:pr-7.5 lg:py-7.5 absolute top-0 left-0 w-full">
+                      <Image
+                        src={productImage}
+                        quality={100}
+                        alt={item.data.title}
+                        class="object-cover rounded-lg size-full product-image opacity-0 transition-opacity duration-300"
+                        data-category={category.id}
+                        data-product={item.id}
+                      />
+                    </div>
+                  );
+                })}
             </div>
             <div class="flex flex-col justify-between gap-12.5 py-6 lg:py-7.5">
               <div>
-                <h2 class="text-4xl lg:text-5xl font-bold font-heading mb-4">
-                  {category.data.title}
-                </h2>
+                <h2 class="text-4xl lg:text-5xl font-bold font-heading mb-4">{category.data.title}</h2>
                 <p class="lg:max-w-[355px]">{category.data.description}</p>
                 <span>{category.id}</span>
               </div>
@@ -47,29 +107,20 @@ const categories = await getCollection('products_category');
                 {products
                   .filter((item) => item.data.category.toLowerCase() === category.id)
                   .map((item) => (
-                    <a
-                      href={`/products/${item.id}`}
-                      class="flex relative items-center border-b gap-2 text-primary transition-all group"
+                    <button
+                      type="button"
+                      class="flex relative items-center border-b gap-2 text-primary transition-all group text-left product-button"
+                      data-category={category.id}
+                      data-product={item.id}
+                      data-image-id={item.id}
                     >
                       <span class="absolute left-0 arrow">
-                        <svg
-                          width="16"
-                          height="14"
-                          viewBox="0 0 16 14"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M0 7H15M15 7L8.88889 1M15 7L8.88889 13"
-                            stroke="#313131"
-                            stroke-width="1.2"
-                          />
+                        <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M0 7H15M15 7L8.88889 1M15 7L8.88889 13" stroke="#313131" stroke-width="1.2" />
                         </svg>
                       </span>
-                      <span class="group-hover:pl-6 transition-all duration-300">
-                        {item.data.title}
-                      </span>
-                    </a>
+                      <span class="group-hover:pl-6 transition-all duration-300">{item.data.title}</span>
+                    </button>
                   ))}
               </div>
             </div>
@@ -81,18 +132,12 @@ const categories = await getCollection('products_category');
 
   <section class="pt-20 md:pt-25 lg:pt-40">
     <div class="container">
-      <span class="section-pretitle block mb-6"
-        >Stocking & Delivery Management: The Unseen Challenge</span
-      >
+      <span class="section-pretitle block mb-6">Stocking & Delivery Management: The Unseen Challenge</span>
       <div class="flex flex-col max-w-[540px]lg:max-w-full lg:flex-row lg:items-end mb-6 md:mb-7.5">
-        <h2 class="section-title mb-6 lg:mb-0">
-          Making sure your materials are on-time, every-time
-        </h2>
+        <h2 class="section-title mb-6 lg:mb-0">Making sure your materials are on-time, every-time</h2>
         <p class="max-w-[540px] xl:max-w-[712px] xl:-ml-20 lg:pb-3">
-          Making sure your materials arrive on-time, every time is critical but often overlooked.
-          From preventing roofing supplies from taking up valuable driveway space to coordinating
-          precise delivery timing, effective material management eliminates the headaches of space
-          constraints and scheduling conflicts that plague many roofing projects.
+          Making sure your materials arrive on-time, every time is critical but often overlooked. From preventing roofing supplies from taking up valuable driveway space to coordinating precise
+          delivery timing, effective material management eliminates the headaches of space constraints and scheduling conflicts that plague many roofing projects.
         </p>
       </div>
       <Image
@@ -119,4 +164,57 @@ const categories = await getCollection('products_category');
   .group:hover .arrow {
     clip-path: inset(0);
   }
+
+  .product-image {
+    transition: opacity 0.3s ease;
+  }
+
+  .product-image.active {
+    opacity: 1;
+  }
 </style>
+
+<script>
+  // Function to show product image on hover
+  function showProductImage(categoryId: string, productId: string): void {
+    // Hide all images for this category
+    document.querySelectorAll(`.product-image[data-category="${categoryId}"]`).forEach((img) => {
+      img.classList.remove('active');
+      (img as HTMLElement).style.opacity = '0';
+    });
+
+    // Show the specific product image
+    const targetImage = document.querySelector(`.product-image[data-category="${categoryId}"][data-product="${productId}"]`);
+    if (targetImage) {
+      targetImage.classList.add('active');
+      (targetImage as HTMLElement).style.opacity = '1';
+    }
+  }
+
+  // Function to show default category image when mouse leaves
+  function showDefaultImage(categoryId: string): void {
+    // Hide all images for this category
+    document.querySelectorAll(`.product-image[data-category="${categoryId}"]`).forEach((img) => {
+      img.classList.remove('active');
+      (img as HTMLElement).style.opacity = '0';
+    });
+
+    // Show the default image
+    const defaultImage = document.querySelector(`.product-image[data-category="${categoryId}"][data-product="default"]`);
+    if (defaultImage) {
+      defaultImage.classList.add('active');
+      (defaultImage as HTMLElement).style.opacity = '1';
+    }
+  }
+
+  // Initialize all product buttons with event listeners
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.product-button').forEach((button) => {
+      const categoryId = button.getAttribute('data-category') || '';
+      const productId = button.getAttribute('data-product') || '';
+
+      button.addEventListener('mouseover', () => showProductImage(categoryId, productId));
+      button.addEventListener('mouseleave', () => showDefaultImage(categoryId));
+    });
+  });
+</script>

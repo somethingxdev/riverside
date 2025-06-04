@@ -18,6 +18,10 @@
     {
       "name": "accordion",
       "version": "1.1.0"
+    },
+    {
+      "name": "tabs",
+      "version": "1.2.0"
     }
   ]
 }
