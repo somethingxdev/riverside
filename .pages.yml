@@ -87,12 +87,6 @@ content:
         label: Title
         type: string
         required: true
-      - name: description
-        label: Description
-        type: string
-      - name: cover
-        label: Cover
-        type: image
       - name: externalLink
         label: External Link
         type: string
