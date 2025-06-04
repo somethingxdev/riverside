@@ -5,7 +5,7 @@ import Button from '@/components/starwind/button';
 import MenuIcon from '@/icons/menu.svg';
 import ArrowDownIcon from '@/icons/arrow-down.svg';
 import { X } from 'lucide-react';
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/starwind/accordion';
+
 type MenuItem = {
   title: string;
   href: string;
@@ -168,17 +168,15 @@ const menu: MenuItemType[] = [
           <button id="close-menu" class="ml-auto" aria-label="Close menu"> <X /> </button>
 
           <div class="pt-5">
-            <Accordion type="multiple">
-              {
-                menu.map((item) => (
-                  <div class="mt-3.5">
-                    <a href={item.href} class="block text-primary text-4xl underline-hover w-fit uppercase font-heading">
-                      {item.title}
-                    </a>
-                  </div>
-                ))
-              }
-            </Accordion>
+            {
+              menu.map((item) => (
+                <div class="mt-3.5">
+                  <a href={item.href} class="block text-primary text-4xl underline-hover w-fit uppercase font-heading">
+                    {item.title}
+                  </a>
+                </div>
+              ))
+            }
 
             <div class="mt-10 flex flex-col gap-7.5">
               <a href="tel:+13182229999" class="text-primary text-xl">+1 (318) 222-9999</a>
