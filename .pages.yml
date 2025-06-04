@@ -93,6 +93,9 @@ content:
       - name: cover
         label: Cover
         type: image
+      - name: externalLink
+        label: External Link
+        type: string
         options:
           path: "src/assets/products"
           extensions: ["png", "jpg", "jpeg", "webp"]
@@ -104,9 +107,6 @@ content:
           collection: products_category
           label: "{title}"
           value: "{title}"
-      - name: body
-        label: Body
-        type: rich-text
   - name: reviews
     label: Reviews
     type: file
@@ -114,7 +114,7 @@ content:
     fields:
       - name: customers
         label: What our customers say
-        type: list
+        list: true
         fields:
           - name: name
             label: Name
