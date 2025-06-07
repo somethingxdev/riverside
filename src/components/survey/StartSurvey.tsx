@@ -60,7 +60,6 @@ const UserTypeSurvey: React.FC<UserTypeSurveyProps> = ({ onNext }) => (
 );
 
 const StartSurvey = ({ isHome }: { isHome?: boolean }) => {
-  console.log(isHome);
   const [currentStep, setCurrentStep] = useState('');
   const [surveyAnswers, setSurveyAnswers] = useState<SurveyAnswers>({});
   const [isDialogOpen, setIsDialogOpen] = useState(false);

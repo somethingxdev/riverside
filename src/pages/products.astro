@@ -40,13 +40,13 @@ const productImageMap: ProductImageMapType = {
   'ladder-stabilizer': LadderStabilizer,
   'pitch-finder': PitchFinder,
   'pitch-hoppers': PitchHoppers,
-  'shinglegauges': ShingleGauges,
+  shinglegauges: ShingleGauges,
 
   // Commercial category
   'app-modified-bitumen': AppModifiedBitumen,
   'sa-modified-bitumen': SAModifiedBitumen,
   'sbs-modified-bitumen': SBSModifiedBitumen,
-  'tpo': CommercialTPO,
+  tpo: CommercialTPO,
 
   // Residential category
   'certainteed-shingles': Certainteed,
@@ -58,10 +58,7 @@ const productImageMap: ProductImageMapType = {
   <section class="border-b border-secondary">
     <div class="container">
       <h1 class="text-5xl lg:text-8xl font-bold uppercase font-heading mb-7.5">Products</h1>
-      <p class="max-w-[570px] mb-15">
-        We offer high-quality roofing solutions designed specifically to meet the diverse needs whether you are a contractor or homeowner. Browse our categories to find the perfect product for your
-        project!
-      </p>
+      <p class="max-w-[570px] mb-15">We offer high-quality roofing solutions designed specifically to meet the diverse needs whether you are a contractor or homeowner. Browse our categories to find the perfect product for your project!</p>
     </div>
   </section>
 
@@ -75,14 +72,7 @@ const productImageMap: ProductImageMapType = {
           >
             <div class="overflow-hidden pb-7.5 md:py-6 md:min-h-[362px] lg:pr-7.5 lg:py-7.5 lg:border-r border-secondary order-last md:order-first relative">
               {/* Default category image */}
-              <Image
-                src={category.data.cover}
-                quality={100}
-                alt={category.data.title}
-                class="size-full object-cover rounded-xl product-image active"
-                data-category={category.id}
-                data-product="default"
-              />
+              <Image src={category.data.cover} alt={category.data.title} class="size-full object-cover rounded-xl product-image active" data-category={category.id} data-product="default" />
 
               {products
                 .filter((item) => item.data.category.toLowerCase() === category.id)
@@ -90,14 +80,7 @@ const productImageMap: ProductImageMapType = {
                   const productImage = item.id in productImageMap ? productImageMap[item.id] : category.data.cover;
                   return (
                     <div class="rounded-xl overflow-hidden h-full pb-7.5 md:py-6 lg:pr-7.5 lg:py-7.5 absolute top-0 left-0 w-full">
-                      <Image
-                        src={productImage}
-                        quality={100}
-                        alt={item.data.title}
-                        class="object-cover rounded-xl size-full product-image opacity-0 transition-opacity duration-300"
-                        data-category={category.id}
-                        data-product={item.id}
-                      />
+                      <Image src={productImage} alt={item.data.title} class="object-cover rounded-xl size-full product-image opacity-0 transition-opacity duration-300" data-category={category.id} data-product={item.id} />
                     </div>
                   );
                 })}
@@ -122,13 +105,7 @@ const productImageMap: ProductImageMapType = {
                         <span class="group-hover:pl-6 transition-all duration-300">{item.data.title}</span>
                       </a>
                     ) : (
-                      <button
-                        type="button"
-                        class="flex relative cursor-default items-center border-b gap-2 text-primary transition-all group text-left product-button"
-                        data-category={category.id}
-                        data-product={item.id}
-                        data-image-id={item.id}
-                      >
+                      <button type="button" class="flex relative cursor-default items-center border-b gap-2 text-primary transition-all group text-left product-button" data-category={category.id} data-product={item.id} data-image-id={item.id}>
                         <span>{item.data.title}</span>
                       </button>
                     )
@@ -147,8 +124,8 @@ const productImageMap: ProductImageMapType = {
       <div class="flex flex-col max-w-[540px]lg:max-w-full lg:flex-row lg:items-end mb-6 md:mb-7.5">
         <h2 class="section-title mb-6 lg:mb-0">Making sure your materials are on-time, every-time</h2>
         <p class="max-w-[540px] xl:max-w-[712px] xl:-ml-20 lg:pb-3">
-          Making sure your materials arrive on-time, every time is critical but often overlooked. From preventing roofing supplies from taking up valuable driveway space to coordinating precise
-          delivery timing, effective material management eli minates the headaches of space constraints and scheduling conflicts that plague many roofing projects.
+          Making sure your materials arrive on-time, every time is critical but often overlooked. From preventing roofing supplies from taking up valuable driveway space to coordinating precise delivery timing, effective material management eli
+          minates the headaches of space constraints and scheduling conflicts that plague many roofing projects.
         </p>
       </div>
       <YouTube id="S2iy2C2F0bc" poster={DeliveryPoster.src} class="size-full object-cover rounded-xl min-h-[300px] max-h-[600px]" />

@@ -1,15 +1,7 @@
 import React from 'react';
 import { DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { ArrowLeft } from 'lucide-react'; // Assuming you use lucide-react for icons
-
-// interface ContractorSuccessSurveyProps {
-//   onPrevious: () => void; // If we want this component to handle its own back button
-// }
 
 const ContractorSuccessSurvey: React.FC = () => {
-  // const handleGoToCatalog = () => { /* Logic for catalog */ };
-  // const handleContactRiverside = () => { /* Logic for contact */ };
-
   return (
     <>
       <DialogHeader className="mb-4">
@@ -69,8 +61,8 @@ const ContractorSuccessSurvey: React.FC = () => {
       </div>
 
       <div className="flex flex-col md:flex-row gap-3">
-        <button className="survey-button w-full ">GO TO CATALOG</button>
-        <button className="survey-button w-full">CONTACT RIVERSIDE</button>
+        <a href='/products/' className="survey-button w-full ">GO TO CATALOG</a>
+        <a href='/contact/' className="survey-button w-full">CONTACT RIVERSIDE</a>
       </div>
     </>
   );
