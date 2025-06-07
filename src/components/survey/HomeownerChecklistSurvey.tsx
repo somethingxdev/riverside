@@ -18,7 +18,7 @@ const HomeownerChecklistSurvey: React.FC<HomeownerChecklistSurveyProps> = ({ onB
           </svg>
           BACK
         </button>
-        <DialogTitle className="text-3xl md:text-5xl font-heading leading-tight">YOUR PERSONALIZED CHECKLIST</DialogTitle>
+        <DialogTitle className="text-4xl md:text-5xl font-heading leading-none uppercase">YOUR PERSONALIZED CHECKLIST</DialogTitle>
       </DialogHeader>
       <div className="space-y-5 mb-5 text-sm">
         <div className="flex items-start gap-4">

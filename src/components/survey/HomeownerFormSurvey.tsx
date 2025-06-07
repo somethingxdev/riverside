@@ -22,7 +22,7 @@ const HomeownerFormSurvey: React.FC<HomeownerFormSurveyProps> = ({ onNext }) => 
   return (
     <>
       <DialogHeader className="mb-7.5">
-        <DialogTitle className="text-3xl md:text-5xl font-heading leading-tight">ONE LAST THING...</DialogTitle>
+        <DialogTitle className="text-4xl md:text-5xl font-heading leading-none uppercase">ONE LAST THING...</DialogTitle>
         <p>Let's fill the form with the name:)</p>
       </DialogHeader>
       <form onSubmit={handleSubmit} className="space-y-4 mb-7.5 max-w-[440px]">

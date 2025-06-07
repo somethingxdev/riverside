@@ -46,7 +46,7 @@ interface UserTypeSurveyProps {
 const UserTypeSurvey: React.FC<UserTypeSurveyProps> = ({ onNext }) => (
   <>
     <DialogHeader className="mb-6">
-      <DialogTitle className="text-3xl md:text-5xl font-heading leading-tight text-center lg:text-left">Where are you?</DialogTitle>
+      <DialogTitle className="text-4xl md:text-5xl font-heading leading-none uppercase text-center lg:text-left">Where are you?</DialogTitle>
     </DialogHeader>
     <div className="flex flex-col md:flex-row items-center gap-3 md:gap-5">
       <button onClick={() => onNext('Homeowner')} className="survey-button w-full sm:w-1/2">
@@ -59,7 +59,8 @@ const UserTypeSurvey: React.FC<UserTypeSurveyProps> = ({ onNext }) => (
   </>
 );
 
-const StartSurvey = () => {
+const StartSurvey = ({ isHome }: { isHome?: boolean }) => {
+  console.log(isHome);
   const [currentStep, setCurrentStep] = useState('');
   const [surveyAnswers, setSurveyAnswers] = useState<SurveyAnswers>({});
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -259,13 +260,11 @@ const StartSurvey = () => {
 
   return (
     <Dialog open={isDialogOpen} onOpenChange={(isOpen) => !isOpen && closeSurvey()}>
-      <DialogTrigger onClick={openSurvey} className="px-5 xl:px-10 gap-1.5 rounded-xl font-semibold uppercase bg-primary text-white hover:bg-primary/90 h-12.5 py-2 text-base">
+      <DialogTrigger onClick={openSurvey} className={`px-5 2xl:px-10 gap-1.5 rounded-xl transition-colors font-semibold uppercase h-12.5 py-2 text-base ${isHome ? 'bg-white hover:bg-white/90 text-primary' : 'bg-primary hover:bg-primary/90 text-white'}`}>
         Success survey
       </DialogTrigger>
 
       <DialogContent>
-        {' '}
-        {/* Ensure DialogContent takes full space and handles overflow */}
         {isDialogOpen && (
           <div className="flex flex-col justify-between lg:flex-row lg:h-[800px]">
             <div className="h-[400px] lg:h-[800px] order-last lg:order-first block shrink-0">

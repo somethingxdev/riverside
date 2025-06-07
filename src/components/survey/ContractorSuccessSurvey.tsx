@@ -13,7 +13,7 @@ const ContractorSuccessSurvey: React.FC = () => {
   return (
     <>
       <DialogHeader className="mb-4">
-        <DialogTitle className="text-3xl md:text-5xl font-heading leading-tight">STEPS FOR SUCCESS</DialogTitle>
+        <DialogTitle className="text-4xl md:text-5xl font-heading leading-none uppercase">STEPS FOR SUCCESS</DialogTitle>
       </DialogHeader>
       <p className="text-sm text-gray-600 mb-6 text-center lg:text-left">
         What you need to do to scale your roofing company. <br></br> Trust us, we've seen what works.

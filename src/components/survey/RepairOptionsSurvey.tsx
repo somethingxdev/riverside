@@ -28,7 +28,7 @@ const RepairOptionsSurvey: React.FC<RepairOptionsSurveyProps> = ({ onNext }) => 
   return (
     <>
       <DialogHeader className="mb-6">
-        <DialogTitle className="text-3xl md:text-5xl font-heading leading-tight">WHAT ARE YOU LOOKING TO DO?</DialogTitle>
+        <DialogTitle className="text-4xl md:text-5xl font-heading leading-none uppercase">WHAT ARE YOU LOOKING TO DO?</DialogTitle>
       </DialogHeader>
       <div className="space-y-3 mb-6">
         {REPAIR_OPTIONS.map((option) => (

@@ -1,7 +1,6 @@
 ---
 const { isHome = false } = Astro.props;
 import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem, DropdownLabel } from '@/components/starwind/dropdown';
-import Button from '@/components/starwind/button';
 import MenuIcon from '@/icons/menu.svg';
 import ArrowDownIcon from '@/icons/arrow-down.svg';
 import { X } from 'lucide-react';
@@ -111,8 +110,8 @@ const menu: MenuItemType[] = [
         <span class="text-[39px]/none font-heading"> Riverside </span>
         <span class="font-sans text-xs font-light uppercase tracking-tight">roofing materials</span>
       </a>
-      <nav class="flex-auto hidden lg:block">
-        <ul class="flex justify-center items-center gap-6 md:gap-10">
+      <nav class="flex-auto hidden xl:block">
+        <ul class="flex justify-center items-center gap-6 md:gap-8">
           {
             menu.map((item) => (
               <li class="font-medium" class:list={[isHome ? 'text-white' : 'text-primary']}>
@@ -163,11 +162,10 @@ const menu: MenuItemType[] = [
           }
         </ul>
       </nav>
-      <div id="menu-overlay" class="lg:hidden fixed inset-0 bg-black/50 opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out z-10"></div>
-      <nav class="lg:hidden fixed inset-0 right-0 left-auto size-full max-w-md bg-[#F8F8FA] translate-x-full transition-transform duration-300 ease-in-out z-50" id="mobile-menu">
+      <div id="menu-overlay" class="xl:hidden fixed inset-0 bg-black/50 opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out z-10"></div>
+      <nav class="xl:hidden fixed inset-0 right-0 left-auto size-full max-w-md bg-[#F8F8FA] translate-x-full transition-transform duration-300 ease-in-out z-50" id="mobile-menu">
         <div class="flex flex-col h-full overflow-y-auto pt-10 px-5">
           <button id="close-menu" class="ml-auto" aria-label="Close menu"> <X /> </button>
-
           <div class="pt-5">
             {
               menu.map((item) => (
@@ -181,17 +179,17 @@ const menu: MenuItemType[] = [
 
             <div class="mt-10 flex flex-col gap-7.5">
               <a href="tel:+13182229999" class="text-primary text-xl">+1 (318) 222-9999</a>
-              <StartSurvey client:load />
+              <StartSurvey client:load isHome={isHome} />
             </div>
           </div>
         </div>
       </nav>
       <div class="flex items-center gap-7.5">
         <div class="hidden lg:block">
-          <StartSurvey client:load />
+          <StartSurvey client:load isHome={isHome} />
         </div>
         <a href="tel:+13182229999" class="text-medium underline-hover font-medium text-lg hidden xl:block" class:list={[isHome ? 'text-white' : 'text-primary']}>+1 (318) 222-9999</a>
-        <button id="menu-toggle" aria-label="Menu" class="lg:hidden">
+        <button id="menu-toggle" aria-label="Menu" class="xl:hidden">
           <MenuIcon class={isHome ? 'text-white' : 'text-primary'} />
         </button>
       </div>

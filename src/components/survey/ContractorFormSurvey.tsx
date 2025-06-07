@@ -14,7 +14,7 @@ const ContractorFormSurvey: React.FC<ContractorFormSurveyProps> = ({ onNext }) =
   return (
     <>
       <DialogHeader className="mb-4">
-        <DialogTitle className="text-3xl md:text-5xl font-heading leading-tight">YOU NEED A PARTNER YOU CAN RELY ON TO HELP YOU SCALE YOUR BUSINESS</DialogTitle>
+        <DialogTitle className="text-4xl md:text-5xl font-heading leading-none uppercase">YOU NEED A PARTNER YOU CAN RELY ON TO HELP YOU SCALE YOUR BUSINESS</DialogTitle>
       </DialogHeader>
 
       <div className="max-w-[440px]">

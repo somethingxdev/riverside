@@ -28,7 +28,7 @@ const ContractorChecklistSurvey: React.FC<ContractorChecklistSurveyProps> = ({ o
   return (
     <>
       <DialogHeader className="mb-6">
-        <DialogTitle className="text-3xl md:text-5xl font-heading leading-tight">WHAT MATTERS MOST TO YOU?</DialogTitle>
+        <DialogTitle className="text-4xl md:text-5xl font-heading leading-none uppercase">WHAT MATTERS MOST TO YOU?</DialogTitle>
       </DialogHeader>
 
       <div className="space-y-3 mb-8">
