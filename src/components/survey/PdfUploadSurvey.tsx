@@ -56,8 +56,8 @@ const PdfUploadSurvey: React.FC<PdfUploadSurveyProps> = ({ onNext }) => {
 
   return (
     <>
-      <DialogHeader className="mb-6 text-center lg:text-left">
-        <DialogTitle className="text-4xl md:text-5xl font-heading leading-none uppercase uppercase">UPLOAD YOUR HOUSE PLAN</DialogTitle>
+      <DialogHeader className="mb-6">
+        <DialogTitle className="text-4xl md:text-5xl font-heading leading-none uppercase">UPLOAD YOUR HOUSE PLAN</DialogTitle>
       </DialogHeader>
 
       <div className="flex flex-col items-center w-full">

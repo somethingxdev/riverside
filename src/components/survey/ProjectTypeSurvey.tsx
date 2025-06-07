@@ -9,7 +9,7 @@ const ProjectTypeSurvey: React.FC<ProjectTypeSurveyProps> = ({ onNext }) => {
   return (
     <>
       <DialogHeader className="mb-6">
-        <DialogTitle className="text-4xl md:text-5xl font-heading leading-none uppercase text-center lg:text-left">WHAT TYPE OF PROJECT ARE YOU PLANNING?</DialogTitle>
+        <DialogTitle className="text-4xl md:text-5xl font-heading leading-none uppercase">WHAT TYPE OF PROJECT ARE YOU PLANNING?</DialogTitle>
       </DialogHeader>
       <div className="flex flex-col md:flex-row items-center gap-3 md:gap-5">
         <button onClick={() => onNext('Repair')} className="survey-button w-full md:w-1/2">

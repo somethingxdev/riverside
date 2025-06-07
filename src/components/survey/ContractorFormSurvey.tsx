@@ -18,7 +18,7 @@ const ContractorFormSurvey: React.FC<ContractorFormSurveyProps> = ({ onNext }) =
       </DialogHeader>
 
       <div className="max-w-[440px]">
-        <ul className="mb-5 space-y-1">
+        <ul className="mb-5 space-y-1 text-sm md:text-base">
           <li className="flex items-center">
             <span className="text-primary mr-2">✔</span> Top-Quality Products
           </li>
@@ -33,7 +33,7 @@ const ContractorFormSurvey: React.FC<ContractorFormSurveyProps> = ({ onNext }) =
           </li>
         </ul>
 
-        <p className="mb-7">Before we give you some tips, lets put a name to you.</p>
+        <p className="mb-7 text-sm md:text-base">Before we give you some tips, lets put a name to you.</p>
 
         <div className="space-y-5 mb-7.5">
           <FloatingInput id="name" label="Name" value={name} onChange={(e) => setName(e.target.value)} />

@@ -46,7 +46,7 @@ interface UserTypeSurveyProps {
 const UserTypeSurvey: React.FC<UserTypeSurveyProps> = ({ onNext }) => (
   <>
     <DialogHeader className="mb-6">
-      <DialogTitle className="text-4xl md:text-5xl font-heading leading-none uppercase text-center lg:text-left">Where are you?</DialogTitle>
+      <DialogTitle className="text-4xl md:text-5xl font-heading leading-none uppercase">Where are you?</DialogTitle>
     </DialogHeader>
     <div className="flex flex-col md:flex-row items-center gap-3 md:gap-5">
       <button onClick={() => onNext('Homeowner')} className="survey-button w-full sm:w-1/2">
@@ -259,24 +259,27 @@ const StartSurvey = ({ isHome }: { isHome?: boolean }) => {
 
   return (
     <Dialog open={isDialogOpen} onOpenChange={(isOpen) => !isOpen && closeSurvey()}>
-      <DialogTrigger onClick={openSurvey} className={`px-5 2xl:px-10 gap-1.5 rounded-xl transition-colors font-semibold uppercase h-12.5 py-2 text-base ${isHome ? 'bg-white hover:bg-white/90 text-primary' : 'bg-primary hover:bg-primary/90 text-white'}`}>
+      <DialogTrigger
+        onClick={openSurvey}
+        className={`px-5 2xl:px-10 gap-1.5 rounded-xl transition-colors font-semibold uppercase h-12.5 py-2 text-base ${isHome ? 'bg-white hover:bg-white/90 text-primary' : 'bg-primary hover:bg-primary/90 text-white'}`}
+      >
         Success survey
       </DialogTrigger>
 
       <DialogContent>
         {isDialogOpen && (
-          <div className="flex flex-col justify-between lg:flex-row lg:h-[800px]">
-            <div className="h-[400px] lg:h-[800px] order-last lg:order-first block shrink-0">
-              {currentStep === SURVEY_STEPS.START && <img src="src/assets/survey/start-survey.png" alt="Start survey" className="object-cover w-full h-full" />}
-              {currentStep === SURVEY_STEPS.PROJECT_TYPE && <img src="src/assets/survey/start-survey.png" alt="Project type survey" className="object-cover w-full h-full" />}
-              {currentStep === SURVEY_STEPS.REPAIR_OPTIONS && <img src="src/assets/survey/repair.png" alt="Repair options survey" className="object-cover w-full h-full" />}
-              {currentStep === SURVEY_STEPS.FREE_CALCULATION && <img src="src/assets/survey/new-construction.png" alt="Free calculation offer" className="object-cover w-full h-full" />}
-              {currentStep === SURVEY_STEPS.PDF_UPLOAD && <img src="src/assets/survey/new-construction.png" alt="Upload house plan" className="object-cover w-full h-full" />}
-              {currentStep === SURVEY_STEPS.HOMEOWNER_FORM && <img src="src/assets/survey/one-last-thing.png" alt="Homeowner form survey" className="object-cover w-full h-full" />}
-              {currentStep === SURVEY_STEPS.HOMEOWNER_CHECKLIST && <img src="src/assets/survey/checklist.png" alt="Homeowner checklist survey" className="object-cover w-full h-full" />}
-              {currentStep === SURVEY_STEPS.CONTRACTOR_FORM && <img src="src/assets/survey/contractor.png" alt="Contractor survey" className="object-cover w-full h-full" />}
-              {currentStep === SURVEY_STEPS.CONTRACTOR_CHECKLIST && <img src="src/assets/survey/builder.png" alt="Checklist survey" className="object-cover w-full h-full" />}
-              {currentStep === SURVEY_STEPS.CONTRACTOR_SUCCESS && <img src="src/assets/survey/checklist.png" alt="Success survey" className="object-cover w-full h-full" />}
+          <div className="flex flex-col justify-between lg:flex-row">
+            <div className="h-[400px] lg:h-[800px] order-last lg:order-first block lg:shrink-0">
+              {currentStep === SURVEY_STEPS.START && <img src="/survey/start-survey.png" alt="Start survey" className="object-cover w-full h-full" />}
+              {currentStep === SURVEY_STEPS.PROJECT_TYPE && <img src="/survey/start-survey.png" alt="Project type survey" className="object-cover w-full h-full" />}
+              {currentStep === SURVEY_STEPS.REPAIR_OPTIONS && <img src="/survey/repair.png" alt="Repair options survey" className="object-cover w-full h-full" />}
+              {currentStep === SURVEY_STEPS.FREE_CALCULATION && <img src="/survey/new-construction.png" alt="Free calculation offer" className="object-cover w-full h-full" />}
+              {currentStep === SURVEY_STEPS.PDF_UPLOAD && <img src="/survey/new-construction.png" alt="Upload house plan" className="object-cover w-full h-full" />}
+              {currentStep === SURVEY_STEPS.HOMEOWNER_FORM && <img src="/survey/one-last-thing.png" alt="Homeowner form survey" className="object-cover w-full h-full" />}
+              {currentStep === SURVEY_STEPS.HOMEOWNER_CHECKLIST && <img src="/survey/checklist.png" alt="Homeowner checklist survey" className="object-cover w-full h-full" />}
+              {currentStep === SURVEY_STEPS.CONTRACTOR_FORM && <img src="/survey/contractor.png" alt="Contractor survey" className="object-cover w-full h-full" />}
+              {currentStep === SURVEY_STEPS.CONTRACTOR_CHECKLIST && <img src="/survey/builder.png" alt="Checklist survey" className="object-cover w-full h-full" />}
+              {currentStep === SURVEY_STEPS.CONTRACTOR_SUCCESS && <img src="/survey/checklist.png" alt="Success survey" className="object-cover w-full h-full" />}
             </div>
 
             <div id="survey-content" className="relative pt-20 lg:pt-35 px-3.75 md:px-6 lg:px-10 pb-6 flex flex-col justify-between w-full">
@@ -285,10 +288,9 @@ const StartSurvey = ({ isHome }: { isHome?: boolean }) => {
                 return (
                   <div
                     key={stepKey}
-                    className={`transition-opacity duration-500 ease-in-out ${(currentStep === SURVEY_STEPS.CONTRACTOR_FORM && '-mt-12') || (currentStep === SURVEY_STEPS.HOMEOWNER_CHECKLIST && '-mt-12')} ${
-                      currentStep === stepKey ? 'opacity-100' : 'opacity-0 absolute pointer-events-none'
+                    className={`transition-opacity duration-500 ease-in-out ${(currentStep === SURVEY_STEPS.CONTRACTOR_FORM && 'md:-mt-12') || (currentStep === SURVEY_STEPS.HOMEOWNER_CHECKLIST && 'md:-mt-12')} ${
+                      currentStep === stepKey ? 'block' : 'hidden absolute pointer-events-none'
                     } w-full`}
-                    style={{ visibility: currentStep === stepKey ? 'visible' : 'hidden' }}
                   >
                     <StepComponent {...config.props()} />
                   </div>
