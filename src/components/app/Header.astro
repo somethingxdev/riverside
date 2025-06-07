@@ -5,6 +5,7 @@ import Button from '@/components/starwind/button';
 import MenuIcon from '@/icons/menu.svg';
 import ArrowDownIcon from '@/icons/arrow-down.svg';
 import { X } from 'lucide-react';
+import StartSurvey from '../survey/StartSurvey';
 
 type MenuItem = {
   title: string;
@@ -180,13 +181,15 @@ const menu: MenuItemType[] = [
 
             <div class="mt-10 flex flex-col gap-7.5">
               <a href="tel:+13182229999" class="text-primary text-xl">+1 (318) 222-9999</a>
-              <Button variant="primary" size="sm" class="w-full hover:bg-primary/90 hover:text-white">SUCCESS SURVEY</Button>
+              <StartSurvey client:load />
             </div>
           </div>
         </div>
       </nav>
       <div class="flex items-center gap-7.5">
-        <Button size="sm" variant={isHome ? 'default' : 'primary'} class="px-5 xl:px-10 hidden lg:block">Success survey</Button>
+        <div class="hidden lg:block">
+          <StartSurvey client:load />
+        </div>
         <a href="tel:+13182229999" class="text-medium underline-hover font-medium text-lg hidden xl:block" class:list={[isHome ? 'text-white' : 'text-primary']}>+1 (318) 222-9999</a>
         <button id="menu-toggle" aria-label="Menu" class="lg:hidden">
           <MenuIcon class={isHome ? 'text-white' : 'text-primary'} />

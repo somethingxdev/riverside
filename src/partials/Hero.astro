@@ -1,6 +1,7 @@
 ---
 import { getImage } from 'astro:assets';
 import Button from '@/components/starwind/button';
+import Image from 'astro:assets';
 const background = await getImage({ src: import('@/assets/hero.png') });
 const backgroundSrc = background.src;
 ---
@@ -11,10 +12,10 @@ const backgroundSrc = background.src;
     <h1 class="text-white font-heading text-5xl lg:text-8xl font-semibold mb-6 max-w-[1080px]">Locally owned roofing supply company serving you since 1994</h1>
     <Button class="px-8">Why Riverside is the way to go?</Button>
   </div>
-  <video src="/hero.webm" autoplay loop muted class="absolute top-0 left-0 w-full h-full object-cover"></video>
+  <video src="/hero.webm" autoplay loop muted class="absolute top-0 left-0 w-full h-full object-cover hidden md:block"></video>
 </section>
 
-<style>
+<style define:vars={{ background: `url('${backgroundSrc}')` }}>
   .hero::after {
     content: '';
     position: absolute;
@@ -22,6 +23,16 @@ const backgroundSrc = background.src;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5);
+  }
+  @media screen and (max-width: 768px) {
+    .hero::after {
+      background: var(--background);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: -1;
+      filter: brightness(0.7)
+    }
   }
 </style>

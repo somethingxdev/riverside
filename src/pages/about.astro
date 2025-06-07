@@ -5,6 +5,7 @@ import { YouTube } from 'astro-embed';
 import AboutModal from '@/components/AboutModal';
 import JoinTeamPoster from '@/assets/team/join-out-team.png';
 import PillarsOfRiverside from '@/assets/pillars-of-riverside.png';
+import AboutPoster from '@/assets/about-video.png';
 
 const team = [
   {
@@ -53,8 +54,8 @@ const team = [
 <Layout>
   <section class="container">
     <h1 class="page-title mb-7.5">About Riverside</h1>
+    <YouTube id="o68OlNTCBpw" poster={AboutPoster.src} class="h-[300px] md:h-[600px] object-cover rounded-xl" />
 
-    <Image src={import('@/assets/about-video.png')} format="avif" alt="About Riverside" class="min-h-[300px] object-cover rounded-xl" />
   </section>
 
   <section class="py-20 md:py-25 lg:py-40" id="early-beginnings">

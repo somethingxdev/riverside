@@ -68,6 +68,9 @@
   .section-pretitle {
     @apply font-semibold mb-6 leading-none text-secondary text-sm md:text-base uppercase;
   }
+  .survey-button {
+    @apply px-5 xl:px-10 gap-1.5 rounded-xl font-semibold uppercase bg-primary text-white hover:bg-primary/90 py-2.5;
+  }
 }
 
 @layer base {
@@ -77,10 +80,9 @@
   button {
     @apply cursor-pointer;
   }
-}
-
-section {
-  @apply scroll-mt-40;
+  section {
+    @apply scroll-mt-40;
+  }
 }
 
 lite-youtube {
