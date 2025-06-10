@@ -4,7 +4,6 @@ export const prerender = false;
 const BOT_TOKEN = import.meta.env.TELEGRAM_BOT_TOKEN;
 const CHAT_ID = import.meta.env.TELEGRAM_CHAT_ID;
 
-
 const formatMessage = (answers: Record<string, any>): string => {
   const separator = '\n\n- - - - - - - - - - - - - - - - - -\n\n';
   const title = '<b>New Survey Submission</b>';
@@ -43,7 +42,7 @@ const formatMessage = (answers: Record<string, any>): string => {
     dataBlocks.push(`<b>Accepted Free Calculation:</b> ${answers.free_roofing_calculation.acceptedOffer ? 'Yes' : 'No'}`);
   }
 
-  return `${title}\n${dataBlocks.join(separator)}`;
+  return `${title}\n\n${dataBlocks.join(separator)}`;
 };
 
 export const POST: APIRoute = async ({ request }) => {
@@ -103,7 +102,6 @@ export const POST: APIRoute = async ({ request }) => {
         throw new Error(`Failed to send document to Telegram: ${errorData.description}`);
       }
     }
-
 
     return new Response(
       JSON.stringify({
