@@ -1,7 +1,6 @@
-import React from 'react';
 import { DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
-const ContractorSuccessSurvey: React.FC = () => {
+const ContractorSuccessSurvey = () => {
   return (
     <>
       <DialogHeader className="mb-4">
@@ -61,8 +60,12 @@ const ContractorSuccessSurvey: React.FC = () => {
       </div>
 
       <div className="flex flex-col md:flex-row gap-3">
-        <a href='/products/' className="survey-button w-full ">GO TO CATALOG</a>
-        <a href='/contact/' className="survey-button w-full">CONTACT RIVERSIDE</a>
+        <a href="/products/" className="survey-button w-full text-center">
+          GO TO CATALOG
+        </a>
+        <a href="/contact/" className="survey-button w-full text-center">
+          CONTACT RIVERSIDE
+        </a>
       </div>
     </>
   );

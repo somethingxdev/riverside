@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Checkbox } from '@/components/ui/checkbox';
 
 interface ContractorChecklistSurveyProps {
   onNext: (selectedOptions: string[]) => void;
@@ -33,8 +34,8 @@ const ContractorChecklistSurvey: React.FC<ContractorChecklistSurveyProps> = ({ o
 
       <div className="space-y-3 mb-8">
         {checklistOptions.map((option) => (
-          <div key={option.id} className="flex items-center space-x-2">
-            <input type="checkbox" id={`survey-checklist-${option.id}`} checked={selected.includes(option.id)} onChange={() => handleCheckboxChange(option.id)} className="mr-2 h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary" />
+          <div key={option.id} className="flex items-center gap-2">
+            <Checkbox id={`survey-checklist-${option.id}`} checked={selected.includes(option.id)} onCheckedChange={() => handleCheckboxChange(option.id)} />
             <label htmlFor={`survey-checklist-${option.id}`} className="text-sm font-medium leading-none">
               {option.label}
             </label>

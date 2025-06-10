@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { ArrowRightIcon } from 'lucide-react';
+import { Checkbox } from '@/components/ui/checkbox';
 
 interface RepairOptionsSurveyProps {
   onNext: (selectedOptions: string[]) => void;
@@ -32,8 +33,8 @@ const RepairOptionsSurvey: React.FC<RepairOptionsSurveyProps> = ({ onNext }) => 
       </DialogHeader>
       <div className="space-y-3 mb-6">
         {REPAIR_OPTIONS.map((option) => (
-          <div key={option.id} className="flex items-center">
-            <input type="checkbox" id={option.id} name={option.id} checked={selectedOptions.includes(option.id)} onChange={() => handleCheckboxChange(option.id)} className="size-4 md:size-5  border-gray-300 rounded focus:ring-primary mr-3" />
+          <div key={option.id} className="flex items-center gap-2">
+            <Checkbox id={option.id} name={option.id} checked={selectedOptions.includes(option.id)} onCheckedChange={() => handleCheckboxChange(option.id)} />
             <label className='text-sm md:text-base' htmlFor={option.id}>{option.label}</label>
           </div>
         ))}

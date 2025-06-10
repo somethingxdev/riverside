@@ -3,7 +3,7 @@ import { DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
 interface HomeownerChecklistSurveyProps {
   onBack: () => void;
-  onClose?: () => void; // Optional: if you want a specific close action from this component
+  onClose?: () => void;
   projectType?: 'Repair' | 'New Construction';
   uploadedPdfFileExists?: boolean;
 }
@@ -75,9 +75,9 @@ const HomeownerChecklistSurvey: React.FC<HomeownerChecklistSurveyProps> = ({ onB
         </div>
       </div>
 
-      <button onClick={onClose} className="survey-button text-sm md:text-base w-full md:w-auto">
+      <a href="tel:+13182229999" onClick={onClose} className="survey-button text-sm md:text-base w-full md:w-auto">
         NEED ANY HELP WITH THIS? CALL US NOW
-      </button>
+      </a>
     </>
   );
 };

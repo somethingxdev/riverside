@@ -4,23 +4,20 @@ const products = [
   {
     image: import("@/assets/products/category/1.png"),
     title: "Residential Products",
-    description:
-      "A wide range of roofing materials, perfectly suited for private homes and cottages.",
-    link: "/products/1",
+    description: "A wide range of roofing materials, perfectly suited for private homes and cottages.",
+    link: "/products",
   },
   {
     image: import("@/assets/products/category/2.png"),
     title: "Commercial Roofing ",
-    description:
-      "Professional solutions for commercial and industrial properties.",
-    link: "/products/2",
+    description: "Professional solutions for commercial and industrial properties.",
+    link: "/products",
   },
   {
     image: import("@/assets/products/category/3.png"),
     title: "Accesories",
-    description:
-      "Complementary items that enhance safety, convenience, and efficiency during roof installation and maintenance.",
-    link: "/products/3",
+    description: "Complementary items that enhance safety, convenience, and efficiency during roof installation and maintenance.",
+    link: "/products",
   },
 ];
 ---
@@ -31,7 +28,7 @@ const products = [
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
       {
         products.map((product, index) => (
-          <div class="flex flex-col items-center h-75 lg:h-120 w-full relative overflow-hidden rounded-xl" class:list={index === 2 ? 'md:col-span-2 lg:col-span-1' : ''}>
+          <a href={product.link} class="flex flex-col hover:-translate-y-1 transition-transform items-center h-75 lg:h-120 w-full relative overflow-hidden rounded-xl" class:list={index === 2 ? 'md:col-span-2 lg:col-span-1' : ''}>
             <Image
               src={product.image}
               alt={product.title}
@@ -43,7 +40,7 @@ const products = [
               <h3 class="font-bold font-heading text-4xl lg:text-5xl mb-2.5 text-center">{product.title}</h3>
               <p class="text-center max-w-[350px] mx-auto lg:min-h-12">{product.description}</p>
             </div>
-          </div>
+          </a>
         ))
       }
     </div>

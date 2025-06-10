@@ -44,7 +44,7 @@ function DialogContent({ className, children, ...props }: React.ComponentProps<t
         {children}
         <DialogPrimitive.Close className="bg-primary grid place-items-center size-8 xl:size-12.5 focus:ring-ring data-[state=open]:bg-accent data-[state=open]:text-muted-foreground absolute top-4 right-4 rounded-full focus:outline-hidden [&_svg]:pointer-events-none [&_svg]:shrink-0">
           <svg className="size-4 xl:size-6" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M22.6066 1.39322L12 11.9998M1.3934 22.6064L12 11.9998M12 11.9998L1.3934 1.39322L22.6066 22.6064" stroke="white" stroke-width="1.5" />
+            <path d="M22.6066 1.39322L12 11.9998M1.3934 22.6064L12 11.9998M12 11.9998L1.3934 1.39322L22.6066 22.6064" stroke="white" strokeWidth="1.5" />
           </svg>
           <span className="sr-only">Close</span>
         </DialogPrimitive.Close>
