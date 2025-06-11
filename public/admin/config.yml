@@ -1,0 +1,12 @@
+local_backend: true
+
+backend:
+  name: github
+  branch: main
+  repo: somethindxdev/riverside
+
+media_folder: 'src/assets'
+public_folder: '@/assets'
+
+collections:
+  # The leads collection has been removed as data is now sent directly to Google Sheets.

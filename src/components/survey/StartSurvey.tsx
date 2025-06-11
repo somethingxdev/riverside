@@ -10,11 +10,11 @@ import ContractorSuccessSurvey from './ContractorSuccessSurvey';
 import FreeCalculationSurvey from './FreeCalculationSurvey';
 import PdfUploadSurvey from './PdfUploadSurvey';
 import { toast } from 'sonner';
+
 interface SurveyAnswers {
   userType?: 'Contractor' | 'Homeowner';
   projectType?: 'Repair' | 'New Construction';
   contractorDetails?: any;
-  contractorChecklist?: string[];
   repairOptions?: string[];
   homeownerDetails?: { name: string; phone: string; email: string };
   free_roofing_calculation?: { acceptedOffer: boolean };
@@ -96,7 +96,7 @@ const StartSurvey = ({ isHome }: { isHome?: boolean }) => {
           if (userType === 'Homeowner') {
             nextStep = SURVEY_STEPS.PROJECT_TYPE;
             newProgress = 25;
-            const { contractorDetails, contractorChecklist, ...rest } = newAnswers;
+            const { contractorDetails, repairOptions, ...rest } = newAnswers;
             newAnswers = { ...rest, userType: 'Homeowner' };
           } else {
             nextStep = SURVEY_STEPS.CONTRACTOR_FORM;
@@ -146,7 +146,7 @@ const StartSurvey = ({ isHome }: { isHome?: boolean }) => {
           newProgress = 75;
           break;
         case SURVEY_STEPS.CONTRACTOR_CHECKLIST:
-          newAnswers.contractorChecklist = answer;
+          newAnswers.repairOptions = answer;
           nextStep = SURVEY_STEPS.CONTRACTOR_SUCCESS;
           newProgress = 100;
           break;
@@ -156,13 +156,14 @@ const StartSurvey = ({ isHome }: { isHome?: boolean }) => {
 
       if (isSuccessStep(nextStep)) {
         const formData = new FormData();
+
         formData.append('surveyData', JSON.stringify(newAnswers));
 
         if (newAnswers.uploadedPdfFile) {
           formData.append('pdfFile', newAnswers.uploadedPdfFile);
         }
 
-        fetch('/api/send-telegram', {
+        fetch('/api/send-email', {
           method: 'POST',
           body: formData
         })
@@ -173,7 +174,7 @@ const StartSurvey = ({ isHome }: { isHome?: boolean }) => {
             } else {
               toast.error('Failed to send survey data. Please try again.');
             }
-            console.log('Telegram API response:', data.message);
+            console.log('Email API response:', data.message);
           })
           .catch((error) => {
             toast.error('An error occurred while sending data. Please try again.');
@@ -201,7 +202,7 @@ const StartSurvey = ({ isHome }: { isHome?: boolean }) => {
       setProgressPercentage(25);
     } else if (currentStep === SURVEY_STEPS.HOMEOWNER_FORM) {
       setSurveyAnswers((prev) => {
-        const { homeownerDetails, ...rest } = prev; // Clear homeownerDetails
+        const { homeownerDetails, ...rest } = prev;
         return rest;
       });
       if (surveyAnswers.projectType === 'New Construction') {
@@ -304,56 +305,16 @@ const StartSurvey = ({ isHome }: { isHome?: boolean }) => {
         {isDialogOpen && (
           <div className="flex flex-col justify-between lg:flex-row">
             <div className="h-[400px] lg:h-[800px] order-last lg:order-first block lg:shrink-0">
-              {currentStep === SURVEY_STEPS.START && (
-                <div>
-                  <img src="/survey/start-survey.png" alt="Start survey" className="object-cover w-full h-full" />
-                </div>
-              )}
-              {currentStep === SURVEY_STEPS.PROJECT_TYPE && (
-                <div>
-                  <img src="/survey/start-survey.png" alt="Project type survey" className="object-cover w-full h-full" />
-                </div>
-              )}
-              {currentStep === SURVEY_STEPS.REPAIR_OPTIONS && (
-                <div>
-                  <img src="/survey/repair.png" alt="Repair options survey" className="object-cover w-full h-full" />
-                </div>
-              )}
-              {currentStep === SURVEY_STEPS.FREE_CALCULATION && (
-                <div>
-                  <img src="/survey/new-construction.png" alt="Free calculation offer" className="object-cover w-full h-full" />
-                </div>
-              )}
-              {currentStep === SURVEY_STEPS.PDF_UPLOAD && (
-                <div>
-                  <img src="/survey/new-construction.png" alt="Upload house plan" className="object-cover w-full h-full" />
-                </div>
-              )}
-              {currentStep === SURVEY_STEPS.HOMEOWNER_FORM && (
-                <div>
-                  <img src="/survey/one-last-thing.png" alt="Homeowner form survey" className="object-cover w-full h-full" />
-                </div>
-              )}
-              {currentStep === SURVEY_STEPS.HOMEOWNER_CHECKLIST && (
-                <div>
-                  <img src="/survey/checklist.png" alt="Homeowner checklist survey" className="object-cover w-full h-full" />
-                </div>
-              )}
-              {currentStep === SURVEY_STEPS.CONTRACTOR_FORM && (
-                <div>
-                  <img src="/survey/contractor.png" alt="Contractor survey" className="object-cover w-full h-full" />
-                </div>
-              )}
-              {currentStep === SURVEY_STEPS.CONTRACTOR_CHECKLIST && (
-                <div>
-                  <img src="/survey/builder.png" alt="Checklist survey" className="object-cover w-full h-full" />
-                </div>
-              )}
-              {currentStep === SURVEY_STEPS.CONTRACTOR_SUCCESS && (
-                <div>
-                  <img src="/survey/checklist.png" alt="Success survey" className="object-cover w-full h-full" />
-                </div>
-              )}
+              {currentStep === SURVEY_STEPS.START && <img src="/survey/start-survey.png" alt="Start survey" className="object-cover w-full h-full" />}
+              {currentStep === SURVEY_STEPS.PROJECT_TYPE && <img src="/survey/start-survey.png" alt="Project type survey" className="object-cover w-full h-full" />}
+              {currentStep === SURVEY_STEPS.REPAIR_OPTIONS && <img src="/survey/repair.png" alt="Repair options survey" className="object-cover w-full h-full" />}
+              {currentStep === SURVEY_STEPS.FREE_CALCULATION && <img src="/survey/new-construction.png" alt="Free calculation offer" className="object-cover w-full h-full" />}
+              {currentStep === SURVEY_STEPS.PDF_UPLOAD && <img src="/survey/new-construction.png" alt="Upload house plan" className="object-cover w-full h-full" />}
+              {currentStep === SURVEY_STEPS.HOMEOWNER_FORM && <img src="/survey/one-last-thing.png" alt="Homeowner form survey" className="object-cover w-full h-full" />}
+              {currentStep === SURVEY_STEPS.HOMEOWNER_CHECKLIST && <img src="/survey/checklist.png" alt="Homeowner checklist survey" className="object-cover w-full h-full" />}
+              {currentStep === SURVEY_STEPS.CONTRACTOR_FORM && <img src="/survey/contractor.png" alt="Contractor survey" className="object-cover w-full h-full" />}
+              {currentStep === SURVEY_STEPS.CONTRACTOR_CHECKLIST && <img src="/survey/builder.png" alt="Checklist survey" className="object-cover w-full h-full" />}
+              {currentStep === SURVEY_STEPS.CONTRACTOR_SUCCESS && <img src="/survey/checklist.png" alt="Success survey" className="object-cover w-full h-full" />}
             </div>
 
             <div id="survey-content" className="relative pt-20 lg:pt-35 px-3.75 md:px-6 lg:px-10 pb-6 flex flex-col justify-between w-full">

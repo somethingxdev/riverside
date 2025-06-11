@@ -3,15 +3,8 @@ const { label, placeholder, id } = Astro.props;
 ---
 
 <div class="relative z-10">
-  <input
-    class="block py-2.5 px-0 w-full bg-transparent border-0 border-b appearance-none focus:outline-none focus:ring-0 peer"
-    placeholder=""
-    id={id}
-  />
-  <label
-    for={id}
-    class="absolute duration-300 transform text-white -translate-y-7 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-90 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
-  >
+  <input class="block py-2.5 px-0 w-full bg-transparent border-0 border-b appearance-none focus:outline-none focus:ring-0 peer" placeholder="" id={id} {...Astro.props} />
+  <label  for={id} class="absolute duration-300 transform text-white -translate-y-7 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-90 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">
     {label}
   </label>
 </div>

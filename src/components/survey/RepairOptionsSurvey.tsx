@@ -23,7 +23,13 @@ const RepairOptionsSurvey: React.FC<RepairOptionsSurveyProps> = ({ onNext }) => 
   };
 
   const handleSubmit = () => {
-    onNext(selectedOptions);
+    const selectedLabels = selectedOptions
+      .map((id) => {
+        const option = REPAIR_OPTIONS.find((option) => option.id === id);
+        return option?.label;
+      })
+      .filter((label): label is string => !!label);
+    onNext(selectedLabels);
   };
 
   return (
@@ -35,7 +41,9 @@ const RepairOptionsSurvey: React.FC<RepairOptionsSurveyProps> = ({ onNext }) => 
         {REPAIR_OPTIONS.map((option) => (
           <div key={option.id} className="flex items-center gap-2">
             <Checkbox id={option.id} name={option.id} checked={selectedOptions.includes(option.id)} onCheckedChange={() => handleCheckboxChange(option.id)} />
-            <label className='text-sm md:text-base' htmlFor={option.id}>{option.label}</label>
+            <label className="text-sm md:text-base" htmlFor={option.id}>
+              {option.label}
+            </label>
           </div>
         ))}
       </div>

@@ -23,17 +23,17 @@ const socialLinks = [
   <div class="container z-2 relative">
     <p class="font-semibold mb-5 lg:mb-6 uppercase">Looking for something else?</p>
     <h2 class="section-title text-white mb-5">Talk with a product specialist</h2>
-    <p class="max-w-[570px] mb-10 lg:mb-15">
-      If you don’t see what you’re looking for, the best thing to do is give us a quick call or fill out the following inquiry form. We carry all essential roofing materials, so you’re probably
-      covered!
-    </p>
+    <p class="max-w-[570px] mb-10 lg:mb-15">If you don’t see what you’re looking for, the best thing to do is give us a quick call or fill out the following inquiry form. We carry all essential roofing materials, so you’re probably covered!</p>
 
-    <div class="grid md:grid-cols-2 gap-4 md:gap-x-5 md:gap-y-7.5 mb-15 lg:mb-30" id="calc-form">
-      <FloatingInput label="Name" placeholder="Name" id="name" />
-      <FloatingInput label="Phone" placeholder="Phone" id="phone" />
-      <FloatingInput label="Inquiry" placeholder="Inquiry" id="inquiry" />
-      <Button>Send</Button>
-    </div>
+    <form id="footer-contact-form" class="grid md:grid-cols-2 gap-4 md:gap-x-5 md:gap-y-7.5 mb-15 lg:mb-30" onsubmit="event.preventDefault(); handleFooterFormSubmit(event)">
+      <FloatingInput label="Name" placeholder="Name" id="name" name="name" required />
+      <FloatingInput label="Phone" placeholder="Phone" id="phone" name="phone" required />
+      <FloatingInput label="Inquiry" placeholder="Inquiry" id="inquiry" name="inquiry" required />
+      <Button type="submit" id="footer-submit-btn">
+        <span id="submit-text">Send</span>
+        <span id="submit-spinner" class="hidden">Sending...</span>
+      </Button>
+    </form>
 
     <div class="flex flex-col lg:flex-row justify-between items-start gap-10 md:gap-20 2xl:gap-40 mb-12.5">
       <div class="flex gap-2.5">
@@ -120,3 +120,56 @@ const socialLinks = [
     </div>
   </div>
 </footer>
+
+<script>
+  async function handleFooterFormSubmit() {
+    const form = document.getElementById('footer-contact-form') as HTMLFormElement;
+    const submitBtn = document.getElementById('footer-submit-btn') as HTMLButtonElement | null;
+    const submitText = document.getElementById('submit-text');
+    const submitSpinner = document.getElementById('submit-spinner');
+
+    if (!submitBtn || !submitText  || !submitSpinner) {
+      console.error('Form elements not found');
+      return;
+    }
+
+    // Show loading state
+    submitBtn.disabled = true;
+    submitText.classList.add('hidden');
+    submitSpinner.classList.remove('hidden');
+
+    try {
+      const formData = new FormData(form);
+      const response = await fetch('/api/send-footer-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.get('name'),
+          phone: formData.get('phone'),
+          inquiry: formData.get('inquiry')
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      // Show success message
+      alert('Thank you! Your message has been sent.');
+      form.reset();
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Sorry, there was an error sending your message. Please try again later.');
+    } finally {
+      // Reset button state
+      if (submitBtn && submitText && submitSpinner) {
+        submitBtn.disabled = false;
+        submitText.classList.remove('hidden');
+        submitSpinner.classList.add('hidden');
+      }
+    }
+  }
+  document.getElementById('footer-contact-form')?.addEventListener('submit', handleFooterFormSubmit);
+</script>

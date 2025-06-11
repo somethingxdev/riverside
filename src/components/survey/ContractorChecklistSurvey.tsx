@@ -23,7 +23,14 @@ const ContractorChecklistSurvey: React.FC<ContractorChecklistSurveyProps> = ({ o
   };
 
   const handleSubmit = () => {
-    onNext(selected);
+    const selectedLabels = selected
+      .map((id) => {
+        const option = checklistOptions.find((option) => option.id === id);
+        return option?.label;
+      })
+      .filter((label): label is string => !!label);
+
+    onNext(selectedLabels);
   };
 
   return (
