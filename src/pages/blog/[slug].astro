@@ -22,10 +22,10 @@ const { Content } = await render(post);
 
 <Layout>
   <div class="container">
-    <h1 class="page-title mb-7.5">{post.data.title}</h1>
+    <h1 class="text-5xl lg:text-7xl uppercase font-heading mb-7.5">{post.data.title}</h1>
     <Image src={post.data.cover} alt="post" class="min-h-[300px] h-[600px] w-full object-cover rounded-xl mb-7.5" />
     <div class="grid lg:grid-cols-[150px_1fr_250px] items-start gap-5">
-      <span>{formatDate(post.data.date)}</span>
+      <span>{formatDate(post.data.published_settings.created)}</span>
       <article class="prose flex-auto prose-p:leading-6 max-w-[730px] mx-auto prose-headings:mb-5 prose-headings:font-heading prose-headings:font-normal prose-headings:text-4xl lg:prose-headings:text-5xl">
         <Content />
       </article>
@@ -42,7 +42,7 @@ const { Content } = await render(post);
                   <Image src={import('@/assets/blog/post.png')} alt="post" class="min-h-[260px] object-cover rounded-xl mb-3.75" />
                   <h3 class="text-xl/6 mb-5">{post.data.title}</h3>
                   <p class="text-secondary mb-5 max-w-[320px]">{post.data.description}</p>
-                  <span>{formatDate(post.data.date)}</span>
+                  <span>{formatDate(post.data.published_settings.created)}</span>
                 </a>
               ))}
             </div>

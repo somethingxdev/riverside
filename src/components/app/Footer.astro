@@ -8,13 +8,14 @@ import LinkedinIcon from '@/icons/linkedin.svg';
 import YouTubeIcon from '@/icons/youtube.svg';
 import Logo from '@/icons/logo.svg';
 
+const { socials } = await import('@/data/site_settings.json');
 const background = await getImage({ src: import('@/assets/footer-bg.png'), format: 'avif' });
 
 const socialLinks = [
-  { name: 'Facebook', icon: FacebookIcon },
-  { name: 'Instagram', icon: InstagramIcon },
-  { name: 'Linkedin', icon: LinkedinIcon },
-  { name: 'YouTube', icon: YouTubeIcon }
+  { name: 'Facebook', icon: FacebookIcon, href: socials.facebook },
+  { name: 'Instagram', icon: InstagramIcon, href: socials.instagram },
+  { name: 'Linkedin', icon: LinkedinIcon, href: socials.linkedin },
+  { name: 'YouTube', icon: YouTubeIcon, href: socials.youtube }
 ];
 ---
 
@@ -39,9 +40,11 @@ const socialLinks = [
       <div class="flex gap-2.5">
         {
           socialLinks.map((link) => (
-            <a href="#" class="w-11.25 h-11.25 grid place-items-center border border-white rounded-full hover:bg-primary transition-colors hover:border-transparent">
-              <link.icon />
-            </a>
+            link.href && (
+              <a href={link.href} target="_blank" class="w-11.25 h-11.25 grid place-items-center border border-white rounded-full hover:bg-primary transition-colors hover:border-transparent">
+                <link.icon />
+              </a>
+            )
           ))
         }
       </div>
@@ -122,13 +125,15 @@ const socialLinks = [
 </footer>
 
 <script>
+  import { toast } from 'sonner';
+
   async function handleFooterFormSubmit() {
     const form = document.getElementById('footer-contact-form') as HTMLFormElement;
     const submitBtn = document.getElementById('footer-submit-btn') as HTMLButtonElement | null;
     const submitText = document.getElementById('submit-text');
     const submitSpinner = document.getElementById('submit-spinner');
 
-    if (!submitBtn || !submitText  || !submitSpinner) {
+    if (!submitBtn || !submitText || !submitSpinner) {
       console.error('Form elements not found');
       return;
     }
@@ -156,14 +161,12 @@ const socialLinks = [
         throw new Error('Failed to send message');
       }
 
-      // Show success message
-      alert('Thank you! Your message has been sent.');
+      toast.success('Thank you! Your message has been sent.');
       form.reset();
     } catch (error) {
       console.error('Error:', error);
-      alert('Sorry, there was an error sending your message. Please try again later.');
+      toast.error('Sorry, there was an error sending your message. Please try again later.');
     } finally {
-      // Reset button state
       if (submitBtn && submitText && submitSpinner) {
         submitBtn.disabled = false;
         submitText.classList.remove('hidden');

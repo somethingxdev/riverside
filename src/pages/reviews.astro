@@ -1,29 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import { Image } from 'astro:assets';
-
-const customers = [
-  {
-    author: 'John Smith',
-    job: 'Homeowner - Bossier City',
-    text: 'Riverside exceeded my expectations! Their products and service are top-notch. My roof looks amazing now.'
-  },
-  {
-    author: 'John Smith',
-    job: 'Homeowner - Bossier City',
-    text: 'Riverside exceeded my expectations! Their products and service are top-notch. My roof looks amazing now.'
-  },
-  {
-    author: 'John Smith',
-    job: 'Homeowner - Bossier City',
-    text: 'Riverside exceeded my expectations! Their products and service are top-notch. My roof looks amazing now.'
-  },
-  {
-    author: 'John Smith',
-    job: 'Homeowner - Bossier City',
-    text: 'Riverside exceeded my expectations! Their products and service are top-notch. My roof looks amazing now.'
-  }
-];
+const data = await import('@/data/customers_says.json');
+const video_reviews = await import('@/data/video_reviews.json');
 ---
 
 <Layout>
@@ -32,12 +10,12 @@ const customers = [
     <h2 class="section-title">What our customers say</h2>
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5 mb-20 md:mb-25 lg:mb-40">
       {
-        customers.map((item) => (
+        data.customers.map((item) => (
           <div class="bg-lightGray p-5 rounded-xl h-[220px] md:h-[260px]">
             <div class="flex flex-col justify-between h-full">
               <div class="space-y-2.5 flex flex-col">
-                <span class="uppercase font-semibold">{item.author}</span>
-                <span class="text-secondary">{item.job}</span>
+                <span class="uppercase font-semibold">{item.name}</span>
+                <span class="text-secondary">{item.position}</span>
               </div>
               <p>“{item.text}”</p>
             </div>
@@ -49,36 +27,31 @@ const customers = [
     <h2 class="section-title">Join ThousandS OF Satisfied Owners</h2>
 
     <div class="grid grid-cols-2 lg:grid-cols-4 lg:grid-rows-3 gap-2.5 md:gap-4">
-      <div class="h-[220px] md:h-[260px] lg:h-[320px] hidden lg:block">
-        <p>
-          Whether you're a business owner or homeowner, we aim to connect, inform, and deliver exceptional materials while being the best partner for
-          all your roofing needs.
-        </p>
-      </div>
-      <div class="h-[220px] md:h-[260px] lg:h-[320px]">
-        <Image src={import('@/assets/reviews/owners/1.png')} alt="owner" class="size-full object-cover rounded-xl object-center" />
-      </div>
-      <div class="h-[220px] md:h-[260px] lg:h-[320px]">
-        <Image src={import('@/assets/reviews/owners/2.png')} alt="owner" class="size-full object-cover rounded-xl object-center" />
-      </div>
-      <div class="h-[220px] md:h-[260px] col-span-2 lg:col-span-1 lg:h-auto lg:row-span-2">
-        <Image src={import('@/assets/reviews/owners/5.png')} alt="owner" class="size-full object-cover rounded-xl object-center" />
-      </div>
-      <div class="h-[220px] md:h-[260px] lg:h-[320px] lg:col-span-2">
-        <Image src={import('@/assets/reviews/owners/3.png')} alt="owner" class="size-full object-cover rounded-xl object-center" />
-      </div>
-      <div class="lg:col-start-3 h-[220px] md:h-[260px] lg:h-[320px] col-span-2 lg:col-span-1">
-        <Image src={import('@/assets/reviews/owners/4.png')} alt="owner" class="size-full object-cover rounded-xl object-center" />
-      </div>
-      <div class="lg:row-start-3  h-[220px] md:h-[260px] lg:h-[320px]">
-        <Image src={import('@/assets/reviews/owners/6.png')} alt="owner" class="size-full object-cover rounded-xl object-center" />
-      </div>
-      <div class="lg:row-start-3 h-[220px] md:h-[260px] lg:h-[320px]">
-        <Image src={import('@/assets/reviews/owners/7.png')} alt="owner" class="size-full object-cover rounded-xl object-center" />
-      </div>
-      <div class="lg:col-span-2 h-[220px] md:h-[260px] lg:h-[320px] row-start-3">
-        <Image src={import('@/assets/reviews/owners/8.png')} alt="owner" class="size-full object-cover rounded-xl object-center" />
-      </div>
+      <div class="h-[220px] md:h-[260px] lg:h-[320px] hidden lg:block"><p>Whether you're a business owner or homeowner, we aim to connect, inform, and deliver exceptional materials while being the best partner for all your roofing needs.</p></div>
+      <div class="h-[220px] md:h-[260px] lg:h-[320px] target-video" data-poster={video_reviews.video_urls[0].poster} data-src={video_reviews.video_urls[0].video_url}></div>
+      <div class="h-[220px] md:h-[260px] lg:h-[320px] target-video" data-poster={video_reviews.video_urls[1].poster} data-src={video_reviews.video_urls[1].video_url}></div>
+      <div class="h-[220px] md:h-[260px] col-span-2 lg:col-span-1 lg:h-auto lg:row-span-2 target-video" data-poster={video_reviews.video_urls[2].poster} data-src={video_reviews.video_urls[2].video_url}></div>
+      <div class="h-[220px] md:h-[260px] lg:h-[320px] lg:col-span-2 target-video" data-poster={video_reviews.video_urls[3].poster} data-src={video_reviews.video_urls[3].video_url}></div>
+      <div class="lg:col-start-3 h-[220px] md:h-[260px] lg:h-[320px] col-span-2 lg:col-span-1 target-video" data-poster={video_reviews.video_urls[4].poster} data-src={video_reviews.video_urls[4].video_url}></div>
+      <div class="lg:row-start-3 h-[220px] md:h-[260px] lg:h-[320px] target-video" data-poster={video_reviews.video_urls[5].poster} data-src={video_reviews.video_urls[5].video_url}></div>
+      <div class="lg:row-start-3 h-[220px] md:h-[260px] lg:h-[320px] target-video" data-poster={video_reviews.video_urls[6].poster} data-src={video_reviews.video_urls[6].video_url}></div>
+      <div class="lg:col-span-2 h-[220px] md:h-[260px] lg:h-[320px] row-start-3 target-video" data-poster={video_reviews.video_urls[7].poster} data-src={video_reviews.video_urls[7].video_url}></div>
     </div>
   </div>
 </Layout>
+
+<script>
+  import { PlyrLayout, VidstackPlayer } from 'vidstack/global/player';
+
+  const targets = document.querySelectorAll('.target-video');
+  for (const target of targets) {
+    if (target instanceof HTMLElement) {
+      VidstackPlayer.create({
+        target: target,
+        layout: new PlyrLayout({
+          thumbnails: 'https://files.vidstack.io/sprite-fight/thumbnails.vtt'
+        })
+      });
+    }
+  }
+</script>

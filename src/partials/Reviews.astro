@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import StarsIcons from '@/icons/stars.svg';
+const video_reviews = await import('@/data/video_reviews.json');
 ---
 
 <section class="py-20 md:py-25 lg:py-40 overflow-hidden" id="reviews">
@@ -16,32 +17,18 @@ import StarsIcons from '@/icons/stars.svg';
 
     <div class="flex flex-col lg:flex-row gap-5 items-stretch">
       <div class="flex flex-col justify-between items-start max-w-[540px] lg:max-w-[356px] shrink-0">
-        <p class="text-primary">
-          Whether you're a business owner or homeowner, we aim to connect, inform, and deliver exceptional materials while being the best partner for
-          all your roofing needs.
-        </p>
+        <p class="text-primary">Whether you're a business owner or homeowner, we aim to connect, inform, and deliver exceptional materials while being the best partner for all your roofing needs.</p>
         <a href="#" class="uppercase font-semibold text-primary hidden lg:inline-block underline-hover">All Reviews</a>
       </div>
       <div class="reviews-container relative embla overflow-x-visible">
         <div class="reviews-wrapper flex gap-2.5 md:gap-3.5 lg:gap-5">
-          <div class="reviews-slide flex-[0_0_320px] rounded-xl overflow-hidden">
-            <Image src={import('@/assets/reviews/1.png')} class="size-full object-cover" alt="1" />
-          </div>
-          <div class="reviews-slide flex-[0_0_320px] rounded-xl overflow-hidden">
-            <Image src={import('@/assets/reviews/1.png')} class="size-full object-cover" alt="1" />
-          </div>
-          <div class="reviews-slide flex-[0_0_320px] rounded-xl overflow-hidden">
-            <Image src={import('@/assets/reviews/1.png')} class="size-full object-cover" alt="1" />
-          </div>
-          <div class="reviews-slide flex-[0_0_320px] rounded-xl overflow-hidden">
-            <Image src={import('@/assets/reviews/1.png')} class="size-full object-cover" alt="1" />
-          </div>
-          <div class="reviews-slide flex-[0_0_320px] rounded-xl overflow-hidden">
-            <Image src={import('@/assets/reviews/1.png')} class="size-full object-cover" alt="1" />
-          </div>
-          <div class="reviews-slide flex-[0_0_320px] rounded-xl overflow-hidden">
-            <Image src={import('@/assets/reviews/1.png')} class="size-full object-cover" alt="1" />
-          </div>
+          {
+            video_reviews.video_urls.map((item) => (
+              <div class="reviews-slide flex-[0_0_320px] rounded-xl overflow-hidden">
+                <div data-poster={item.poster} data-src={item.video_url} class="size-full target-video" />
+              </div>
+            ))
+          }
         </div>
       </div>
     </div>
@@ -53,36 +40,49 @@ import StarsIcons from '@/icons/stars.svg';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   import EmblaCarousel from 'embla-carousel';
   import Autoplay from 'embla-carousel-autoplay';
+
+  import { PlyrLayout, VidstackPlayer } from 'vidstack/global/player';
+
   gsap.registerPlugin(ScrollTrigger);
 
-  document.addEventListener('DOMContentLoaded', () => {
-    // Initialize GSAP for desktop
-    if (window.innerWidth >= 1024) {
-      const reviews = gsap.utils.toArray('.reviews-slide');
-      const scrollTween = gsap.to(reviews, {
-        xPercent: -100 * (reviews.length - 1),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '#reviews',
-          endTrigger: '#touchroom',
-          pin: true,
-          scrub: 1,
-          start: '50% 50%',
-          end: '+=3000'
-        }
+  const targets = document.querySelectorAll('.target-video');
+  for (const target of targets) {
+    if (target instanceof HTMLElement) {
+      VidstackPlayer.create({
+        target: target,
+        layout: new PlyrLayout({
+          thumbnails: 'https://files.vidstack.io/sprite-fight/thumbnails.vtt'
+        })
       });
-    } else {
-      const emblaNode = document.querySelector('.embla') as HTMLElement;
-      if (emblaNode) {
-        const emblaOptions = { loop: false, align: 'start' as const };
-        const autoplayOptions = { delay: 3000, stopOnInteraction: false };
-        const embla = EmblaCarousel(emblaNode, emblaOptions, [Autoplay(autoplayOptions)]);
-      }
     }
-  });
+  }
+
+  // Initialize GSAP for desktop
+  if (window.innerWidth >= 1024) {
+    const reviews = gsap.utils.toArray('.reviews-slide');
+    const scrollTween = gsap.to(reviews, {
+      xPercent: -100 * (reviews.length - 1),
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#reviews',
+        endTrigger: '#touchroom',
+        pin: true,
+        scrub: 1,
+        start: '50% 50%',
+        end: '+=3000'
+      }
+    });
+  } else {
+    const emblaNode = document.querySelector('.embla') as HTMLElement;
+    if (emblaNode) {
+      const emblaOptions = { loop: false, align: 'start' as const };
+      const autoplayOptions = { delay: 3000 };
+      const embla = EmblaCarousel(emblaNode, emblaOptions, [Autoplay(autoplayOptions)]);
+    }
+  }
 </script>
 
-<style>
+<style is:global>
   .reviews-container {
     clip-path: inset(-100vw -100vw -100vw 0);
   }

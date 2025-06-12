@@ -6,11 +6,13 @@ import LinkedinIcon from '@/icons/linkedin.svg';
 import YouTubeIcon from '@/icons/youtube-dark.svg';
 import RiversideMap from '@/components/RiversideMap';
 
+const { socials } = await import('@/data/site_settings.json');
+
 const socialLinks = [
-  { name: 'Facebook', icon: FacebookIcon, href: 'https://www.facebook.com/riversideroofingmaterials/' },
-  { name: 'Instagram', icon: InstagramIcon, href: 'https://www.instagram.com/riversideroofingmaterials/' },
-  { name: 'Linkedin', icon: LinkedinIcon, href: 'https://www.linkedin.com/company/riverside-roofing-materials/' },
-  { name: 'YouTube', icon: YouTubeIcon, href: 'https://www.youtube.com/@riversideroofingmaterials' }
+  { name: 'Facebook', icon: FacebookIcon, href: socials.facebook },
+  { name: 'Instagram', icon: InstagramIcon, href: socials.instagram },
+  { name: 'Linkedin', icon: LinkedinIcon, href: socials.linkedin },
+  { name: 'YouTube', icon: YouTubeIcon, href: socials.youtube }
 ];
 ---
 
@@ -35,11 +37,14 @@ const socialLinks = [
         </div>
         <div class="flex gap-2.5 mt-auto">
           {
-            socialLinks.map((link) => (
-              <a href={link.href} target="_blank" class="w-11.25 h-11.25 text-primary grid place-items-center border border-primary rounded-full hover:-translate-y-1 transition-transform">
-                <link.icon class="text-primary" />
-              </a>
-            ))
+            socialLinks.map(
+              (link) =>
+                link.href && (
+                  <a href={link.href} target="_blank" class="w-11.25 h-11.25 text-primary grid place-items-center border border-primary rounded-full hover:-translate-y-1 transition-transform">
+                    <link.icon class="text-primary" />
+                  </a>
+                )
+            )
           }
         </div>
       </div>

@@ -2,9 +2,9 @@
 published_settings:
   published: true
   created: 2025-06-11
-title: How to choose the perfect roof for your home
-description: Guide to choosing roofing materials, taking into account climate conditions, house style, and budget.
 cover: '@/assets/blog/1.png'
+title: "How to choose the right roofing contractor in Shreveport: a homeowner's guide"
+description: 'Beware of roofing scams: how Shreveport homeowners can find trustworthy contractors.'
 ---
 Beware of Roofing Scams: How Shreveport Homeowners Can Find Trustworthy Contractors.
 

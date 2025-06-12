@@ -1,3 +1,5 @@
+@import 'vidstack/player/styles/base.css';
+@import 'vidstack/player/styles/plyr/theme.css';
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @plugin "@tailwindcss/typography";
@@ -16,6 +18,8 @@
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1280px;
   --breakpoint-2xl: 1480px;
+
+  --plyr-color-main: #313131;
 
   --radius-xl: 20px;
 
@@ -87,4 +91,23 @@
 
 lite-youtube {
   max-width: 100% !important;
+}
+
+iframe.vds-youtube {
+  height: 100%;
+}
+.plyr__poster {
+  background-size: cover;
+}
+.plyr.plyr--stopped .plyr__controls {
+  display: none;
+}
+[data-media-player] {
+  height: 100%;
+}
+.plyr__control--overlaid {
+  background: rgba(255,255,255,0.5);
+  opacity: 1;
+  border: 1px solid #fff;
+  backdrop-filter: blur(2px);
 }

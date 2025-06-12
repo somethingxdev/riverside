@@ -1,15 +1,18 @@
 import { defineCollection, z } from 'astro:content';
 
-import { glob } from 'astro/loaders';
+import { glob, file } from 'astro/loaders';
 
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/data/posts' }),
   schema: ({ image }) =>
     z.object({
+      published_settings: z.object({
+        published: z.boolean().default(true),
+        created: z.date()
+      }),
+      cover: image(),
       title: z.string(),
-      description: z.string(),
-      date: z.date(),
-      cover: image()
+      description: z.string()
     })
 });
 
@@ -33,4 +36,16 @@ const products_category = defineCollection({
     })
 });
 
-export const collections = { blog, products, products_category };
+const showrooms = defineCollection({
+  loader: file('./src/data/showrooms.json'),
+  schema: ({ image }) =>
+    z.array(
+      z.object({
+        image: image(),
+        width: z.number(),
+        height: z.number()
+      })
+    )
+});
+
+export const collections = { blog, products, products_category, showrooms };

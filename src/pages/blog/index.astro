@@ -26,7 +26,7 @@ const formatDate = (date: Date) => {
               <div>
                 <h2 class="text-lg/none lg:text-xl mb-3.75 lg:mb-5">{post.data.title}</h2>
                 <p class="text-secondary mb-5">{post.data.description}</p>
-                <span>{formatDate(post.data.date)}</span>
+                <span>{formatDate(post.data.published_settings.created)}</span>
               </div>
             </a>
             {[0, 2, 4, 8].includes(index) && <div class="hidden lg:block w-[355px]" />}

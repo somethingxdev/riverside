@@ -4,9 +4,155 @@ backend:
   name: github
   branch: main
   repo: somethindxdev/riverside
+  base_url: https://sveltia-cms-auth.hevnxv19.workers.dev
 
 media_folder: 'src/assets'
 public_folder: '@/assets'
 
 collections:
-  # The leads collection has been removed as data is now sent directly to Google Sheets.
+  - name: posts
+    label: Posts
+    folder: src/data/posts
+    create: true
+    slug: '{{slug}}'
+    fields:
+      - name: published_settings
+        label: Published Settings
+        widget: object
+        fields:
+          - name: published
+            label: Published
+            widget: 'boolean'
+            default: true
+          - name: created
+            label: Creation date
+            widget: 'datetime'
+            format: 'YYYY-MM-DD'
+            date_format: 'YYYY-MM-DD'
+      - name: cover
+        label: Cover Image
+        widget: image
+      - name: title
+        label: Title
+        widget: string
+      - name: description
+        label: Description
+        widget: text
+      - name: body
+        label: Body
+        widget: markdown
+  - name: reviews
+    label: Reviews
+    files:
+      - name: curtomers_says
+        label: What our customers say
+        file: src/data/customers_says.json
+        fields:
+          - name: customers
+            label: Customers
+            widget: list
+            fields:
+              - name: name
+                label: Name
+                widget: string
+              - name: position
+                label: Position
+                widget: string
+              - name: text
+                label: Text
+                widget: text
+      - name: video_reviews
+        label: Video Reviews
+        file: src/data/video_reviews.json
+        media_folder: '/public/reviews/owners'
+        public_folder: '/reviews/owners'
+        fields:
+          - name: video_urls
+            label: Video URLs
+            widget: list
+            max: 8
+            fields:
+              - name: video_url
+                label: Video URL
+                widget: string
+              - name: poster
+                label: Poster
+                widget: image
+                media_folder: '/public/reviews/owners'
+                public_folder: '/public/reviews/owners'
+  - name: showrooms
+    label: Showrooms
+    files:
+      - name: items
+        label: Showrooms Items
+        file: src/data/showrooms.json
+        media_folder: 'src/assets/showroom'
+        public_folder: '@/assets/showroom'
+        fields:
+          - name: showrooms
+            label: Showrooms
+            widget: list
+            fields:
+              - name: image
+                label: Image
+                widget: image
+              - name: width
+                label: Width
+                widget: number
+              - name: height
+                label: Height
+                widget: number
+  - name: faq
+    label: FAQ
+    files:
+      - name: items
+        label: FAQ Items
+        file: src/data/faq.json
+        fields:
+          - name: questions
+            label: Questions
+            widget: list
+            fields:
+              - name: question
+                label: Question
+                widget: string
+              - name: answer
+                label: Answer
+                widget: text
+  - name: site_settings
+    label: Site Settings
+    files:
+      - name: items
+        label: Site Settings
+        file: src/data/site_settings.json
+        fields:
+          - name: socials
+            label: Socials
+            widget: object
+            fields:
+              - name: facebook
+                label: Facebook
+                widget: string
+                required: false
+              - name: instagram
+                label: Instagram
+                widget: string
+                required: false
+              - name: linkedin
+                label: Linkedin
+                widget: string
+                required: false
+              - name: youtube
+                label: Youtube
+                widget: string
+                required: false
+          - name: seo
+            label: SEO
+            widget: object
+            fields:
+              - name: title
+                label: Title
+                widget: string
+              - name: description
+                label: Description
+                widget: text

@@ -2,9 +2,9 @@
 published_settings:
   published: true
   created: 2025-06-11
-title: How to choose the perfect roof for your home
-description: Guide to choosing roofing materials, taking into account climate conditions, house style, and budget.
 cover: '@/assets/blog/1.png'
+title: Roof design trends of 2025
+description: Review of modern trends in roof design that will make your house unique and stylish.
 ---
 Beware of Roofing Scams: How Shreveport Homeowners Can Find Trustworthy Contractors.
 

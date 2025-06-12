@@ -1,0 +1,29 @@
+{
+  "showrooms": [
+    {
+      "image": "@/assets/showroom/1.png",
+      "width": 500,
+      "height": 350
+    },
+    {
+      "image": "@/assets/showroom/1.png",
+      "width": 250,
+      "height": 250
+    },
+    {
+      "image": "@/assets/showroom/1.png",
+      "width": 730,
+      "height": 480
+    },
+    {
+      "image": "@/assets/showroom/1.png",
+      "width": 500,
+      "height": 350
+    },
+    {
+      "image": "@/assets/showroom/1.png",
+      "width": 500,
+      "height": 350
+    }
+  ]
+}

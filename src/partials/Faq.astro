@@ -1,13 +1,13 @@
 ---
 import AccordionData from '@/components/Accordion';
-const { data } = Astro.props;
+const data = await import('@/data/faq.json');
 ---
 
 <section id="faq">
   <div class="container">
     <span class="section-pretitle block uppercase mb-5">FAQ</span>
     <h2 class="section-title">questions WITH ANSWERS</h2>
-    <AccordionData client:visible data={data} />
+    <AccordionData client:visible data={data.questions} />
     <div class="md:text-end mt-7.5">
       <a href="/faq" class="underline-hover uppercase font-semibold">READ MORE FAQ’s</a>
     </div>

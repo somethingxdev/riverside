@@ -48,7 +48,7 @@ const imageUrls = ['/survey/start-survey.png', '/survey/repair.png', '/survey/ne
 const UserTypeSurvey: React.FC<UserTypeSurveyProps> = ({ onNext }) => (
   <>
     <DialogHeader className="mb-6">
-      <DialogTitle className="text-4xl md:text-5xl font-heading leading-none uppercase">Where are you?</DialogTitle>
+      <DialogTitle className="text-4xl md:text-5xl font-heading leading-none uppercase">Who are you?</DialogTitle>
     </DialogHeader>
     <div className="flex flex-col md:flex-row items-center gap-3 md:gap-5">
       <button onClick={() => onNext('Homeowner')} className="survey-button w-full sm:w-1/2">

@@ -1,0 +1,36 @@
+{
+  "video_urls": [
+    {
+      "video_url": "https://www.youtube.com/watch?v=COP5WrIyos8&list=RDCOP5WrIyos8&start_radio=1",
+      "poster": "/reviews/owners/1.png"
+    },
+    {
+      "video_url": "https://www.youtube.com/watch?v=COP5WrIyos8&list=RDCOP5WrIyos8&start_radio=1",
+      "poster": "/reviews/owners/2.png"
+    },
+    {
+      "video_url": "https://www.youtube.com/watch?v=COP5WrIyos8&list=RDCOP5WrIyos8&start_radio=1",
+      "poster": "/reviews/owners/5.png"
+    },
+    {
+      "video_url": "https://www.youtube.com/watch?v=COP5WrIyos8&list=RDCOP5WrIyos8&start_radio=1",
+      "poster": "/reviews/owners/3.png"
+    },
+    {
+      "video_url": "https://www.youtube.com/watch?v=COP5WrIyos8&list=RDCOP5WrIyos8&start_radio=1",
+      "poster": "/reviews/owners/4.png"
+    },
+    {
+      "video_url": "https://www.youtube.com/watch?v=COP5WrIyos8&list=RDCOP5WrIyos8&start_radio=1",
+      "poster": "/reviews/owners/6.png"
+    },
+    {
+      "video_url": "https://www.youtube.com/watch?v=COP5WrIyos8&list=RDCOP5WrIyos8&start_radio=1",
+      "poster": "/reviews/owners/7.png"
+    },
+    {
+      "video_url": "https://www.youtube.com/watch?v=COP5WrIyos8&list=RDCOP5WrIyos8&start_radio=1",
+      "poster": "/reviews/owners/8.png"
+    }
+  ]
+}

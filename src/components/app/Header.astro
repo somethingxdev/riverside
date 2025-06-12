@@ -115,7 +115,7 @@ const menu: MenuItemType[] = [
           {
             menu.map((item) => (
               <li class="font-medium" class:list={[isHome ? 'text-white' : 'text-primary']}>
-                {item.href === Astro.url.pathname ? (
+                {Astro.url.pathname.includes(item.href) ? (
                   <a href={item.href} class="flex items-center gap-2 bg-primary px-3 py-2.5 leading-none text-white rounded-full font-medium">
                     {item.title}
                     <span class="size-2 rounded-full bg-white" />
