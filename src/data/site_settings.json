@@ -7,7 +7,9 @@
   },
   "seo": {
     "title": "Riverside",
-    "description": "Riverside",
-    "keywords": ["riverside"]
+    "description": "Riverside Description",
+    "keywords": [
+      "riverside"
+    ]
   }
 }
