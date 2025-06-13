@@ -4,6 +4,7 @@ backend:
   name: github
   branch: main
   repo: bezalelab/riverside
+  base_url: https://sveltia-cms-auth.james-9a2.workers.dev/callback
 
 media_folder: 'src/assets'
 public_folder: '@/assets'
