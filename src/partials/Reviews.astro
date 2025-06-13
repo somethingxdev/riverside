@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import StarsIcons from '@/icons/stars.svg';
+import ReviewsVideo from '@/partials/ReviewsVideo';
 const video_reviews = await import('@/data/video_reviews.json');
 ---
 
@@ -22,13 +23,7 @@ const video_reviews = await import('@/data/video_reviews.json');
       </div>
       <div class="reviews-container relative embla overflow-x-visible">
         <div class="reviews-wrapper flex gap-2.5 md:gap-3.5 lg:gap-5">
-          {
-            video_reviews.video_urls.map((item) => (
-              <div class="reviews-slide flex-[0_0_320px] rounded-xl overflow-hidden">
-                <div data-poster={item.poster} data-src={item.video_url} class="size-full target-video" />
-              </div>
-            ))
-          }
+          <ReviewsVideo video_reviews={video_reviews} client:idle />
         </div>
       </div>
     </div>
@@ -41,21 +36,7 @@ const video_reviews = await import('@/data/video_reviews.json');
   import EmblaCarousel from 'embla-carousel';
   import Autoplay from 'embla-carousel-autoplay';
 
-  import { PlyrLayout, VidstackPlayer } from 'vidstack/global/player';
-
   gsap.registerPlugin(ScrollTrigger);
-
-  const targets = document.querySelectorAll('.target-video');
-  for (const target of targets) {
-    if (target instanceof HTMLElement) {
-      VidstackPlayer.create({
-        target: target,
-        layout: new PlyrLayout({
-          thumbnails: 'https://files.vidstack.io/sprite-fight/thumbnails.vtt'
-        })
-      });
-    }
-  }
 
   // Initialize GSAP for desktop
   if (window.innerWidth >= 1024) {
