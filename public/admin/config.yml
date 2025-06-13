@@ -3,8 +3,7 @@ local_backend: true
 backend:
   name: github
   branch: main
-  repo: somethindxdev/riverside
-  base_url: https://sveltia-cms-auth.hevnxv19.workers.dev
+  repo: bezalelab/riverside
 
 media_folder: 'src/assets'
 public_folder: '@/assets'
