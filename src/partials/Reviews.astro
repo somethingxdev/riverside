@@ -23,7 +23,7 @@ const video_reviews = await import('@/data/video_reviews.json');
       </div>
       <div class="reviews-container relative embla overflow-x-visible">
         <div class="reviews-wrapper flex gap-2.5 md:gap-3.5 lg:gap-5">
-          <ReviewsVideo video_reviews={video_reviews} client:idle />
+          <ReviewsVideo video_reviews={video_reviews} client:visible />
         </div>
       </div>
     </div>
