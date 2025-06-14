@@ -43,7 +43,7 @@ const socialLinks = [
           socialLinks.map(
             (link) =>
               link.href && (
-                <a href={link.href} target="_blank" class="w-11.25 h-11.25 grid place-items-center border border-white rounded-full hover:bg-primary transition-colors hover:border-transparent">
+                <a href={link.href} aria-label={link.name} target="_blank" class="w-11.25 h-11.25 grid place-items-center border border-white rounded-full hover:bg-primary transition-colors hover:border-transparent">
                   <link.icon />
                 </a>
               )
