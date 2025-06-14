@@ -1,5 +1,5 @@
 ---
-import { Image, getImage } from 'astro:assets';
+import { getImage } from 'astro:assets';
 import FloatingInput from '@/components/ui/FloatingInput.astro';
 import Button from '@/components/starwind/button';
 import FacebookIcon from '@/icons/facebook.svg';
@@ -7,6 +7,7 @@ import InstagramIcon from '@/icons/instagram.svg';
 import LinkedinIcon from '@/icons/linkedin.svg';
 import YouTubeIcon from '@/icons/youtube.svg';
 import Logo from '@/icons/logo.svg';
+import BezazelLogo from '@/icons/bezazel.svg';
 
 const { socials } = await import('@/data/site_settings.json');
 const background = await getImage({ src: import('@/assets/footer-bg.png'), format: 'avif' });
@@ -39,13 +40,14 @@ const socialLinks = [
     <div class="flex flex-col lg:flex-row justify-between items-start gap-10 md:gap-20 2xl:gap-40 mb-12.5">
       <div class="flex gap-2.5">
         {
-          socialLinks.map((link) => (
-            link.href && (
-              <a href={link.href} target="_blank" class="w-11.25 h-11.25 grid place-items-center border border-white rounded-full hover:bg-primary transition-colors hover:border-transparent">
-                <link.icon />
-              </a>
-            )
-          ))
+          socialLinks.map(
+            (link) =>
+              link.href && (
+                <a href={link.href} target="_blank" class="w-11.25 h-11.25 grid place-items-center border border-white rounded-full hover:bg-primary transition-colors hover:border-transparent">
+                  <link.icon />
+                </a>
+              )
+          )
         }
       </div>
 
@@ -114,12 +116,13 @@ const socialLinks = [
 
     <Logo class="max-w-full h-[135px] md:h-[216px] lg:h-auto" />
 
-    <div class="flex flex-col sm:flex-row sm:items-center gap-5 justify-between mt-5">
-      <div class="space-y-2">
-        <p>Copyright © 2025</p>
-        <p>All Rights Reserved</p>
+    <div class="flex flex-col sm:flex-row sm:items-center gap-5 justify-between mt-10">
+      <p>Copyright © 2025. All Rights Reserved</p>
+
+      <div class="flex gap-2 items-center">
+        <a href="https://www.bezalelab.com/" target="_blank"><BezazelLogo fill="white" /></a>
+        <a href="#" class="font-medium">Terms of Use</a>
       </div>
-      <a href="#">Terms of Use</a>
     </div>
   </div>
 </footer>
