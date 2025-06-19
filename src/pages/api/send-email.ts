@@ -46,7 +46,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     const resend = new Resend(RESEND_API_KEY);
     const { error } = await resend.emails.send({
-      from: 'Acme <onboarding@resend.dev>',
+      from: EMAIL_RECIPIENT,
       to: [EMAIL_RECIPIENT],
       subject: 'New Survey Submission',
       html: htmlBody,

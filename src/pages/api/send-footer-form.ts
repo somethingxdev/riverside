@@ -20,7 +20,7 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     // Send email
     await resend.emails.send({
-      from: 'Acme <onboarding@resend.dev>',
+      from: EMAIL_RECIPIENT,
       to: EMAIL_RECIPIENT,
       subject: 'New Contact Form Submission',
       html: `
